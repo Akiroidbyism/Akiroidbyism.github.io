@@ -10,7 +10,7 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://akiroidbyism.github.io/ism-corporate/">
 
-  <!-- OGP (Open Graph Protocol) -->
+  <!-- OGP -->
   <meta property="og:title" content="I・S・M合同会社 | AI × ビジネスで未来を切り拓く">
   <meta property="og:description" content="AI技術を活用した物販、EA制作、Web制作、AIコンサルティング事業を展開する先進的企業です。">
   <meta property="og:type" content="website">
@@ -38,10 +38,7 @@
       "addressRegion": "神奈川県",
       "addressCountry": "JP"
     },
-    "founder": {
-      "@type": "Person",
-      "name": "前田 顕"
-    },
+    "founder": { "@type": "Person", "name": "前田 顕" },
     "knowsAbout": ["AI", "物販", "EA制作", "MT4", "MT5", "Web制作", "AIコンサルティング"]
   }
   </script>
@@ -49,7 +46,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -59,35 +56,32 @@
        CSS Variables & Reset
     ============================================ */
     :root {
-      --bg-primary: #0a0e1a;
-      --bg-secondary: #0f1429;
-      --bg-card: #141a2e;
-      --bg-card-hover: #1a2240;
+      --bg-primary: #050816;
+      --bg-secondary: #0a0f24;
+      --bg-card: rgba(15, 23, 50, 0.8);
+      --bg-card-hover: rgba(20, 30, 65, 0.9);
+      --bg-glass: rgba(10, 15, 36, 0.6);
       --text-primary: #e8eaf6;
       --text-secondary: #8892b0;
       --text-muted: #5a6380;
       --accent: #00d4ff;
-      --accent-dark: #0099cc;
       --accent-glow: rgba(0, 212, 255, 0.3);
       --accent-secondary: #7c4dff;
+      --accent-tertiary: #00ffa3;
       --gradient-1: linear-gradient(135deg, #00d4ff, #7c4dff);
-      --gradient-2: linear-gradient(135deg, #0a0e1a, #141a2e);
-      --border-color: rgba(0, 212, 255, 0.15);
+      --gradient-2: linear-gradient(135deg, #00d4ff, #00ffa3);
+      --gradient-3: linear-gradient(135deg, #7c4dff, #ff6b9d);
+      --border-color: rgba(0, 212, 255, 0.12);
+      --border-glow: rgba(0, 212, 255, 0.25);
       --font-jp: 'Noto Sans JP', sans-serif;
       --font-en: 'Inter', sans-serif;
+      --font-tech: 'Orbitron', sans-serif;
       --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
 
     body {
       font-family: var(--font-jp);
@@ -97,215 +91,196 @@
       overflow-x: hidden;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: var(--transition);
-    }
+    a { color: var(--accent); text-decoration: none; transition: var(--transition); }
+    a:hover { color: #fff; }
 
-    a:hover {
-      color: #fff;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
+    /* ============================================
+       グリッド背景（全体）
+    ============================================ */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image:
+        linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* ============================================
        Navigation
     ============================================ */
     .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 1rem 2rem;
-      transition: var(--transition);
-      background: transparent;
+      position: fixed; top: 0; left: 0; width: 100%;
+      z-index: 1000; padding: 1.2rem 2rem;
+      transition: var(--transition); background: transparent;
     }
 
     .navbar.scrolled {
-      background: rgba(10, 14, 26, 0.95);
-      backdrop-filter: blur(20px);
+      background: rgba(5, 8, 22, 0.9);
+      backdrop-filter: blur(30px) saturate(180%);
       border-bottom: 1px solid var(--border-color);
-      padding: 0.7rem 2rem;
+      padding: 0.8rem 2rem;
     }
 
     .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
     }
 
     .nav-logo {
-      font-family: var(--font-en);
-      font-size: 1.1rem;
-      font-weight: 900;
+      font-family: var(--font-tech);
+      font-size: 0.95rem;
+      font-weight: 700;
       white-space: nowrap;
-      background: linear-gradient(90deg, #00d4ff, #7c4dff, #00d4ff);
-      background-size: 200% auto;
+      background: linear-gradient(90deg, #00d4ff, #7c4dff, #00ffa3, #00d4ff);
+      background-size: 300% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      letter-spacing: 4px;
-      animation: logoShimmer 3s linear infinite;
-      filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
+      letter-spacing: 3px;
+      animation: logoShimmer 4s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.4));
       position: relative;
     }
 
     .nav-logo::after {
       content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #00d4ff, #7c4dff, transparent);
-      opacity: 0.6;
-      border-radius: 1px;
+      position: absolute; bottom: -4px; left: 0;
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--accent-secondary), transparent);
+      opacity: 0.5;
     }
 
     @keyframes logoShimmer {
       0% { background-position: 0% center; }
-      100% { background-position: 200% center; }
+      100% { background-position: 300% center; }
     }
 
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
+    .nav-links { display: flex; list-style: none; gap: 2rem; }
 
     .nav-links a {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      font-weight: 500;
-      position: relative;
-      padding-bottom: 4px;
+      color: var(--text-secondary); font-size: 0.85rem; font-weight: 500;
+      position: relative; padding: 0.3rem 0;
+      font-family: var(--font-en); letter-spacing: 0.5px;
     }
 
-    .nav-links a::after {
+    .nav-links a::before {
       content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--gradient-1);
-      transition: var(--transition);
+      position: absolute; bottom: -2px; left: 50%; width: 0; height: 2px;
+      background: var(--gradient-1); transition: all 0.3s ease;
+      transform: translateX(-50%); border-radius: 1px;
     }
 
-    .nav-links a:hover {
-      color: var(--text-primary);
-    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::before { width: 100%; }
 
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    /* Hamburger Menu */
     .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-      z-index: 1001;
+      display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 1001;
     }
-
-    .hamburger span {
-      width: 25px;
-      height: 2px;
-      background: var(--text-primary);
-      transition: var(--transition);
-    }
-
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
+    .hamburger span { width: 25px; height: 2px; background: var(--text-primary); transition: var(--transition); }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
     /* ============================================
        Hero Section
     ============================================ */
     .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
 
-    /* パーティクルキャンバス */
     #particle-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; z-index: 0;
     }
 
-    /* グラデーションオーバーレイ */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(ellipse at 30% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 60%),
-                  radial-gradient(ellipse at 70% 50%, rgba(124, 77, 255, 0.06) 0%, transparent 60%);
-      z-index: 1;
+    /* グローイングオーブ */
+    .hero-orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); opacity: 0.15; z-index: 0;
+      animation: orbFloat 8s ease-in-out infinite;
+    }
+    .hero-orb-1 {
+      width: 500px; height: 500px;
+      background: var(--accent);
+      top: -10%; left: -10%;
+      animation-delay: 0s;
+    }
+    .hero-orb-2 {
+      width: 400px; height: 400px;
+      background: var(--accent-secondary);
+      bottom: -10%; right: -5%;
+      animation-delay: -4s;
+    }
+    .hero-orb-3 {
+      width: 300px; height: 300px;
+      background: var(--accent-tertiary);
+      top: 50%; left: 60%;
+      animation-delay: -2s;
+      opacity: 0.08;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
     }
 
     .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 900px;
-      padding: 0 2rem;
+      position: relative; z-index: 2; text-align: center;
+      max-width: 950px; padding: 0 2rem;
     }
 
     .hero-badge {
-      display: inline-block;
-      padding: 0.4rem 1.2rem;
-      border: 1px solid var(--border-color);
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1.4rem;
+      border: 1px solid var(--border-glow);
       border-radius: 50px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--accent);
       margin-bottom: 2rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       font-family: var(--font-en);
+      background: rgba(0, 212, 255, 0.05);
+      backdrop-filter: blur(10px);
       animation: fadeInUp 0.8s ease-out;
     }
 
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-glow); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 8px transparent; }
+    }
+
     .hero-title {
-      font-family: var(--font-en);
-      font-size: clamp(3rem, 7vw, 6rem);
+      font-family: var(--font-tech);
+      font-size: clamp(3rem, 8vw, 7rem);
       font-weight: 900;
-      letter-spacing: 12px;
+      letter-spacing: 14px;
       margin-bottom: 1.5rem;
       background: linear-gradient(90deg, #ffffff, #00d4ff, #7c4dff, #00d4ff, #ffffff);
       background-size: 300% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: fadeInUp 0.8s ease-out 0.2s both, heroShimmer 4s linear 1s infinite;
-      filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3)) drop-shadow(0 0 60px rgba(124, 77, 255, 0.15));
+      animation: fadeInUp 0.8s ease-out 0.2s both, heroShimmer 5s linear 1s infinite;
+      filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.25)) drop-shadow(0 0 80px rgba(124, 77, 255, 0.12));
       position: relative;
+      line-height: 1.1;
     }
 
     @keyframes heroShimmer {
@@ -314,90 +289,155 @@
     }
 
     .hero-subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
       color: var(--text-secondary);
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
       font-weight: 300;
-      line-height: 1.9;
+      line-height: 2;
       animation: fadeInUp 0.8s ease-out 0.4s both;
     }
 
     .hero-tagline {
-      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      font-family: var(--font-en);
+      font-size: clamp(0.8rem, 1.8vw, 1rem);
       color: var(--text-muted);
       margin-bottom: 2.5rem;
-      font-weight: 300;
+      font-weight: 400;
+      letter-spacing: 3px;
       animation: fadeInUp 0.8s ease-out 0.5s both;
     }
 
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.9rem 2.5rem;
-      background: var(--gradient-1);
-      color: #fff;
-      font-weight: 600;
-      border-radius: 50px;
-      font-size: 0.95rem;
-      transition: var(--transition);
+    .hero-buttons {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
       animation: fadeInUp 0.8s ease-out 0.6s both;
-      border: none;
-      cursor: pointer;
     }
 
-    .hero-cta:hover {
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.9rem 2.2rem;
+      background: var(--gradient-1); color: #fff;
+      font-weight: 600; border-radius: 50px;
+      font-size: 0.9rem; transition: var(--transition);
+      border: none; cursor: pointer;
+      position: relative; overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn-primary:hover::before { left: 100%; }
+    .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 40px var(--accent-glow);
       color: #fff;
     }
 
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      animation: bounce 2s infinite;
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.9rem 2.2rem;
+      background: transparent; color: var(--accent);
+      font-weight: 500; border-radius: 50px;
+      font-size: 0.9rem; transition: var(--transition);
+      border: 1px solid var(--border-glow); cursor: pointer;
+      backdrop-filter: blur(10px);
     }
 
-    .scroll-indicator i {
-      color: var(--text-muted);
-      font-size: 1.5rem;
+    .btn-outline:hover {
+      background: rgba(0, 212, 255, 0.1);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .scroll-indicator {
+      position: absolute; bottom: 2rem; left: 50%;
+      transform: translateX(-50%); z-index: 2;
+    }
+
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      margin: 0 auto;
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+      50% { opacity: 1; transform: scaleY(1); }
+      100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; }
     }
 
     /* ============================================
-       Section Common Styles
+       数字で見るISM（カウンターセクション）
+    ============================================ */
+    .stats-section {
+      position: relative; padding: 4rem 2rem;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .stats-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .stat-item {
+      text-align: center; padding: 1.5rem;
+    }
+
+    .stat-number {
+      font-family: var(--font-tech);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    /* ============================================
+       Section Common
     ============================================ */
     .section {
-      padding: 6rem 2rem;
+      padding: 7rem 2rem;
       position: relative;
+      z-index: 1;
     }
 
-    .section-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .section-container { max-width: 1200px; margin: 0 auto; }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
+    .section-header { text-align: center; margin-bottom: 4rem; }
 
     .section-label {
-      font-family: var(--font-en);
-      font-size: 0.8rem;
+      font-family: var(--font-tech);
+      font-size: 0.7rem;
       color: var(--accent);
-      letter-spacing: 3px;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
       display: block;
     }
 
     .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
       font-weight: 700;
       margin-bottom: 1rem;
+      line-height: 1.4;
     }
 
     .section-title span {
@@ -409,18 +449,25 @@
 
     .section-desc {
       color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
+      max-width: 600px; margin: 0 auto;
       font-size: 0.95rem;
     }
 
-    /* セクション区切り線 */
     .section-divider {
-      width: 60px;
-      height: 3px;
+      width: 80px; height: 3px;
       background: var(--gradient-1);
       margin: 1.5rem auto 0;
       border-radius: 2px;
+      position: relative;
+    }
+
+    .section-divider::after {
+      content: '';
+      position: absolute; top: -3px; left: 50%; transform: translateX(-50%);
+      width: 9px; height: 9px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-glow);
     }
 
     /* ============================================
@@ -434,68 +481,83 @@
 
     .business-card {
       background: var(--bg-card);
+      backdrop-filter: blur(20px);
       border: 1px solid var(--border-color);
-      border-radius: 16px;
+      border-radius: 20px;
       padding: 2.5rem 2rem;
-      transition: var(--transition);
+      transition: var(--transition-slow);
       position: relative;
       overflow: hidden;
     }
 
     .business-card::before {
       content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 0%, rgba(0, 212, 255, 0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: var(--transition-slow);
+    }
+
+    .business-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 3px;
       background: var(--gradient-1);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.5s ease;
     }
 
     .business-card:hover {
       background: var(--bg-card-hover);
-      transform: translateY(-5px);
-      border-color: rgba(0, 212, 255, 0.3);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transform: translateY(-8px);
+      border-color: var(--border-glow);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 212, 255, 0.05);
     }
 
-    .business-card:hover::before {
-      transform: scaleX(1);
+    .business-card:hover::before { opacity: 1; }
+    .business-card:hover::after { transform: scaleX(1); }
+
+    .business-number {
+      font-family: var(--font-tech);
+      font-size: 0.7rem;
+      color: var(--accent);
+      opacity: 0.4;
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
     }
 
     .business-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 14px;
-      background: rgba(0, 212, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 65px; height: 65px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 77, 255, 0.1));
+      display: flex; align-items: center; justify-content: center;
       margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-      color: var(--accent);
+      font-size: 1.5rem; color: var(--accent);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .business-icon::after {
+      content: '';
+      position: absolute; inset: -2px;
+      border-radius: 18px;
+      background: var(--gradient-1);
+      z-index: -1; opacity: 0;
       transition: var(--transition);
     }
 
     .business-card:hover .business-icon {
-      background: var(--gradient-1);
-      color: #fff;
-      transform: scale(1.05);
+      background: var(--gradient-1); color: #fff;
+      box-shadow: 0 8px 30px var(--accent-glow);
     }
 
     .business-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.8rem;
-      font-weight: 700;
+      font-size: 1.2rem; margin-bottom: 0.8rem; font-weight: 700;
     }
 
     .business-card p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.8;
+      color: var(--text-secondary); font-size: 0.88rem; line-height: 1.9;
     }
 
     /* ============================================
@@ -503,209 +565,212 @@
     ============================================ */
     #vision {
       background: var(--bg-secondary);
+      position: relative;
+    }
+
+    #vision::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(ellipse at 20% 50%, rgba(124, 77, 255, 0.05) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+      pointer-events: none;
     }
 
     .vision-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
     }
 
     .vision-card {
       padding: 2.5rem 2rem;
-      border-radius: 16px;
-      background: var(--bg-primary);
+      border-radius: 20px;
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
       border: 1px solid var(--border-color);
-      transition: var(--transition);
+      transition: var(--transition-slow);
       position: relative;
+      overflow: hidden;
     }
 
-    .vision-card:hover {
-      border-color: rgba(0, 212, 255, 0.4);
-      box-shadow: 0 0 40px rgba(0, 212, 255, 0.05);
+    .vision-card::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      opacity: 0;
+      transition: var(--transition-slow);
     }
+
+    .vision-card:nth-child(1)::before { background: radial-gradient(circle, rgba(0, 212, 255, 0.1), transparent 70%); }
+    .vision-card:nth-child(2)::before { background: radial-gradient(circle, rgba(124, 77, 255, 0.1), transparent 70%); }
+    .vision-card:nth-child(3)::before { background: radial-gradient(circle, rgba(0, 255, 163, 0.1), transparent 70%); }
+    .vision-card:nth-child(4)::before { background: radial-gradient(circle, rgba(255, 107, 157, 0.1), transparent 70%); }
+
+    .vision-card:hover { border-color: var(--border-glow); transform: translateY(-4px); }
+    .vision-card:hover::before { opacity: 1; }
 
     .vision-tag {
       display: inline-block;
-      font-family: var(--font-en);
-      font-size: 0.75rem;
+      font-family: var(--font-tech);
+      font-size: 0.65rem;
       font-weight: 600;
       color: var(--accent);
-      background: rgba(0, 212, 255, 0.1);
-      padding: 0.3rem 0.8rem;
+      background: rgba(0, 212, 255, 0.08);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      padding: 0.3rem 0.9rem;
       border-radius: 50px;
       margin-bottom: 1.2rem;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
     }
 
     .vision-card h3 {
-      font-size: 1.15rem;
-      margin-bottom: 0.8rem;
-      font-weight: 700;
+      font-size: 1.15rem; margin-bottom: 0.8rem; font-weight: 700;
     }
 
     .vision-card p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.8;
+      color: var(--text-secondary); font-size: 0.88rem; line-height: 1.9;
     }
 
     .vision-card .vision-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      display: block;
+      font-size: 2.2rem; margin-bottom: 1rem; display: block;
     }
 
     /* ============================================
-       Company Section（会社情報）
+       Company Section
     ============================================ */
     .company-table {
-      max-width: 700px;
-      margin: 0 auto;
+      max-width: 750px; margin: 0 auto;
       background: var(--bg-card);
+      backdrop-filter: blur(20px);
       border: 1px solid var(--border-color);
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
     }
 
     .company-row {
       display: flex;
       border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
     }
-
-    .company-row:last-child {
-      border-bottom: none;
-    }
+    .company-row:last-child { border-bottom: none; }
+    .company-row:hover { background: rgba(0, 212, 255, 0.02); }
 
     .company-row dt {
-      width: 160px;
-      min-width: 160px;
-      padding: 1.2rem 1.5rem;
+      width: 170px; min-width: 170px;
+      padding: 1.3rem 1.5rem;
       background: rgba(0, 212, 255, 0.03);
-      font-weight: 500;
-      font-size: 0.9rem;
+      font-weight: 600; font-size: 0.88rem;
       color: var(--accent);
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center; gap: 0.5rem;
     }
 
     .company-row dd {
-      padding: 1.2rem 1.5rem;
+      padding: 1.3rem 1.5rem;
       font-size: 0.95rem;
       color: var(--text-secondary);
-      flex: 1;
-      display: flex;
-      align-items: center;
+      flex: 1; display: flex; align-items: center;
     }
 
     /* ============================================
-       Contact Section（お問い合わせ）
+       Contact Section
     ============================================ */
     #contact {
       background: var(--bg-secondary);
+      position: relative;
     }
 
-    .contact-form {
-      max-width: 650px;
-      margin: 0 auto;
+    #contact::before {
+      content: '';
+      position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.04), transparent 70%);
+      pointer-events: none;
     }
 
-    .form-group {
-      margin-bottom: 1.5rem;
+    .contact-wrapper {
+      max-width: 700px; margin: 0 auto;
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 3rem;
+      position: relative;
     }
+
+    .contact-form { position: relative; z-index: 1; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
 
     .form-group label {
-      display: block;
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
+      display: block; font-size: 0.85rem; font-weight: 500;
+      margin-bottom: 0.4rem; color: var(--text-primary);
     }
-
-    .form-group label .required {
-      color: #ff4757;
-      margin-left: 0.3rem;
-      font-size: 0.8rem;
-    }
+    .form-group label .required { color: #ff4757; margin-left: 0.2rem; font-size: 0.75rem; }
 
     .form-group input,
     .form-group textarea {
-      width: 100%;
-      padding: 0.9rem 1.2rem;
-      background: var(--bg-primary);
+      width: 100%; padding: 0.85rem 1.1rem;
+      background: rgba(5, 8, 22, 0.8);
       border: 1px solid var(--border-color);
-      border-radius: 10px;
+      border-radius: 12px;
       color: var(--text-primary);
-      font-family: var(--font-jp);
-      font-size: 0.95rem;
-      transition: var(--transition);
-      outline: none;
+      font-family: var(--font-jp); font-size: 0.9rem;
+      transition: var(--transition); outline: none;
     }
 
     .form-group input:focus,
     .form-group textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
+      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1), 0 0 20px rgba(0, 212, 255, 0.05);
     }
 
-    .form-group textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
+    .form-group textarea { min-height: 140px; resize: vertical; }
 
     .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: var(--text-muted);
-    }
+    .form-group textarea::placeholder { color: var(--text-muted); }
 
     .submit-btn {
-      width: 100%;
-      padding: 1rem;
-      background: var(--gradient-1);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 600;
-      font-family: var(--font-jp);
-      cursor: pointer;
+      width: 100%; padding: 1rem;
+      background: var(--gradient-1); color: #fff;
+      border: none; border-radius: 12px;
+      font-size: 0.95rem; font-weight: 600;
+      font-family: var(--font-jp); cursor: pointer;
       transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      position: relative; overflow: hidden;
     }
 
+    .submit-btn::before {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transition: 0.5s;
+    }
+
+    .submit-btn:hover::before { left: 100%; }
     .submit-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 40px var(--accent-glow);
     }
 
-    /* 送信完了メッセージ */
     .form-success {
-      display: none;
-      text-align: center;
-      padding: 3rem 2rem;
+      display: none; text-align: center; padding: 3rem 2rem;
     }
-
-    .form-success.show {
-      display: block;
-    }
-
-    .form-success i {
-      font-size: 3rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-
-    .form-success h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .form-success p {
-      color: var(--text-secondary);
-    }
+    .form-success.show { display: block; }
+    .form-success i { font-size: 3rem; color: var(--accent); margin-bottom: 1rem; }
+    .form-success h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .form-success p { color: var(--text-secondary); }
 
     /* ============================================
        Footer
@@ -714,119 +779,78 @@
       padding: 3rem 2rem;
       border-top: 1px solid var(--border-color);
       text-align: center;
+      position: relative; z-index: 1;
     }
 
     .footer-logo {
-      font-family: var(--font-en);
-      font-size: 1.4rem;
-      font-weight: 900;
+      font-family: var(--font-tech);
+      font-size: 1.2rem; font-weight: 700;
       background: linear-gradient(90deg, #00d4ff, #7c4dff, #00d4ff);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 0.8rem;
-      display: inline-block;
+      margin-bottom: 0.8rem; display: inline-block;
       letter-spacing: 4px;
-      animation: logoShimmer 3s linear infinite;
-      filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.3));
+      animation: logoShimmer 4s linear infinite;
     }
 
     .footer p {
-      color: var(--text-muted);
-      font-size: 0.8rem;
+      color: var(--text-muted); font-size: 0.75rem;
+      font-family: var(--font-en);
     }
 
     /* ============================================
        Animations
     ============================================ */
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateX(-50%) translateY(0);
-      }
-      40% {
-        transform: translateX(-50%) translateY(-10px);
-      }
-      60% {
-        transform: translateX(-50%) translateY(-5px);
-      }
-    }
-
-    /* スクロールアニメーション用 */
     .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    .reveal.active { opacity: 1; transform: translateY(0); }
 
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* スタガードアニメーション */
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* カウントアップアニメーション */
+    .stat-number { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
+    .stat-number.counted { opacity: 1; transform: translateY(0); }
 
     /* ============================================
        Responsive
     ============================================ */
     @media (max-width: 768px) {
       .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        height: 100vh;
-        background: rgba(10, 14, 26, 0.98);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        padding: 5rem 2rem;
-        gap: 1.5rem;
+        position: fixed; top: 0; right: -100%;
+        width: 75%; height: 100vh;
+        background: rgba(5, 8, 22, 0.98);
+        backdrop-filter: blur(30px);
+        flex-direction: column; padding: 5rem 2rem; gap: 1.5rem;
         transition: var(--transition);
         border-left: 1px solid var(--border-color);
       }
-
-      .nav-links.open {
-        right: 0;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .section {
-        padding: 4rem 1.2rem;
-      }
-
-      .business-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .vision-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .company-row {
-        flex-direction: column;
-      }
-
-      .company-row dt {
-        width: 100%;
-        min-width: unset;
-        padding: 0.8rem 1.2rem;
-      }
-
-      .company-row dd {
-        padding: 0.8rem 1.2rem;
-      }
+      .nav-links.open { right: 0; }
+      .hamburger { display: flex; }
+      .section { padding: 5rem 1.2rem; }
+      .business-grid { grid-template-columns: 1fr; }
+      .vision-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .company-row { flex-direction: column; }
+      .company-row dt { width: 100%; min-width: unset; padding: 0.8rem 1.2rem; }
+      .company-row dd { padding: 0.8rem 1.2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-wrapper { padding: 2rem 1.5rem; }
+      .hero-orb-1 { width: 300px; height: 300px; }
+      .hero-orb-2 { width: 250px; height: 250px; }
+      .hero-orb-3 { display: none; }
     }
   </style>
 </head>
@@ -839,15 +863,13 @@
     <div class="nav-container">
       <a href="#" class="nav-logo">I・S・M Limited Liability Company</a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#business" onclick="closeMenu()">事業紹介</a></li>
-        <li><a href="#vision" onclick="closeMenu()">AI活用</a></li>
-        <li><a href="#company" onclick="closeMenu()">会社情報</a></li>
-        <li><a href="#contact" onclick="closeMenu()">お問い合わせ</a></li>
+        <li><a href="#business" onclick="closeMenu()">Business</a></li>
+        <li><a href="#vision" onclick="closeMenu()">AI Vision</a></li>
+        <li><a href="#company" onclick="closeMenu()">Company</a></li>
+        <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
       </ul>
       <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </div>
     </div>
   </nav>
@@ -857,6 +879,9 @@
   ============================================ -->
   <section class="hero" id="hero">
     <canvas id="particle-canvas"></canvas>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
     <div class="hero-content">
       <span class="hero-badge">AI-Driven Business Solutions</span>
       <h1 class="hero-title">I・S・M</h1>
@@ -865,12 +890,41 @@
         テクノロジーと戦略の融合が、次の成長を創り出す。
       </p>
       <p class="hero-tagline">AI × Commerce / Trading / Web / Consulting</p>
-      <a href="#business" class="hero-cta">
-        事業を見る <i class="fas fa-arrow-right"></i>
-      </a>
+      <div class="hero-buttons">
+        <a href="#business" class="btn-primary">
+          事業を見る <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="#contact" class="btn-outline">
+          <i class="fas fa-envelope"></i> お問い合わせ
+        </a>
+      </div>
     </div>
     <div class="scroll-indicator">
-      <i class="fas fa-chevron-down"></i>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       Stats Section（数字で見るISM）
+  ============================================ -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-number" data-target="4">0</div>
+        <div class="stat-label">事業領域</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-number" data-target="100" data-suffix="%">0%</div>
+        <div class="stat-label">AI活用率</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-number" data-target="24" data-suffix="/7">0/7</div>
+        <div class="stat-label">自動運用</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-number" data-target="1" data-prefix="No.">No.0</div>
+        <div class="stat-label">AI × ビジネス</div>
+      </div>
     </div>
   </section>
 
@@ -886,35 +940,27 @@
         <div class="section-divider"></div>
       </div>
       <div class="business-grid">
-        <!-- 物販 -->
-        <div class="business-card reveal">
-          <div class="business-icon">
-            <i class="fas fa-shopping-cart"></i>
-          </div>
+        <div class="business-card reveal reveal-delay-1">
+          <div class="business-number">01</div>
+          <div class="business-icon"><i class="fas fa-shopping-cart"></i></div>
           <h3>物販事業</h3>
           <p>AIを活用した市場分析・価格最適化により、効率的な物販ビジネスを展開。データドリブンな仕入れ判断と販売戦略で収益を最大化します。</p>
         </div>
-        <!-- EA制作 -->
-        <div class="business-card reveal">
-          <div class="business-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
+        <div class="business-card reveal reveal-delay-2">
+          <div class="business-number">02</div>
+          <div class="business-icon"><i class="fas fa-chart-line"></i></div>
           <h3>EA制作</h3>
           <p>MT4/MT5プラットフォーム向けの自動売買プログラム（EA）を開発。機械学習アルゴリズムを組み込んだ高精度なトレーディングシステムを構築します。</p>
         </div>
-        <!-- Web制作 -->
-        <div class="business-card reveal">
-          <div class="business-icon">
-            <i class="fas fa-code"></i>
-          </div>
+        <div class="business-card reveal reveal-delay-3">
+          <div class="business-number">03</div>
+          <div class="business-icon"><i class="fas fa-code"></i></div>
           <h3>Web制作</h3>
           <p>モダンなUI/UXデザインと最新技術を駆使したWebサイト・アプリケーションの企画・設計・開発。ビジネスの価値をデジタルで最大化します。</p>
         </div>
-        <!-- AIコンサルティング -->
-        <div class="business-card reveal">
-          <div class="business-icon">
-            <i class="fas fa-brain"></i>
-          </div>
+        <div class="business-card reveal reveal-delay-4">
+          <div class="business-number">04</div>
+          <div class="business-icon"><i class="fas fa-brain"></i></div>
           <h3>AI運用コンサルティング</h3>
           <p>AI導入戦略の策定から運用支援まで、企業のAI活用を包括的にサポート。業務効率化と新たな価値創造を実現します。</p>
         </div>
@@ -934,31 +980,27 @@
         <div class="section-divider"></div>
       </div>
       <div class="vision-grid">
-        <!-- AI × 物販 -->
-        <div class="vision-card reveal">
+        <div class="vision-card reveal reveal-delay-1">
           <span class="vision-icon">🛒</span>
-          <span class="vision-tag">AI × Commerce</span>
+          <span class="vision-tag">AI × COMMERCE</span>
           <h3>需要予測と価格最適化</h3>
           <p>AIによる市場トレンド分析で最適な仕入れタイミングを判定。動的な価格設定で利益率を向上させ、在庫リスクを最小限に抑えます。</p>
         </div>
-        <!-- AI × EA -->
-        <div class="vision-card reveal">
+        <div class="vision-card reveal reveal-delay-2">
           <span class="vision-icon">📈</span>
-          <span class="vision-tag">AI × Trading</span>
+          <span class="vision-tag">AI × TRADING</span>
           <h3>自律型トレーディング</h3>
           <p>深層学習を活用したマーケット分析で、従来のテクニカル指標を超えた判断を実現。リスク管理とリターンの最適バランスを追求します。</p>
         </div>
-        <!-- AI × Web -->
-        <div class="vision-card reveal">
+        <div class="vision-card reveal reveal-delay-3">
           <span class="vision-icon">💻</span>
-          <span class="vision-tag">AI × Web</span>
+          <span class="vision-tag">AI × WEB</span>
           <h3>次世代Web体験</h3>
           <p>AIアシスタントやパーソナライズ機能を統合したWebサービスを開発。ユーザー行動分析に基づく最適なUI/UXを実現します。</p>
         </div>
-        <!-- AI × コンサル -->
-        <div class="vision-card reveal">
+        <div class="vision-card reveal reveal-delay-4">
           <span class="vision-icon">🤖</span>
-          <span class="vision-tag">AI × Consulting</span>
+          <span class="vision-tag">AI × CONSULTING</span>
           <h3>戦略的AI導入支援</h3>
           <p>企業ごとの課題に最適なAIソリューションを提案。導入計画の策定から効果測定まで、一気通貫でビジネス変革をリードします。</p>
         </div>
@@ -978,19 +1020,19 @@
       </div>
       <dl class="company-table reveal">
         <div class="company-row">
-          <dt>会社名</dt>
+          <dt><i class="fas fa-building" style="font-size:0.75rem"></i> 会社名</dt>
           <dd>I・S・M合同会社</dd>
         </div>
         <div class="company-row">
-          <dt>所在地</dt>
+          <dt><i class="fas fa-map-marker-alt" style="font-size:0.75rem"></i> 所在地</dt>
           <dd>横浜市西区北幸2丁目10番地28</dd>
         </div>
         <div class="company-row">
-          <dt>代表社員</dt>
+          <dt><i class="fas fa-user" style="font-size:0.75rem"></i> 代表社員</dt>
           <dd>前田 顕</dd>
         </div>
         <div class="company-row">
-          <dt>事業内容</dt>
+          <dt><i class="fas fa-briefcase" style="font-size:0.75rem"></i> 事業内容</dt>
           <dd>物販事業 / EA制作 / Web制作 / AI運用コンサルティング</dd>
         </div>
       </dl>
@@ -1008,38 +1050,40 @@
         <p class="section-desc">事業に関するご質問やご相談は、お気軽にお問い合わせください。</p>
         <div class="section-divider"></div>
       </div>
-      <form class="contact-form reveal" id="contactForm" action="https://formsubmit.co/a.maeda@y-ism.llc" method="POST">
-        <!-- Formsubmit.co 設定 -->
-        <input type="hidden" name="_subject" value="【I・S・M】Webサイトからのお問い合わせ">
-        <input type="hidden" name="_captcha" value="true">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://akiroidbyism.github.io/ism-corporate/index.html?submitted=true">
-        <input type="text" name="_honey" style="display:none">
-        <div class="form-group">
-          <label for="name">お名前<span class="required">*</span></label>
-          <input type="text" id="name" name="name" placeholder="山田 太郎" required>
+      <div class="contact-wrapper reveal">
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/a.maeda@y-ism.llc" method="POST">
+          <input type="hidden" name="_subject" value="【I・S・M】Webサイトからのお問い合わせ">
+          <input type="hidden" name="_captcha" value="true">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://akiroidbyism.github.io/ism-corporate/index.html?submitted=true">
+          <input type="text" name="_honey" style="display:none">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">お名前<span class="required">*</span></label>
+              <input type="text" id="name" name="name" placeholder="山田 太郎" required>
+            </div>
+            <div class="form-group">
+              <label for="email">メールアドレス<span class="required">*</span></label>
+              <input type="email" id="email" name="email" placeholder="example@email.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">件名<span class="required">*</span></label>
+            <input type="text" id="subject" name="subject" placeholder="お問い合わせの件名" required>
+          </div>
+          <div class="form-group">
+            <label for="message">お問い合わせ内容<span class="required">*</span></label>
+            <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i> 送信する
+          </button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <i class="fas fa-check-circle"></i>
+          <h3>送信が完了しました</h3>
+          <p>お問い合わせありがとうございます。内容を確認の上、折り返しご連絡いたします。</p>
         </div>
-        <div class="form-group">
-          <label for="email">メールアドレス<span class="required">*</span></label>
-          <input type="email" id="email" name="email" placeholder="example@email.com" required>
-        </div>
-        <div class="form-group">
-          <label for="subject">件名<span class="required">*</span></label>
-          <input type="text" id="subject" name="subject" placeholder="お問い合わせの件名" required>
-        </div>
-        <div class="form-group">
-          <label for="message">お問い合わせ内容<span class="required">*</span></label>
-          <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
-        </div>
-        <button type="submit" class="submit-btn">
-          <i class="fas fa-paper-plane"></i> 送信する
-        </button>
-      </form>
-      <!-- 送信完了メッセージ -->
-      <div class="form-success" id="formSuccess">
-        <i class="fas fa-check-circle"></i>
-        <h3>送信が完了しました</h3>
-        <p>お問い合わせありがとうございます。内容を確認の上、折り返しご連絡いたします。</p>
       </div>
     </div>
   </section>
@@ -1049,19 +1093,19 @@
   ============================================ -->
   <footer class="footer">
     <div class="footer-logo">I・S・M</div>
-    <p>&copy; 2025 I・S・M合同会社 All Rights Reserved.</p>
+    <p>&copy; 2025 I・S・M LLC. All Rights Reserved.</p>
   </footer>
 
   <!-- ============================================
        JavaScript
   ============================================ -->
   <script>
-    /* ---- パーティクルアニメーション ---- */
+    /* ---- パーティクルアニメーション（マウスインタラクション付き） ---- */
     (function() {
       const canvas = document.getElementById('particle-canvas');
       const ctx = canvas.getContext('2d');
       let particles = [];
-      let animationId;
+      let mouse = { x: null, y: null, radius: 150 };
       let width, height;
 
       function resize() {
@@ -1071,17 +1115,32 @@
 
       class Particle {
         constructor() {
-          this.reset();
-        }
-        reset() {
           this.x = Math.random() * width;
           this.y = Math.random() * height;
-          this.size = Math.random() * 2 + 0.5;
-          this.speedX = (Math.random() - 0.5) * 0.5;
-          this.speedY = (Math.random() - 0.5) * 0.5;
-          this.opacity = Math.random() * 0.5 + 0.1;
+          this.size = Math.random() * 2.5 + 0.5;
+          this.baseSpeedX = (Math.random() - 0.5) * 0.4;
+          this.baseSpeedY = (Math.random() - 0.5) * 0.4;
+          this.speedX = this.baseSpeedX;
+          this.speedY = this.baseSpeedY;
+          this.opacity = Math.random() * 0.6 + 0.1;
+          /* パーティクルごとに少し色を変える */
+          this.hue = Math.random() > 0.7 ? 270 : 190;
         }
         update() {
+          /* マウスとのインタラクション */
+          if (mouse.x !== null) {
+            const dx = this.x - mouse.x;
+            const dy = this.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius) {
+              const force = (mouse.radius - dist) / mouse.radius;
+              this.speedX = this.baseSpeedX + (dx / dist) * force * 1.5;
+              this.speedY = this.baseSpeedY + (dy / dist) * force * 1.5;
+            } else {
+              this.speedX += (this.baseSpeedX - this.speedX) * 0.05;
+              this.speedY += (this.baseSpeedY - this.speedY) * 0.05;
+            }
+          }
           this.x += this.speedX;
           this.y += this.speedY;
           if (this.x < 0 || this.x > width) this.speedX *= -1;
@@ -1090,31 +1149,30 @@
         draw() {
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(0, 212, 255, ${this.opacity})`;
+          ctx.fillStyle = `hsla(${this.hue}, 100%, 65%, ${this.opacity})`;
           ctx.fill();
         }
       }
 
       function init() {
         resize();
-        const count = Math.min(Math.floor((width * height) / 12000), 120);
+        const count = Math.min(Math.floor((width * height) / 10000), 150);
         particles = [];
-        for (let i = 0; i < count; i++) {
-          particles.push(new Particle());
-        }
+        for (let i = 0; i < count; i++) particles.push(new Particle());
       }
 
       function connectParticles() {
-        const maxDist = 150;
+        const maxDist = 140;
         for (let i = 0; i < particles.length; i++) {
           for (let j = i + 1; j < particles.length; j++) {
             const dx = particles[i].x - particles[j].x;
             const dy = particles[i].y - particles[j].y;
             const dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < maxDist) {
+              const alpha = 0.07 * (1 - dist / maxDist);
               ctx.beginPath();
-              ctx.strokeStyle = `rgba(0, 212, 255, ${0.08 * (1 - dist / maxDist)})`;
-              ctx.lineWidth = 0.5;
+              ctx.strokeStyle = `rgba(0, 212, 255, ${alpha})`;
+              ctx.lineWidth = 0.6;
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(particles[j].x, particles[j].y);
               ctx.stroke();
@@ -1125,18 +1183,21 @@
 
       function animate() {
         ctx.clearRect(0, 0, width, height);
-        particles.forEach(p => {
-          p.update();
-          p.draw();
-        });
+        particles.forEach(p => { p.update(); p.draw(); });
         connectParticles();
-        animationId = requestAnimationFrame(animate);
+        requestAnimationFrame(animate);
       }
+
+      canvas.addEventListener('mousemove', e => {
+        mouse.x = e.x; mouse.y = e.y;
+      });
+      canvas.addEventListener('mouseleave', () => {
+        mouse.x = null; mouse.y = null;
+      });
 
       window.addEventListener('resize', () => {
         resize();
-        // パーティクル数を再調整
-        const count = Math.min(Math.floor((width * height) / 12000), 120);
+        const count = Math.min(Math.floor((width * height) / 10000), 150);
         while (particles.length < count) particles.push(new Particle());
         while (particles.length > count) particles.pop();
       });
@@ -1145,40 +1206,54 @@
       animate();
     })();
 
-    /* ---- ナビゲーション スクロール時の背景変化 ---- */
+    /* ---- ナビゲーション ---- */
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    /* ---- ハンバーガーメニュー ---- */
     function toggleMenu() {
       document.getElementById('navLinks').classList.toggle('open');
       document.getElementById('hamburger').classList.toggle('active');
     }
-
     function closeMenu() {
       document.getElementById('navLinks').classList.remove('open');
       document.getElementById('hamburger').classList.remove('active');
     }
 
-    /* ---- スクロールアニメーション（Intersection Observer） ---- */
+    /* ---- スクロールアニメーション + カウントアップ ---- */
     const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
+          /* カウントアップ */
+          const counters = entry.target.querySelectorAll('.stat-number[data-target]');
+          counters.forEach(counter => {
+            if (counter.classList.contains('counted')) return;
+            counter.classList.add('counted');
+            const target = parseInt(counter.dataset.target);
+            const suffix = counter.dataset.suffix || '';
+            const prefix = counter.dataset.prefix || '';
+            let current = 0;
+            const step = Math.max(1, Math.floor(target / 30));
+            const timer = setInterval(() => {
+              current += step;
+              if (current >= target) {
+                current = target;
+                clearInterval(timer);
+              }
+              counter.textContent = prefix + current + suffix;
+            }, 40);
+          });
           observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -50px 0px'
-    });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
     revealElements.forEach(el => observer.observe(el));
 
-    /* ---- お問い合わせフォーム送信後のリダイレクト表示 ---- */
+    /* ---- フォーム送信後リダイレクト表示 ---- */
     if (new URLSearchParams(window.location.search).get('submitted') === 'true') {
       const form = document.getElementById('contactForm');
       const success = document.getElementById('formSuccess');
