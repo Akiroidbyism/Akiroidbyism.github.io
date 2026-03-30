@@ -528,28 +528,86 @@
     }
 
     .business-icon {
-      width: 65px; height: 65px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 77, 255, 0.1));
+      width: 70px; height: 70px;
+      border-radius: 50%;
+      background: rgba(5, 8, 22, 0.9);
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 1.5rem;
       font-size: 1.5rem; color: var(--accent);
-      transition: var(--transition);
+      transition: var(--transition-slow);
       position: relative;
+      z-index: 1;
     }
 
-    .business-icon::after {
+    /* 回転するグラデーションボーダー */
+    .business-icon::before {
       content: '';
       position: absolute; inset: -2px;
-      border-radius: 18px;
-      background: var(--gradient-1);
-      z-index: -1; opacity: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #00d4ff, #7c4dff, #00ffa3, #00d4ff);
+      z-index: -2;
+      animation: iconSpin 4s linear infinite;
+      opacity: 0.6;
       transition: var(--transition);
+    }
+
+    /* グロー背景 */
+    .business-icon::after {
+      content: '';
+      position: absolute; inset: -8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+      z-index: -3;
+      opacity: 0;
+      transition: var(--transition-slow);
+    }
+
+    @keyframes iconSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .business-card:hover .business-icon {
       background: var(--gradient-1); color: #fff;
-      box-shadow: 0 8px 30px var(--accent-glow);
+      box-shadow: 0 0 30px var(--accent-glow);
+      transform: scale(1.1);
+    }
+
+    .business-card:hover .business-icon::before {
+      opacity: 1;
+      animation: iconSpin 2s linear infinite;
+    }
+
+    .business-card:hover .business-icon::after {
+      opacity: 1;
+    }
+
+    /* カードごとにアイコンの色を変える */
+    .business-card:nth-child(2) .business-icon { color: var(--accent-secondary); }
+    .business-card:nth-child(2) .business-icon::before {
+      background: conic-gradient(from 0deg, #7c4dff, #ff6b9d, #7c4dff);
+    }
+    .business-card:nth-child(2):hover .business-icon {
+      background: var(--gradient-3);
+      box-shadow: 0 0 30px rgba(124, 77, 255, 0.3);
+    }
+
+    .business-card:nth-child(3) .business-icon { color: var(--accent-tertiary); }
+    .business-card:nth-child(3) .business-icon::before {
+      background: conic-gradient(from 0deg, #00ffa3, #00d4ff, #00ffa3);
+    }
+    .business-card:nth-child(3):hover .business-icon {
+      background: var(--gradient-2);
+      box-shadow: 0 0 30px rgba(0, 255, 163, 0.3);
+    }
+
+    .business-card:nth-child(4) .business-icon { color: #ff6b9d; }
+    .business-card:nth-child(4) .business-icon::before {
+      background: conic-gradient(from 0deg, #ff6b9d, #ffbe76, #ff6b9d);
+    }
+    .business-card:nth-child(4):hover .business-icon {
+      background: linear-gradient(135deg, #ff6b9d, #ffbe76);
+      box-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
     }
 
     .business-card h3 {
@@ -634,8 +692,27 @@
     }
 
     .vision-card .vision-icon {
-      font-size: 2.2rem; margin-bottom: 1rem; display: block;
+      font-size: 2.4rem; margin-bottom: 1rem; display: inline-block;
+      width: 60px; height: 60px;
+      line-height: 60px; text-align: center;
+      border-radius: 50%;
+      background: rgba(0, 212, 255, 0.06);
+      border: 1px solid rgba(0, 212, 255, 0.1);
+      transition: var(--transition);
     }
+
+    .vision-card:hover .vision-icon {
+      transform: scale(1.15) rotate(5deg);
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.15);
+      border-color: var(--border-glow);
+    }
+
+    .vision-card:nth-child(2) .vision-icon { background: rgba(124, 77, 255, 0.06); border-color: rgba(124, 77, 255, 0.1); }
+    .vision-card:nth-child(2):hover .vision-icon { box-shadow: 0 0 25px rgba(124, 77, 255, 0.15); border-color: rgba(124, 77, 255, 0.3); }
+    .vision-card:nth-child(3) .vision-icon { background: rgba(0, 255, 163, 0.06); border-color: rgba(0, 255, 163, 0.1); }
+    .vision-card:nth-child(3):hover .vision-icon { box-shadow: 0 0 25px rgba(0, 255, 163, 0.15); border-color: rgba(0, 255, 163, 0.3); }
+    .vision-card:nth-child(4) .vision-icon { background: rgba(255, 107, 157, 0.06); border-color: rgba(255, 107, 157, 0.1); }
+    .vision-card:nth-child(4):hover .vision-icon { box-shadow: 0 0 25px rgba(255, 107, 157, 0.15); border-color: rgba(255, 107, 157, 0.3); }
 
     /* ============================================
        Company Section
@@ -1020,19 +1097,19 @@
       </div>
       <dl class="company-table reveal">
         <div class="company-row">
-          <dt><i class="fas fa-building" style="font-size:0.75rem"></i> 会社名</dt>
+          <dt><i class="fas fa-building" style="font-size:0.75rem;color:var(--accent)"></i> 会社名</dt>
           <dd>I・S・M合同会社</dd>
         </div>
         <div class="company-row">
-          <dt><i class="fas fa-map-marker-alt" style="font-size:0.75rem"></i> 所在地</dt>
+          <dt><i class="fas fa-map-marker-alt" style="font-size:0.75rem;color:var(--accent-secondary)"></i> 所在地</dt>
           <dd>横浜市西区北幸2丁目10番地28</dd>
         </div>
         <div class="company-row">
-          <dt><i class="fas fa-user" style="font-size:0.75rem"></i> 代表社員</dt>
+          <dt><i class="fas fa-user" style="font-size:0.75rem;color:var(--accent-tertiary)"></i> 代表社員</dt>
           <dd>前田 顕</dd>
         </div>
         <div class="company-row">
-          <dt><i class="fas fa-briefcase" style="font-size:0.75rem"></i> 事業内容</dt>
+          <dt><i class="fas fa-briefcase" style="font-size:0.75rem;color:#ff6b9d"></i> 事業内容</dt>
           <dd>物販事業 / EA制作 / Web制作 / AI運用コンサルティング</dd>
         </div>
       </dl>
