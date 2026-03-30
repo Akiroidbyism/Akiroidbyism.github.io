@@ -1008,7 +1008,13 @@
         <p class="section-desc">事業に関するご質問やご相談は、お気軽にお問い合わせください。</p>
         <div class="section-divider"></div>
       </div>
-      <form class="contact-form reveal" id="contactForm" onsubmit="handleSubmit(event)">
+      <form class="contact-form reveal" id="contactForm" action="https://formsubmit.co/a.maeda@y-ism.llc" method="POST">
+        <!-- Formsubmit.co 設定 -->
+        <input type="hidden" name="_subject" value="【I・S・M】Webサイトからのお問い合わせ">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://akiroidbyism.github.io/ism-corporate/index.html?submitted=true">
+        <input type="text" name="_honey" style="display:none">
         <div class="form-group">
           <label for="name">お名前<span class="required">*</span></label>
           <input type="text" id="name" name="name" placeholder="山田 太郎" required>
@@ -1172,13 +1178,16 @@
 
     revealElements.forEach(el => observer.observe(el));
 
-    /* ---- お問い合わせフォーム送信処理（フロントエンドのみ） ---- */
-    function handleSubmit(e) {
-      e.preventDefault();
+    /* ---- お問い合わせフォーム送信後のリダイレクト表示 ---- */
+    if (new URLSearchParams(window.location.search).get('submitted') === 'true') {
       const form = document.getElementById('contactForm');
       const success = document.getElementById('formSuccess');
-      form.style.display = 'none';
-      success.classList.add('show');
+      if (form && success) {
+        form.style.display = 'none';
+        success.classList.add('show');
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        history.replaceState(null, '', window.location.pathname);
+      }
     }
   </script>
 </body>
