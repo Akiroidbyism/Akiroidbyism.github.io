@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I・S・M合同会社 | AI × ビジネスで未来を切り拓く</title>
+  <meta name="description" content="I・S・M合同会社 - AI技術を活用した物販、EA制作、Web制作、AIコンサルティング事業を展開する先進的企業です。">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ============================================
+       CSS Variables & Reset
+    ============================================ */
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #0f1429;
+      --bg-card: #141a2e;
+      --bg-card-hover: #1a2240;
+      --text-primary: #e8eaf6;
+      --text-secondary: #8892b0;
+      --text-muted: #5a6380;
+      --accent: #00d4ff;
+      --accent-dark: #0099cc;
+      --accent-glow: rgba(0, 212, 255, 0.3);
+      --accent-secondary: #7c4dff;
+      --gradient-1: linear-gradient(135deg, #00d4ff, #7c4dff);
+      --gradient-2: linear-gradient(135deg, #0a0e1a, #141a2e);
+      --border-color: rgba(0, 212, 255, 0.15);
+      --font-jp: 'Noto Sans JP', sans-serif;
+      --font-en: 'Inter', sans-serif;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-jp);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: #fff;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ============================================
+       Navigation
+    ============================================ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      transition: var(--transition);
+      background: transparent;
+    }
+
+    .navbar.scrolled {
+      background: rgba(10, 14, 26, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.7rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: var(--font-en);
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-1);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: var(--transition);
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* ============================================
+       Hero Section
+    ============================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* パーティクルキャンバス */
+    #particle-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* グラデーションオーバーレイ */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at 30% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(124, 77, 255, 0.06) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      padding: 0 2rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: var(--font-en);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero-title {
+      font-family: var(--font-en);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      letter-spacing: 6px;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #ffffff 0%, #00d4ff 50%, #7c4dff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-weight: 300;
+      line-height: 1.9;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2.5rem;
+      background: var(--gradient-1);
+      color: #fff;
+      font-weight: 600;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px var(--accent-glow);
+      color: #fff;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-indicator i {
+      color: var(--text-muted);
+      font-size: 1.5rem;
+    }
+
+    /* ============================================
+       Section Common Styles
+    ============================================ */
+    .section {
+      padding: 6rem 2rem;
+      position: relative;
+    }
+
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      font-family: var(--font-en);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .section-title span {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 0.95rem;
+    }
+
+    /* セクション区切り線 */
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--gradient-1);
+      margin: 1.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* ============================================
+       Business Section（事業紹介）
+    ============================================ */
+    .business-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .business-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .business-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--gradient-1);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .business-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-5px);
+      border-color: rgba(0, 212, 255, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .business-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .business-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      background: rgba(0, 212, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .business-card:hover .business-icon {
+      background: var(--gradient-1);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .business-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+
+    .business-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    /* ============================================
+       Vision Section（AI活用ビジョン）
+    ============================================ */
+    #vision {
+      background: var(--bg-secondary);
+    }
+
+    .vision-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .vision-card {
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .vision-card:hover {
+      border-color: rgba(0, 212, 255, 0.4);
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.05);
+    }
+
+    .vision-tag {
+      display: inline-block;
+      font-family: var(--font-en);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(0, 212, 255, 0.1);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      margin-bottom: 1.2rem;
+      letter-spacing: 1px;
+    }
+
+    .vision-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+
+    .vision-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .vision-card .vision-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    /* ============================================
+       Company Section（会社情報）
+    ============================================ */
+    .company-table {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .company-row {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .company-row:last-child {
+      border-bottom: none;
+    }
+
+    .company-row dt {
+      width: 160px;
+      min-width: 160px;
+      padding: 1.2rem 1.5rem;
+      background: rgba(0, 212, 255, 0.03);
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+    }
+
+    .company-row dd {
+      padding: 1.2rem 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ============================================
+       Contact Section（お問い合わせ）
+    ============================================ */
+    #contact {
+      background: var(--bg-secondary);
+    }
+
+    .contact-form {
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .form-group label .required {
+      color: #ff4757;
+      margin-left: 0.3rem;
+      font-size: 0.8rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-family: var(--font-jp);
+      font-size: 0.95rem;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--gradient-1);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: var(--font-jp);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px var(--accent-glow);
+    }
+
+    /* 送信完了メッセージ */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .form-success.show {
+      display: block;
+    }
+
+    .form-success i {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .form-success h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-success p {
+      color: var(--text-secondary);
+    }
+
+    /* ============================================
+       Footer
+    ============================================ */
+    .footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-en);
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.8rem;
+      display: inline-block;
+    }
+
+    .footer p {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    /* ============================================
+       Animations
+    ============================================ */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
+    /* スクロールアニメーション用 */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       Responsive
+    ============================================ */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(10, 14, 26, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 5rem 2rem;
+        gap: 1.5rem;
+        transition: var(--transition);
+        border-left: 1px solid var(--border-color);
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .section {
+        padding: 4rem 1.2rem;
+      }
+
+      .business-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .vision-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .company-row {
+        flex-direction: column;
+      }
+
+      .company-row dt {
+        width: 100%;
+        min-width: unset;
+        padding: 0.8rem 1.2rem;
+      }
+
+      .company-row dd {
+        padding: 0.8rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       Navigation
+  ============================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">I・S・M</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#business" onclick="closeMenu()">事業紹介</a></li>
+        <li><a href="#vision" onclick="closeMenu()">AI活用</a></li>
+        <li><a href="#company" onclick="closeMenu()">会社情報</a></li>
+        <li><a href="#contact" onclick="closeMenu()">お問い合わせ</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       Hero Section
+  ============================================ -->
+  <section class="hero" id="hero">
+    <canvas id="particle-canvas"></canvas>
+    <div class="hero-content">
+      <span class="hero-badge">AI-Driven Business Solutions</span>
+      <h1 class="hero-title">I・S・M</h1>
+      <p class="hero-subtitle">
+        AIの力で、ビジネスの可能性を拡張する。<br>
+        テクノロジーと戦略の融合が、次の成長を創り出す。
+      </p>
+      <p class="hero-tagline">AI × Commerce / Trading / Web / Consulting</p>
+      <a href="#business" class="hero-cta">
+        事業を見る <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- ============================================
+       Business Section（事業紹介）
+  ============================================ -->
+  <section class="section" id="business">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-label">Business</span>
+        <h2 class="section-title">事業<span>紹介</span></h2>
+        <p class="section-desc">AIテクノロジーを軸に、多角的なビジネスソリューションを提供します。</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="business-grid">
+        <!-- 物販 -->
+        <div class="business-card reveal">
+          <div class="business-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <h3>物販事業</h3>
+          <p>AIを活用した市場分析・価格最適化により、効率的な物販ビジネスを展開。データドリブンな仕入れ判断と販売戦略で収益を最大化します。</p>
+        </div>
+        <!-- EA制作 -->
+        <div class="business-card reveal">
+          <div class="business-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>EA制作</h3>
+          <p>MT4/MT5プラットフォーム向けの自動売買プログラム（EA）を開発。機械学習アルゴリズムを組み込んだ高精度なトレーディングシステムを構築します。</p>
+        </div>
+        <!-- Web制作 -->
+        <div class="business-card reveal">
+          <div class="business-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3>Web制作</h3>
+          <p>モダンなUI/UXデザインと最新技術を駆使したWebサイト・アプリケーションの企画・設計・開発。ビジネスの価値をデジタルで最大化します。</p>
+        </div>
+        <!-- AIコンサルティング -->
+        <div class="business-card reveal">
+          <div class="business-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>AI運用コンサルティング</h3>
+          <p>AI導入戦略の策定から運用支援まで、企業のAI活用を包括的にサポート。業務効率化と新たな価値創造を実現します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       Vision Section（AI活用ビジョン）
+  ============================================ -->
+  <section class="section" id="vision">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-label">AI Integration</span>
+        <h2 class="section-title">AIが拓く<span>4つの革新</span></h2>
+        <p class="section-desc">すべての事業領域にAIを統合し、従来の限界を超えた成果を生み出します。</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="vision-grid">
+        <!-- AI × 物販 -->
+        <div class="vision-card reveal">
+          <span class="vision-icon">🛒</span>
+          <span class="vision-tag">AI × Commerce</span>
+          <h3>需要予測と価格最適化</h3>
+          <p>AIによる市場トレンド分析で最適な仕入れタイミングを判定。動的な価格設定で利益率を向上させ、在庫リスクを最小限に抑えます。</p>
+        </div>
+        <!-- AI × EA -->
+        <div class="vision-card reveal">
+          <span class="vision-icon">📈</span>
+          <span class="vision-tag">AI × Trading</span>
+          <h3>自律型トレーディング</h3>
+          <p>深層学習を活用したマーケット分析で、従来のテクニカル指標を超えた判断を実現。リスク管理とリターンの最適バランスを追求します。</p>
+        </div>
+        <!-- AI × Web -->
+        <div class="vision-card reveal">
+          <span class="vision-icon">💻</span>
+          <span class="vision-tag">AI × Web</span>
+          <h3>次世代Web体験</h3>
+          <p>AIアシスタントやパーソナライズ機能を統合したWebサービスを開発。ユーザー行動分析に基づく最適なUI/UXを実現します。</p>
+        </div>
+        <!-- AI × コンサル -->
+        <div class="vision-card reveal">
+          <span class="vision-icon">🤖</span>
+          <span class="vision-tag">AI × Consulting</span>
+          <h3>戦略的AI導入支援</h3>
+          <p>企業ごとの課題に最適なAIソリューションを提案。導入計画の策定から効果測定まで、一気通貫でビジネス変革をリードします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       Company Section（会社情報）
+  ============================================ -->
+  <section class="section" id="company">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-label">Company</span>
+        <h2 class="section-title">会社<span>情報</span></h2>
+        <div class="section-divider"></div>
+      </div>
+      <dl class="company-table reveal">
+        <div class="company-row">
+          <dt>会社名</dt>
+          <dd>I・S・M合同会社</dd>
+        </div>
+        <div class="company-row">
+          <dt>所在地</dt>
+          <dd>横浜市西区北幸2丁目10番地28</dd>
+        </div>
+        <div class="company-row">
+          <dt>代表社員</dt>
+          <dd>前田 顕</dd>
+        </div>
+        <div class="company-row">
+          <dt>事業内容</dt>
+          <dd>物販事業 / EA制作 / Web制作 / AI運用コンサルティング</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================================
+       Contact Section（お問い合わせ）
+  ============================================ -->
+  <section class="section" id="contact">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-label">Contact</span>
+        <h2 class="section-title">お問い<span>合わせ</span></h2>
+        <p class="section-desc">事業に関するご質問やご相談は、お気軽にお問い合わせください。</p>
+        <div class="section-divider"></div>
+      </div>
+      <form class="contact-form reveal" id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="name">お名前<span class="required">*</span></label>
+          <input type="text" id="name" name="name" placeholder="山田 太郎" required>
+        </div>
+        <div class="form-group">
+          <label for="email">メールアドレス<span class="required">*</span></label>
+          <input type="email" id="email" name="email" placeholder="example@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">件名<span class="required">*</span></label>
+          <input type="text" id="subject" name="subject" placeholder="お問い合わせの件名" required>
+        </div>
+        <div class="form-group">
+          <label for="message">お問い合わせ内容<span class="required">*</span></label>
+          <textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">
+          <i class="fas fa-paper-plane"></i> 送信する
+        </button>
+      </form>
+      <!-- 送信完了メッセージ -->
+      <div class="form-success" id="formSuccess">
+        <i class="fas fa-check-circle"></i>
+        <h3>送信が完了しました</h3>
+        <p>お問い合わせありがとうございます。内容を確認の上、折り返しご連絡いたします。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       Footer
+  ============================================ -->
+  <footer class="footer">
+    <div class="footer-logo">I・S・M</div>
+    <p>&copy; 2025 I・S・M合同会社 All Rights Reserved.</p>
+  </footer>
+
+  <!-- ============================================
+       JavaScript
+  ============================================ -->
+  <script>
+    /* ---- パーティクルアニメーション ---- */
+    (function() {
+      const canvas = document.getElementById('particle-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let animationId;
+      let width, height;
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+
+      class Particle {
+        constructor() {
+          this.reset();
+        }
+        reset() {
+          this.x = Math.random() * width;
+          this.y = Math.random() * height;
+          this.size = Math.random() * 2 + 0.5;
+          this.speedX = (Math.random() - 0.5) * 0.5;
+          this.speedY = (Math.random() - 0.5) * 0.5;
+          this.opacity = Math.random() * 0.5 + 0.1;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          if (this.x < 0 || this.x > width) this.speedX *= -1;
+          if (this.y < 0 || this.y > height) this.speedY *= -1;
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(0, 212, 255, ${this.opacity})`;
+          ctx.fill();
+        }
+      }
+
+      function init() {
+        resize();
+        const count = Math.min(Math.floor((width * height) / 12000), 120);
+        particles = [];
+        for (let i = 0; i < count; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      function connectParticles() {
+        const maxDist = 150;
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < maxDist) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(0, 212, 255, ${0.08 * (1 - dist / maxDist)})`;
+              ctx.lineWidth = 0.5;
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        connectParticles();
+        animationId = requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', () => {
+        resize();
+        // パーティクル数を再調整
+        const count = Math.min(Math.floor((width * height) / 12000), 120);
+        while (particles.length < count) particles.push(new Particle());
+        while (particles.length > count) particles.pop();
+      });
+
+      init();
+      animate();
+    })();
+
+    /* ---- ナビゲーション スクロール時の背景変化 ---- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    /* ---- ハンバーガーメニュー ---- */
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('active');
+    }
+
+    function closeMenu() {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('active');
+    }
+
+    /* ---- スクロールアニメーション（Intersection Observer） ---- */
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    /* ---- お問い合わせフォーム送信処理（フロントエンドのみ） ---- */
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('contactForm');
+      const success = document.getElementById('formSuccess');
+      form.style.display = 'none';
+      success.classList.add('show');
+    }
+  </script>
+</body>
+</html>
