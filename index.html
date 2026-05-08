@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>横浜のAI企業 I・S・M合同会社｜AI物販・FX EA制作・Web制作・AIコンサルティング</title>
-  <meta name="description" content="横浜市西区のAI企業 I・S・M合同会社（ISM / アイエスエム）。AIを活用した物販、FX自動売買EA制作（MT4/MT5）、Web制作、AIコンサルティングを提供。AI × ビジネスで成果を出す横浜の先進企業。">
-  <meta name="keywords" content="横浜 AI, AI 物販 横浜, EA制作 横浜, FX 自動売買 横浜, MT4 EA 開発 横浜, AIコンサルティング 横浜, AI ビジネス 横浜, Web制作 横浜, I・S・M合同会社, ISM合同会社, アイエスエム, AI企業 横浜, 横浜 EA, 物販 AI, FX EA 制作, 横浜市西区 AI">
+  <title>I・S・M合同会社｜音楽レーベル × AI企業｜is-Ma / Sleeptide / Lofi Bento</title>
+  <meta name="description" content="横浜のAI×音楽レーベル I・S・M合同会社。所属アーティスト is-Ma（イズマ）、Sleeptide、Lofi Bento の楽曲を Spotify / Apple Music / YouTube Music 等で世界配信中。AI物販・FX EA制作・Web制作も展開。">
+  <meta name="keywords" content="is-Ma, イズマ, Sleeptide, Lofi Bento, AKIROID, I・S・M, ISM, 音楽レーベル 横浜, J-POP 新人, AI音楽 配信, インディーズレーベル, 横浜 音楽, ヒーリング音楽, Lofi 配信, 横浜 AI, AI 物販 横浜, EA制作 横浜, FX 自動売買 横浜">
   <meta name="author" content="I・S・M合同会社">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="geo.region" content="JP-14">
@@ -15,8 +15,8 @@
   <link rel="canonical" href="https://akiroidbyism.github.io/">
 
   <!-- OGP -->
-  <meta property="og:title" content="横浜のAI企業 I・S・M合同会社｜AI物販・FX EA・Web制作・AIコンサル">
-  <meta property="og:description" content="横浜市西区のAI企業。AIを活用した物販、FX自動売買EA制作（MT4/MT5）、Web制作、AIコンサルティングを提供。AI × ビジネスで成果を創出。">
+  <meta property="og:title" content="I・S・M｜音楽レーベル × AI企業｜is-Ma / Sleeptide / Lofi Bento">
+  <meta property="og:description" content="横浜の音楽レーベル I・S・M。所属アーティスト is-Ma、Sleeptide、Lofi Bento の楽曲を世界配信中。AI物販・EA制作・Web制作も展開。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://akiroidbyism.github.io/">
   <meta property="og:site_name" content="I・S・M合同会社">
@@ -27,8 +27,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="横浜のAI企業 I・S・M合同会社｜AI物販・FX EA・Web制作・AIコンサル">
-  <meta name="twitter:description" content="横浜市西区のAI企業。AI物販、FX自動売買EA制作、Web制作、AIコンサルティングを提供。">
+  <meta name="twitter:title" content="I・S・M｜音楽レーベル × AI企業">
+  <meta name="twitter:description" content="is-Ma / Sleeptide / Lofi Bento ─ I・S・Mレーベル所属アーティストの楽曲を世界配信中。">
   <meta name="twitter:image" content="https://akiroidbyism.github.io/ogp.png">
 
   <!-- 構造化データ (JSON-LD): LocalBusiness + Services -->
@@ -64,11 +64,21 @@
       { "@type": "Country", "name": "日本" }
     ],
     "founder": { "@type": "Person", "name": "前田 顕" },
-    "knowsAbout": ["AI", "AI物販", "EA制作", "FX自動売買", "MT4", "MT5", "Web制作", "AIコンサルティング", "機械学習", "横浜AI企業"],
+    "knowsAbout": ["音楽レーベル", "音楽配信", "J-POP", "アンビエント", "Lofi Hip Hop", "AI音楽", "is-Ma", "Sleeptide", "Lofi Bento", "AI", "AI物販", "EA制作", "FX自動売買", "MT4", "MT5", "Web制作", "AIコンサルティング", "機械学習", "横浜AI企業"],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "I・S・M合同会社の事業サービス",
       "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "音楽レーベル・音楽配信事業",
+            "description": "is-Ma / Sleeptide / Lofi Bento の楽曲を Spotify / Apple Music / YouTube Music ほか主要DSPで世界配信",
+            "areaServed": "日本・全世界",
+            "provider": { "@id": "https://akiroidbyism.github.io/#organization" }
+          }
+        },
         {
           "@type": "Offer",
           "itemOffered": {
@@ -592,6 +602,141 @@
     }
 
     /* ============================================
+       Music Section（音楽配信）
+    ============================================ */
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .music-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .music-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--gradient-1);
+      opacity: 0; transition: opacity 0.4s ease;
+      z-index: 0; mix-blend-mode: overlay;
+    }
+
+    .music-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-glow);
+      box-shadow: 0 20px 50px rgba(0, 212, 255, 0.18);
+    }
+    .music-card:hover::before { opacity: 0.06; }
+
+    .music-card > * { position: relative; z-index: 1; }
+
+    .music-header {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      justify-content: space-between; align-items: center;
+      font-size: 0.7rem; letter-spacing: 0.5px;
+    }
+
+    .music-tag {
+      font-family: var(--font-tech);
+      color: var(--accent);
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--border-glow);
+      border-radius: 999px;
+      background: rgba(0, 212, 255, 0.05);
+    }
+
+    .music-date {
+      color: var(--text-muted);
+      font-family: var(--font-en);
+    }
+
+    .music-artist {
+      font-family: var(--font-tech);
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 1px;
+      margin-top: 0.25rem;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .music-artist-jp {
+      font-family: var(--font-jp);
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: normal;
+      -webkit-text-fill-color: var(--text-muted);
+    }
+
+    .music-title {
+      font-family: var(--font-en);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 1.5px;
+    }
+
+    .music-desc {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin: 0.5rem 0;
+    }
+
+    .music-platforms {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: auto; padding-top: 0.5rem;
+    }
+
+    .music-platforms a {
+      font-size: 0.82rem;
+      font-family: var(--font-en);
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 0.55rem 0.95rem;
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      background: rgba(15, 23, 50, 0.5);
+      transition: var(--transition);
+      display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+
+    .music-platforms a:hover {
+      color: #fff;
+      border-color: var(--accent);
+      background: rgba(0, 212, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .music-platforms a i { font-size: 0.95rem; }
+
+    .music-coming {
+      font-size: 0.82rem;
+      font-family: var(--font-en);
+      color: var(--text-muted);
+      padding: 0.55rem 0.95rem;
+      border: 1px dashed var(--border-color);
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ============================================
        Business Section（事業紹介）
     ============================================ */
     .business-grid {
@@ -1061,6 +1206,7 @@
     <div class="nav-container">
       <a href="#" class="nav-logo">I・S・M Limited Liability Company</a>
       <ul class="nav-links" id="navLinks">
+        <li><a href="#music" onclick="closeMenu()">Music</a></li>
         <li><a href="#business" onclick="closeMenu()">Business</a></li>
         <li><a href="#vision" onclick="closeMenu()">AI Vision</a></li>
         <li><a href="#company" onclick="closeMenu()">Company</a></li>
@@ -1081,17 +1227,17 @@
     <div class="hero-orb hero-orb-2"></div>
     <div class="hero-orb hero-orb-3"></div>
     <div class="hero-content">
-      <span class="hero-badge">横浜のAI企業｜AI-Driven Business Solutions</span>
+      <span class="hero-badge">Music Label × AI Studio｜Yokohama, Japan</span>
       <h1 class="hero-title">I・S・M</h1>
       <p class="hero-subtitle">
-        横浜のAI企業 I・S・M合同会社｜<br>
-        AI物販・FX自動売買EA制作・Web制作・AIコンサルティング。<br>
-        AIとビジネスの融合で、次の成長を創り出す。
+        音楽レーベル × AIスタジオ｜I・S・M合同会社<br>
+        所属アーティスト <strong style="color:var(--accent);">is-Ma</strong> / <strong style="color:var(--accent-secondary);">Sleeptide</strong> / <strong style="color:var(--accent-tertiary);">Lofi Bento</strong> の楽曲を世界配信中。<br>
+        AI物販・FX EA制作・Web制作・AIコンサルティングも展開。
       </p>
-      <p class="hero-tagline">AI × Commerce / FX EA / Web / Consulting｜横浜・神奈川・全国対応</p>
+      <p class="hero-tagline">Music Distribution / AI × Commerce / FX EA / Web / Consulting</p>
       <div class="hero-buttons">
-        <a href="#business" class="btn-primary">
-          事業を見る <i class="fas fa-arrow-right"></i>
+        <a href="#music" class="btn-primary">
+          楽曲を聴く <i class="fas fa-music"></i>
         </a>
         <a href="#contact" class="btn-outline">
           <i class="fas fa-envelope"></i> お問い合わせ
@@ -1109,8 +1255,8 @@
   <section class="stats-section">
     <div class="stats-grid">
       <div class="stat-item reveal">
-        <div class="stat-number" data-target="4">0</div>
-        <div class="stat-label">事業領域</div>
+        <div class="stat-number" data-target="17" data-suffix="+">0+</div>
+        <div class="stat-label">リリース楽曲</div>
       </div>
       <div class="stat-item reveal reveal-delay-1">
         <div class="stat-number" data-target="100" data-suffix="%">0%</div>
@@ -1123,6 +1269,62 @@
       <div class="stat-item reveal reveal-delay-3">
         <div class="stat-number" data-target="1" data-prefix="No.">No.0</div>
         <div class="stat-label">AI × ビジネス</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       Music Section（音楽レーベル・配信中楽曲）
+  ============================================ -->
+  <section class="section" id="music">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <span class="section-label">Music</span>
+        <h2 class="section-title">配信中の<span>楽曲</span></h2>
+        <p class="section-desc">I・S・Mレーベル所属アーティストの楽曲を Spotify / Apple Music / YouTube Music ほか主要DSPで世界配信中。</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="music-grid">
+        <div class="music-card reveal reveal-delay-1">
+          <div class="music-header">
+            <span class="music-tag">J-POP / Cinematic</span>
+            <span class="music-date">2026.05.22 Release</span>
+          </div>
+          <div class="music-artist">is-Ma <span class="music-artist-jp">（イズマ）</span></div>
+          <div class="music-title">BLUE HORIZON</div>
+          <p class="music-desc">日本語×英語のハイブリッド歌詞、シネマティックな高揚感を持つJ-POPアンセム。映画的ストリングス、Hans Zimmer風のスケール感、YOASOBIメッツ Imagine Dragons の交差点。</p>
+          <div class="music-platforms">
+            <a href="https://open.spotify.com/search/is-Ma" target="_blank" rel="noopener"><i class="fab fa-spotify"></i> Spotify</a>
+            <a href="https://music.apple.com/search?term=is-Ma" target="_blank" rel="noopener"><i class="fab fa-apple"></i> Apple Music</a>
+            <a href="https://music.youtube.com/search?q=is-Ma" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube Music</a>
+          </div>
+        </div>
+        <div class="music-card reveal reveal-delay-2">
+          <div class="music-header">
+            <span class="music-tag">Ambient / Sleep / Healing</span>
+            <span class="music-date">2026.05.21 〜 06.05｜16 Singles</span>
+          </div>
+          <div class="music-artist">Sleeptide</div>
+          <div class="music-title">Sleep & Healing Series</div>
+          <p class="music-desc">毎日連続16日リリースの睡眠・ヒーリング向けアンビエントシリーズ。雨音、波、528Hz、Solfeggio周波数。深い眠りと瞑想のための無歌唱インスト楽曲。</p>
+          <div class="music-platforms">
+            <a href="https://open.spotify.com/search/Sleeptide" target="_blank" rel="noopener"><i class="fab fa-spotify"></i> Spotify</a>
+            <a href="https://music.apple.com/search?term=Sleeptide" target="_blank" rel="noopener"><i class="fab fa-apple"></i> Apple Music</a>
+            <a href="https://music.youtube.com/search?q=Sleeptide" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube Music</a>
+          </div>
+        </div>
+        <div class="music-card reveal reveal-delay-3">
+          <div class="music-header">
+            <span class="music-tag">Lo-fi Hip Hop / Study</span>
+            <span class="music-date">Coming 2026</span>
+          </div>
+          <div class="music-artist">Lofi Bento</div>
+          <div class="music-title">Tokyo Lofi Series</div>
+          <p class="music-desc">勉強・集中向け Lo-fi Hip Hop。日本ノスタルジア × 現代カフェカルチャー。雨の窓辺、終電、図書館の午後をモチーフとしたチルビート群。</p>
+          <div class="music-platforms">
+            <span class="music-coming">配信開始準備中</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1232,7 +1434,11 @@
         </div>
         <div class="company-row">
           <dt><i class="fas fa-briefcase" style="font-size:0.75rem;color:#ff6b9d"></i> 事業内容</dt>
-          <dd>物販事業 / EA制作 / Web制作 / AI運用コンサルティング</dd>
+          <dd>音楽レーベル運営 / 物販事業 / EA制作 / Web制作 / AI運用コンサルティング</dd>
+        </div>
+        <div class="company-row">
+          <dt><i class="fas fa-music" style="font-size:0.75rem;color:var(--accent)"></i> 所属アーティスト</dt>
+          <dd>is-Ma / Sleeptide / Lofi Bento</dd>
         </div>
       </dl>
     </div>
@@ -1328,7 +1534,7 @@
   ============================================ -->
   <footer class="footer">
     <div class="footer-logo">I・S・M</div>
-    <p>&copy; 2025 I・S・M LLC. All Rights Reserved.</p>
+    <p>&copy; 2026 I・S・M LLC. All Rights Reserved.</p>
   </footer>
 
   <!-- ============================================
