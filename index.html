@@ -1012,6 +1012,15 @@
       box-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
     }
 
+    .business-card:nth-child(5) .business-icon { color: #ffbe76; }
+    .business-card:nth-child(5) .business-icon::before {
+      background: conic-gradient(from 0deg, #ffbe76, #00d4ff, #ffbe76);
+    }
+    .business-card:nth-child(5):hover .business-icon {
+      background: linear-gradient(135deg, #ffbe76, #00d4ff);
+      box-shadow: 0 0 30px rgba(255, 190, 118, 0.3);
+    }
+
     .business-card h3 {
       font-size: 1.2rem; margin-bottom: 0.8rem; font-weight: 700;
     }
@@ -1298,6 +1307,7 @@
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
     .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
 
     /* カウントアップアニメーション */
     .stat-number { opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
@@ -1483,24 +1493,30 @@
       <div class="business-grid">
         <div class="business-card reveal reveal-delay-1">
           <div class="business-number">01</div>
+          <div class="business-icon"><i class="fas fa-music"></i></div>
+          <h3>音楽レーベル・配信事業｜横浜</h3>
+          <p>所属アーティスト <strong>is-Ma</strong>（イロハ × ソウ）/ <strong>Sleeptide</strong> / <strong>Lofi Bento</strong> の楽曲を Spotify / Apple Music / YouTube Music ほか主要DSPで世界配信。AIと人の創造性を融合した次世代型レーベルとして、デビューシングル『GENESIS / 創世』を皮切りに毎日継続的にリリース展開。</p>
+        </div>
+        <div class="business-card reveal reveal-delay-2">
+          <div class="business-number">02</div>
           <div class="business-icon"><i class="fas fa-shopping-cart"></i></div>
           <h3>AI物販事業｜横浜</h3>
           <p>横浜のAI企業として、AIを活用した市場分析・価格最適化により効率的な物販ビジネスを展開。データドリブンな仕入れ判断と販売戦略で、AI物販の収益を最大化します。</p>
         </div>
-        <div class="business-card reveal reveal-delay-2">
-          <div class="business-number">02</div>
+        <div class="business-card reveal reveal-delay-3">
+          <div class="business-number">03</div>
           <div class="business-icon"><i class="fas fa-chart-line"></i></div>
           <h3>FX EA制作｜横浜</h3>
           <p>MT4/MT5プラットフォーム向けのFX自動売買プログラム（EA）を横浜から開発・提供。機械学習アルゴリズムを組み込んだ高精度なトレーディングシステムをオーダーメイドで構築します。</p>
         </div>
-        <div class="business-card reveal reveal-delay-3">
-          <div class="business-number">03</div>
+        <div class="business-card reveal reveal-delay-4">
+          <div class="business-number">04</div>
           <div class="business-icon"><i class="fas fa-code"></i></div>
           <h3>Web制作｜横浜</h3>
           <p>横浜のWeb制作企業として、モダンなUI/UXデザインと最新技術を駆使したWebサイト・アプリケーションの企画・設計・開発を提供。ビジネスの価値をデジタルで最大化します。</p>
         </div>
-        <div class="business-card reveal reveal-delay-4">
-          <div class="business-number">04</div>
+        <div class="business-card reveal reveal-delay-5">
+          <div class="business-number">05</div>
           <div class="business-icon"><i class="fas fa-brain"></i></div>
           <h3>AIコンサルティング｜横浜</h3>
           <p>横浜・神奈川エリアの企業を中心に、AI導入戦略の策定から運用支援まで、AI活用を包括的にサポート。業務効率化と新たな価値創造を実現します。</p>
