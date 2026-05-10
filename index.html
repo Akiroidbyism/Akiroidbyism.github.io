@@ -27,9 +27,14 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="I・S・M｜音楽レーベル × AI企業">
-  <meta name="twitter:description" content="is-Ma / Sleeptide / Lofi Bento ─ I・S・Mレーベル所属アーティストの楽曲を世界配信中。">
+  <meta name="twitter:title" content="I・S・M｜音楽レーベル × AI企業｜is-Maデビュー曲 GENESIS / 創世">
+  <meta name="twitter:description" content="is-Ma（イロハ × ソウ）デビュー曲『GENESIS / 創世』2026.05.16 世界同時リリース。Sleeptide / Lofi Bento 毎日連続配信中。">
   <meta name="twitter:image" content="https://akiroidbyism.github.io/ogp.png">
+
+  <!-- Performance / SEO -->
+  <link rel="dns-prefetch" href="https://open.spotify.com">
+  <link rel="dns-prefetch" href="https://music.apple.com">
+  <link rel="dns-prefetch" href="https://music.youtube.com">
 
   <!-- 構造化データ (JSON-LD): LocalBusiness + Services -->
   <script type="application/ld+json">
@@ -171,6 +176,137 @@
         }
       }
     ]
+  }
+  </script>
+
+  <!-- 構造化データ: MusicGroup (is-Ma) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "@id": "https://akiroidbyism.github.io/#is-ma",
+    "name": "is-Ma",
+    "alternateName": ["イズマ", "ISMA"],
+    "url": "https://akiroidbyism.github.io/#music",
+    "description": "I・S・M合同会社所属、AI技術と人間の創造性を融合した次世代J-POPアーティスト。女声「イロハ」と男声「ソウ」のデュアルボーカル構成。シネマティックなオーケストラと現代的なエレクトロニックサウンドを融合した楽曲を制作。",
+    "genre": ["J-POP", "Cinematic Pop", "Electronic Pop", "Hybrid Pop"],
+    "foundingDate": "2026",
+    "foundingLocation": { "@type": "Place", "name": "横浜市" },
+    "recordLabel": { "@id": "https://akiroidbyism.github.io/#organization" },
+    "member": [
+      { "@type": "Person", "name": "イロハ", "alternateName": "Iroha", "description": "is-Ma 女声ボーカル" },
+      { "@type": "Person", "name": "ソウ", "alternateName": "Sou", "description": "is-Ma 男声ボーカル" }
+    ],
+    "sameAs": [
+      "https://open.spotify.com/search/is-Ma",
+      "https://music.apple.com/search?term=is-Ma",
+      "https://music.youtube.com/search?q=is-Ma"
+    ],
+    "album": [
+      {
+        "@type": "MusicAlbum",
+        "name": "GENESIS / 創世",
+        "albumProductionType": "https://schema.org/StudioAlbum",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "datePublished": "2026-05-16",
+        "byArtist": { "@id": "https://akiroidbyism.github.io/#is-ma" },
+        "genre": ["J-POP", "Cinematic Pop", "Electronic"],
+        "description": "is-Maデビューシングル。イロハ×ソウのデュエット、爆誕・世界進出をテーマにしたシネマティック・アンセム。"
+      },
+      {
+        "@type": "MusicAlbum",
+        "name": "BLUE HORIZON",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "datePublished": "2026-05-22",
+        "byArtist": { "@id": "https://akiroidbyism.github.io/#is-ma" }
+      },
+      {
+        "@type": "MusicAlbum",
+        "name": "POLARIS",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "datePublished": "2026-05-29",
+        "byArtist": { "@id": "https://akiroidbyism.github.io/#is-ma" }
+      },
+      {
+        "@type": "MusicAlbum",
+        "name": "STARLIGHT REQUIEM",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "datePublished": "2026-05-29",
+        "byArtist": { "@id": "https://akiroidbyism.github.io/#is-ma" }
+      },
+      {
+        "@type": "MusicAlbum",
+        "name": "EMBERS",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "datePublished": "2026-06-05",
+        "byArtist": { "@id": "https://akiroidbyism.github.io/#is-ma" }
+      }
+    ]
+  }
+  </script>
+
+  <!-- 構造化データ: MusicGroup (Sleeptide) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "@id": "https://akiroidbyism.github.io/#sleeptide",
+    "name": "Sleeptide",
+    "url": "https://akiroidbyism.github.io/#music",
+    "description": "I・S・M合同会社所属の睡眠・ヒーリング向けアンビエントプロジェクト。雨音、波、528Hz、Solfeggio周波数を取り入れた、深い眠りと瞑想のためのインスト楽曲を毎日連続リリース。",
+    "genre": ["Ambient", "Sleep", "Healing", "New Age", "Meditation"],
+    "recordLabel": { "@id": "https://akiroidbyism.github.io/#organization" },
+    "sameAs": [
+      "https://open.spotify.com/search/Sleeptide",
+      "https://music.apple.com/search?term=Sleeptide",
+      "https://music.youtube.com/search?q=Sleeptide"
+    ]
+  }
+  </script>
+
+  <!-- 構造化データ: MusicGroup (Lofi Bento) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "@id": "https://akiroidbyism.github.io/#lofi-bento",
+    "name": "Lofi Bento",
+    "url": "https://akiroidbyism.github.io/#music",
+    "description": "I・S・M合同会社所属の Lo-fi Hip Hop プロジェクト。日本ノスタルジア×現代カフェカルチャーをテーマにした勉強・集中向けチルビート群を毎日連続リリース。",
+    "genre": ["Lo-fi Hip Hop", "Chillhop", "Study Beats", "Instrumental Hip Hop"],
+    "recordLabel": { "@id": "https://akiroidbyism.github.io/#organization" },
+    "sameAs": [
+      "https://open.spotify.com/search/Lofi%20Bento",
+      "https://music.apple.com/search?term=Lofi+Bento",
+      "https://music.youtube.com/search?q=Lofi+Bento"
+    ]
+  }
+  </script>
+
+  <!-- 構造化データ: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://akiroidbyism.github.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Music", "item": "https://akiroidbyism.github.io/#music" },
+      { "@type": "ListItem", "position": 3, "name": "Business", "item": "https://akiroidbyism.github.io/#business" },
+      { "@type": "ListItem", "position": 4, "name": "Company", "item": "https://akiroidbyism.github.io/#company" }
+    ]
+  }
+  </script>
+
+  <!-- 構造化データ: WebSite + SearchAction -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://akiroidbyism.github.io/#website",
+    "url": "https://akiroidbyism.github.io/",
+    "name": "I・S・M合同会社",
+    "publisher": { "@id": "https://akiroidbyism.github.io/#organization" },
+    "inLanguage": "ja-JP"
   }
   </script>
 
