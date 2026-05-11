@@ -360,6 +360,47 @@
       font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;
     }
 
+    /* CONTACT FORM */
+    .contact-form {
+      max-width: 720px; margin: 0 auto;
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px;
+      padding: 2.5rem;
+    }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+    }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    .form-field { margin-bottom: 1.2rem; }
+    .form-field label {
+      display: block; font-size: 0.85rem; color: var(--text-secondary);
+      letter-spacing: 0.05em; margin-bottom: 0.5rem; font-weight: 500;
+    }
+    .req { color: var(--sylas); }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%; padding: 0.85rem 1rem;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 12px; color: var(--text-primary);
+      font-family: inherit; font-size: 0.95rem;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      outline: none; border-color: var(--icea); background: rgba(136,216,255,0.05);
+    }
+    .form-field textarea { resize: vertical; min-height: 120px; }
+    .form-field select { cursor: pointer; }
+    .form-field select option { background: var(--bg-deep); color: var(--text-primary); }
+    .form-note {
+      font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.2rem;
+      padding: 0.7rem 0.9rem; background: rgba(255,200,58,0.05);
+      border-radius: 8px; border-left: 3px solid var(--accent-2);
+    }
+    .form-note i { color: var(--accent-2); margin-right: 0.4rem; }
+    .contact-form .btn { width: 100%; justify-content: center; cursor: pointer; border: none; font-size: 1rem; }
+
     /* COMPANY INFO */
     .company-info {
       max-width: 800px; margin: 0 auto;
@@ -415,6 +456,7 @@
         <li><a href="#sister">Other Artists</a></li>
         <li><a href="#business">Business</a></li>
         <li><a href="#company">About</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -687,6 +729,57 @@
     </div>
   </section>
 
+  <!-- CONTACT -->
+  <section id="contact" style="background: linear-gradient(180deg, transparent, rgba(136,216,255,0.04), transparent);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">CONTACT</span>
+        <h2 class="section-title">お問<span>い合わせ</span></h2>
+        <p class="section-desc">楽曲・タイアップ・取材・各種事業のご相談はこちらから。2営業日以内にご返信します。</p>
+      </div>
+      <form id="contactForm" class="contact-form reveal" novalidate>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-name">お名前 <span class="req">*</span></label>
+            <input type="text" id="cf-name" name="name" required placeholder="山田 太郎">
+          </div>
+          <div class="form-field">
+            <label for="cf-email">メールアドレス <span class="req">*</span></label>
+            <input type="email" id="cf-email" name="email" required placeholder="example@email.com">
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="cf-company">会社名（任意）</label>
+          <input type="text" id="cf-company" name="company" placeholder="株式会社○○">
+        </div>
+        <div class="form-field">
+          <label for="cf-subject">ご用件 <span class="req">*</span></label>
+          <select id="cf-subject" name="subject" required>
+            <option value="">選択してください</option>
+            <option value="楽曲・is-Ma について">楽曲・is-Ma について</option>
+            <option value="タイアップ・楽曲提供">タイアップ・楽曲提供</option>
+            <option value="メディア取材・出演依頼">メディア取材・出演依頼</option>
+            <option value="システム開発のご相談">システム開発のご相談</option>
+            <option value="AI物販のご相談">AI物販のご相談</option>
+            <option value="Web制作のご相談">Web制作のご相談</option>
+            <option value="AIコンサルティング">AIコンサルティング</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="cf-message">メッセージ <span class="req">*</span></label>
+          <textarea id="cf-message" name="message" rows="6" required placeholder="お問い合わせ内容をご記入ください。"></textarea>
+        </div>
+        <div class="form-note">
+          <i class="fas fa-info-circle"></i> 送信ボタンを押すと、ご利用のメールソフトが起動し、内容が転記されます。そのまま送信してください。
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-paper-plane"></i> 送信する
+        </button>
+      </form>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <div class="container">
@@ -708,6 +801,26 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Contact form: open mailto with populated body
+    const CONTACT_EMAIL = 'contact@akiroidbyism.com'; // ← 必要に応じて変更
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        const name = data.get('name') || '';
+        const email = data.get('email') || '';
+        const company = data.get('company') || '';
+        const subject = data.get('subject') || 'お問い合わせ';
+        const message = data.get('message') || '';
+        const mailSubject = encodeURIComponent(`【お問い合わせ】${subject}`);
+        const mailBody = encodeURIComponent(
+          `お名前: ${name}\nメールアドレス: ${email}\n会社名: ${company}\nご用件: ${subject}\n\n----- メッセージ -----\n${message}\n`
+        );
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
+      });
+    }
   </script>
 </body>
 </html>
