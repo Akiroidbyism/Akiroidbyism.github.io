@@ -863,5 +863,143 @@
       });
     }
   </script>
+  <!-- Floating Share Widget -->
+  <div id="shareWidget" class="share-widget">
+    <button id="shareToggle" class="share-toggle" aria-label="シェア">
+      <i class="fas fa-share-alt"></i>
+    </button>
+    <div id="sharePanel" class="share-panel">
+      <div class="share-title">is-Ma を広めよう 🌌</div>
+      <a href="#" data-share="x" class="share-btn" title="X (Twitter)"><i class="fab fa-x-twitter"></i><span>X</span></a>
+      <a href="#" data-share="line" class="share-btn" title="LINE"><i class="fab fa-line"></i><span>LINE</span></a>
+      <a href="#" data-share="facebook" class="share-btn" title="Facebook"><i class="fab fa-facebook"></i><span>Facebook</span></a>
+      <a href="#" data-share="threads" class="share-btn" title="Threads"><i class="fab fa-threads"></i><span>Threads</span></a>
+      <a href="#" data-share="pinterest" class="share-btn" title="Pinterest"><i class="fab fa-pinterest"></i><span>Pinterest</span></a>
+      <a href="#" data-share="whatsapp" class="share-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+      <button id="shareCopy" class="share-btn" data-share="copy" title="URLをコピー"><i class="fas fa-link"></i><span>URLをコピー</span></button>
+      <button id="shareNative" class="share-btn" data-share="native" title="その他" style="display:none"><i class="fas fa-ellipsis-h"></i><span>その他...</span></button>
+    </div>
+  </div>
+
+  <style>
+    .share-widget { position: fixed; bottom: 24px; right: 24px; z-index: 999; }
+    .share-toggle {
+      width: 60px; height: 60px; border-radius: 50%; border: none;
+      background: var(--gradient-isma); color: white; font-size: 1.4rem;
+      cursor: pointer; box-shadow: 0 8px 24px rgba(136,216,255,0.4);
+      transition: transform 0.3s, box-shadow 0.3s; display: flex;
+      align-items: center; justify-content: center;
+    }
+    .share-toggle:hover { transform: scale(1.08) rotate(15deg); box-shadow: 0 12px 32px rgba(255,80,64,0.45); }
+    .share-toggle.open { transform: rotate(135deg); }
+    .share-panel {
+      position: absolute; bottom: 76px; right: 0;
+      background: rgba(15,23,50,0.95); backdrop-filter: blur(16px);
+      border: 1px solid var(--border); border-radius: 16px;
+      padding: 1rem; min-width: 220px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      opacity: 0; pointer-events: none; transform: translateY(10px) scale(0.95);
+      transition: all 0.3s; display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .share-panel.open { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
+    .share-title { font-size: 0.85rem; color: var(--text-secondary); padding: 0.3rem 0.5rem 0.6rem; border-bottom: 1px solid var(--border); margin-bottom: 0.4rem; letter-spacing: 0.05em; }
+    .share-btn {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.6rem 0.75rem; border-radius: 10px;
+      color: var(--text-primary); text-decoration: none;
+      background: transparent; border: none; cursor: pointer;
+      font-size: 0.92rem; font-family: inherit; text-align: left;
+      transition: background 0.2s;
+    }
+    .share-btn:hover { background: rgba(136,216,255,0.1); color: var(--icea); }
+    .share-btn i { width: 22px; text-align: center; font-size: 1.1rem; }
+    .share-btn[data-share="x"]:hover { color: #fff; }
+    .share-btn[data-share="line"]:hover { color: #06c755; }
+    .share-btn[data-share="facebook"]:hover { color: #1877f2; }
+    .share-btn[data-share="threads"]:hover { color: #fff; }
+    .share-btn[data-share="pinterest"]:hover { color: #e60023; }
+    .share-btn[data-share="whatsapp"]:hover { color: #25d366; }
+    .share-toast {
+      position: fixed; bottom: 100px; right: 24px; z-index: 1000;
+      background: var(--gradient-isma); color: white;
+      padding: 0.8rem 1.4rem; border-radius: 30px;
+      font-size: 0.9rem; font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.3s; pointer-events: none;
+    }
+    .share-toast.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 600px) {
+      .share-widget { bottom: 16px; right: 16px; }
+      .share-toggle { width: 54px; height: 54px; }
+    }
+  </style>
+
+  <div id="shareToast" class="share-toast">✓ URLをコピーしました</div>
+
+  <script>
+  (function(){
+    const SHARE_URL = 'https://is-ma.pages.dev/';
+    const SHARE_TITLE = 'is-Ma『GENESIS / 創世』2026.05.16 デビュー｜Icea × Sylas、二つの流星が地球で出会う 🌌';
+    const SHARE_HASHTAGS = 'isMa,GENESIS,創世,Icea,Sylas,JPOP,newmusic';
+
+    const toggle = document.getElementById('shareToggle');
+    const panel = document.getElementById('sharePanel');
+    const toast = document.getElementById('shareToast');
+    if (!toggle || !panel) return;
+
+    toggle.addEventListener('click', () => {
+      const open = panel.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#shareWidget')) {
+        panel.classList.remove('open');
+        toggle.classList.remove('open');
+      }
+    });
+
+    const showToast = (msg) => {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    };
+
+    document.querySelectorAll('[data-share]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const type = btn.dataset.share;
+        const url = encodeURIComponent(SHARE_URL);
+        const text = encodeURIComponent(SHARE_TITLE);
+        const tags = encodeURIComponent(SHARE_HASHTAGS);
+
+        let target;
+        if (type === 'x')        target = `https://x.com/intent/post?url=${url}&text=${text}&hashtags=${tags}`;
+        else if (type === 'line') target = `https://social-plugins.line.me/lineit/share?url=${url}&text=${text}`;
+        else if (type === 'facebook') target = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+        else if (type === 'threads') target = `https://www.threads.net/intent/post?text=${text}%20${url}`;
+        else if (type === 'pinterest') target = `https://pinterest.com/pin/create/button/?url=${url}&description=${text}`;
+        else if (type === 'whatsapp') target = `https://wa.me/?text=${text}%20${url}`;
+        else if (type === 'copy') {
+          e.preventDefault();
+          navigator.clipboard.writeText(SHARE_URL).then(() => showToast('✓ URLをコピーしました'));
+          return;
+        }
+        else if (type === 'native') {
+          e.preventDefault();
+          if (navigator.share) navigator.share({title: 'is-Ma', text: SHARE_TITLE, url: SHARE_URL});
+          return;
+        }
+        if (target) { e.preventDefault(); window.open(target, '_blank', 'noopener,noreferrer,width=600,height=600'); }
+      });
+    });
+
+    // Show native share on mobile
+    if (navigator.share) {
+      const native = document.getElementById('shareNative');
+      if (native) native.style.display = 'flex';
+    }
+  })();
+  </script>
+
 </body>
 </html>
