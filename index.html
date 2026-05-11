@@ -393,13 +393,21 @@
     .form-field textarea { resize: vertical; min-height: 120px; }
     .form-field select { cursor: pointer; }
     .form-field select option { background: var(--bg-deep); color: var(--text-primary); }
-    .form-note {
-      font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.2rem;
-      padding: 0.7rem 0.9rem; background: rgba(255,200,58,0.05);
-      border-radius: 8px; border-left: 3px solid var(--accent-2);
+    .form-status {
+      padding: 1rem 1.2rem; border-radius: 12px; margin-bottom: 1.2rem;
+      font-size: 0.9rem;
     }
-    .form-note i { color: var(--accent-2); margin-right: 0.4rem; }
+    .form-status.success {
+      background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.3);
+      color: #00ff88;
+    }
+    .form-status.error {
+      background: rgba(255,80,64,0.08); border: 1px solid rgba(255,80,64,0.3);
+      color: var(--sylas);
+    }
+    .form-status i { margin-right: 0.4rem; }
     .contact-form .btn { width: 100%; justify-content: center; cursor: pointer; border: none; font-size: 1rem; }
+    .contact-form .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
     /* COMPANY INFO */
     .company-info {
@@ -737,7 +745,7 @@
         <h2 class="section-title">お問<span>い合わせ</span></h2>
         <p class="section-desc">楽曲・タイアップ・取材・各種事業のご相談はこちらから。2営業日以内にご返信します。</p>
       </div>
-      <form id="contactForm" class="contact-form reveal" novalidate>
+      <form id="contactForm" class="contact-form reveal" action="https://formspree.io/f/mjgljgvr" method="POST" novalidate>
         <div class="form-row">
           <div class="form-field">
             <label for="cf-name">お名前 <span class="req">*</span></label>
@@ -770,10 +778,10 @@
           <label for="cf-message">メッセージ <span class="req">*</span></label>
           <textarea id="cf-message" name="message" rows="6" required placeholder="お問い合わせ内容をご記入ください。"></textarea>
         </div>
-        <div class="form-note">
-          <i class="fas fa-info-circle"></i> 送信ボタンを押すと、ご利用のメールソフトが起動し、内容が転記されます。そのまま送信してください。
-        </div>
-        <button type="submit" class="btn btn-primary">
+        <input type="hidden" name="_subject" value="【is-Ma公式HP】お問い合わせ">
+        <input type="text" name="_gotcha" style="display:none">
+        <div id="formStatus" class="form-status" style="display:none;"></div>
+        <button type="submit" class="btn btn-primary" id="formSubmit">
           <i class="fas fa-paper-plane"></i> 送信する
         </button>
       </form>
@@ -802,23 +810,42 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Contact form: open mailto with populated body
-    const CONTACT_EMAIL = 'a.maeda@y-ism.llc';
+    // Contact form: Formspree AJAX submit
     const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('formSubmit');
     if (form) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
+        status.style.display = 'none';
         const data = new FormData(form);
-        const name = data.get('name') || '';
-        const email = data.get('email') || '';
-        const company = data.get('company') || '';
-        const subject = data.get('subject') || 'お問い合わせ';
-        const message = data.get('message') || '';
-        const mailSubject = encodeURIComponent(`【お問い合わせ】${subject}`);
-        const mailBody = encodeURIComponent(
-          `お名前: ${name}\nメールアドレス: ${email}\n会社名: ${company}\nご用件: ${subject}\n\n----- メッセージ -----\n${message}\n`
-        );
-        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            status.style.display = 'block';
+            status.className = 'form-status success';
+            status.innerHTML = '<i class="fas fa-check-circle"></i> 送信が完了しました。2営業日以内にご返信いたします。';
+            form.reset();
+          } else {
+            const j = await res.json().catch(() => ({}));
+            const err = (j.errors && j.errors.map(e => e.message).join(', ')) || 'エラーが発生しました。';
+            throw new Error(err);
+          }
+        } catch (err) {
+          status.style.display = 'block';
+          status.className = 'form-status error';
+          status.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ' + err.message + ' お手数ですが a.maeda@y-ism.llc までメールでご連絡ください。';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> 送信する';
+        }
       });
     }
   </script>
