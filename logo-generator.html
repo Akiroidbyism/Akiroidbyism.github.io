@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISM Logo Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; padding: 40px;
+      background: #1a1a2e;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .logo-wrap {
+      text-align: center;
+    }
+
+    .logo-wrap p {
+      color: #888;
+      font-size: 12px;
+      margin-top: 12px;
+      font-family: sans-serif;
+    }
+
+    /* ===== Option A: シンプルグラデーション ===== */
+    .logo-a {
+      width: 480px; height: 480px;
+      border-radius: 96px;
+      background: linear-gradient(135deg, #050816, #0a1628, #0f1d3a);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .logo-a::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: conic-gradient(from 0deg, #00d4ff, #7c4dff, #00ffa3, #00d4ff);
+      animation: spinBorder 6s linear infinite;
+      opacity: 0.15;
+    }
+
+    .logo-a::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 94px;
+      background: linear-gradient(135deg, #050816, #0a1628, #0f1d3a);
+    }
+
+    .logo-a .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .logo-a .main-text {
+      font-size: 100px;
+      font-weight: 900;
+      letter-spacing: 12px;
+      background: linear-gradient(135deg, #00d4ff, #7c4dff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.4));
+    }
+
+    .logo-a .sub-text {
+      font-size: 13px;
+      letter-spacing: 8px;
+      color: rgba(0, 212, 255, 0.5);
+      margin-top: 4px;
+    }
+
+    .logo-a .dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    .logo-a .dots span {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #00d4ff;
+      opacity: 0.4;
+    }
+    .logo-a .dots span:nth-child(2) { background: #7c4dff; }
+    .logo-a .dots span:nth-child(3) { background: #00ffa3; }
+
+    /* ===== Option B: サーキット風 ===== */
+    .logo-b {
+      width: 480px; height: 480px;
+      border-radius: 96px;
+      background: #050816;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    /* グリッド背景 */
+    .logo-b::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image:
+        linear-gradient(rgba(0, 212, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* グローオーブ */
+    .logo-b .orb-1 {
+      position: absolute;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.2), transparent 70%);
+      top: -40px; left: -40px;
+      filter: blur(30px);
+    }
+
+    .logo-b .orb-2 {
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 77, 255, 0.2), transparent 70%);
+      bottom: -30px; right: -30px;
+      filter: blur(30px);
+    }
+
+    .logo-b .content {
+      position: relative; z-index: 1; text-align: center;
+    }
+
+    .logo-b .main-text {
+      font-size: 110px;
+      font-weight: 900;
+      letter-spacing: 10px;
+      color: #fff;
+      filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.5)) drop-shadow(0 0 60px rgba(124, 77, 255, 0.3));
+    }
+
+    .logo-b .divider {
+      width: 120px; height: 2px;
+      background: linear-gradient(90deg, transparent, #00d4ff, #7c4dff, transparent);
+      margin: 12px auto;
+    }
+
+    .logo-b .sub-text {
+      font-size: 10px;
+      letter-spacing: 6px;
+      color: rgba(0, 212, 255, 0.6);
+    }
+
+    /* ===== Option C: ヘックス風 ===== */
+    .logo-c {
+      width: 480px; height: 480px;
+      border-radius: 96px;
+      background: linear-gradient(160deg, #050816, #0d1a33);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .logo-c .ring {
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 212, 255, 0.12);
+    }
+
+    .logo-c .ring-2 {
+      width: 380px; height: 380px;
+      border-color: rgba(124, 77, 255, 0.08);
+    }
+
+    .logo-c .ring-3 {
+      width: 260px; height: 260px;
+      border-color: rgba(0, 255, 163, 0.08);
+    }
+
+    /* コーナーのアクセントドット */
+    .logo-c .corner {
+      position: absolute;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #00d4ff;
+      box-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+    }
+    .logo-c .corner-1 { top: 40px; left: 40px; }
+    .logo-c .corner-2 { top: 40px; right: 40px; background: #7c4dff; box-shadow: 0 0 8px rgba(124,77,255,0.6); }
+    .logo-c .corner-3 { bottom: 40px; left: 40px; background: #00ffa3; box-shadow: 0 0 8px rgba(0,255,163,0.6); }
+    .logo-c .corner-4 { bottom: 40px; right: 40px; }
+
+    .logo-c .content {
+      position: relative; z-index: 1; text-align: center;
+    }
+
+    .logo-c .main-text {
+      font-size: 96px;
+      font-weight: 900;
+      letter-spacing: 14px;
+      background: linear-gradient(180deg, #ffffff, #00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 4px 20px rgba(0, 212, 255, 0.3));
+    }
+
+    .logo-c .llc-text {
+      font-size: 11px;
+      letter-spacing: 10px;
+      color: rgba(255,255,255,0.3);
+      margin-top: 2px;
+    }
+
+    .logo-c .accent-line {
+      width: 60px; height: 2px;
+      background: var(--gradient-1, linear-gradient(90deg, #00d4ff, #7c4dff));
+      margin: 14px auto 0;
+      border-radius: 1px;
+    }
+
+    @keyframes spinBorder {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Option A -->
+  <div class="logo-wrap">
+    <div class="logo-a" id="logoA">
+      <div class="content">
+        <div class="main-text">ISM</div>
+        <div class="sub-text">LLC</div>
+        <div class="dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    <p>A: グラデーション</p>
+  </div>
+
+  <!-- Option B -->
+  <div class="logo-wrap">
+    <div class="logo-b" id="logoB">
+      <div class="orb-1"></div>
+      <div class="orb-2"></div>
+      <div class="content">
+        <div class="main-text">ISM</div>
+        <div class="divider"></div>
+      </div>
+    </div>
+    <p>B: サーキット</p>
+  </div>
+
+  <!-- Option C -->
+  <div class="logo-wrap">
+    <div class="logo-c" id="logoC">
+      <div class="ring"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+      <div class="corner corner-1"></div>
+      <div class="corner corner-2"></div>
+      <div class="corner corner-3"></div>
+      <div class="corner corner-4"></div>
+      <div class="content">
+        <div class="main-text">ISM</div>
+        <div class="llc-text">LLC</div>
+        <div class="accent-line"></div>
+      </div>
+    </div>
+    <p>C: ミニマル</p>
+  </div>
+
+</body>
+</html>
