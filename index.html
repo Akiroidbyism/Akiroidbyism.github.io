@@ -878,9 +878,25 @@
         <h2 class="section-title">Debut <span>Drop</span></h2>
         <p class="section-desc">2026年5月、is-Ma デビュー6シングルを世界同時配信スタート。Spotify / Apple Music / YouTube Music ほか主要DSPで好評ストリーミング中。6月、Sylas 新章「CRIMSON VOW」配信予定。</p>
       </div>
-      <!-- Auto-populated from data/songs.json -->
-      <div class="releases-grid" id="releases-grid">
+      <!-- Top 2 featured songs (UPCOMING / latest LIVE) auto-populated from JSON -->
+      <div class="releases-grid" id="releases-grid-featured" style="margin-bottom: 2rem;">
         <noscript>JavaScript を有効にすると最新のリリース情報が表示されます。</noscript>
+      </div>
+
+      <!-- CTA button to dedicated music page -->
+      <div class="reveal" style="text-align: center; margin-top: 2.5rem;">
+        <a href="music.html" style="display: inline-block; padding: 1.1rem 2.8rem;
+            background: var(--gradient-isma); color: white; text-decoration: none;
+            font-size: 1.15rem; font-weight: 700; border-radius: 60px;
+            box-shadow: 0 10px 30px rgba(136,216,255,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;"
+            onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 14px 40px rgba(136,216,255,0.5)'"
+            onmouseout="this.style.transform='';this.style.boxShadow='0 10px 30px rgba(136,216,255,0.3)'">
+          ▶ is-Ma の全楽曲を見る →
+        </a>
+        <p style="margin-top: 0.8rem; color: var(--text-muted); font-size: 0.9rem;">
+          Phase 1 デビュー6曲 + Chapter 2 + 余韻シングル — 全配信
+        </p>
       </div>
 
       <!-- Legacy fallback (hidden if JS loaded). Will be replaced by JS-rendered cards. -->
@@ -1468,9 +1484,13 @@
       try {
         const res = await fetch('data/songs.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('songs.json fetch failed: ' + res.status);
-        const songs = await res.json();
-        const grid = document.getElementById('releases-grid');
+        const allSongs = await res.json();
+        const grid = document.getElementById('releases-grid-featured');
         if (!grid) return;
+        // On main page, only show featured: 1 UPCOMING + 1 latest LIVE debut
+        const upcoming = allSongs.filter(s => s.status === 'upcoming').slice(0, 1);
+        const debut = allSongs.filter(s => s.debut_badge).slice(0, 1);
+        const songs = [...upcoming, ...debut];
         grid.innerHTML = '';
         for (const s of songs) {
           const isUpcoming = s.status === 'upcoming';
