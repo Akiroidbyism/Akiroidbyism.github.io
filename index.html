@@ -1499,6 +1499,14 @@
           `;
           grid.appendChild(card);
         }
+        // Re-observe newly rendered .reveal elements (since main observer
+        // was registered before render). Without this, cards stay opacity:0.
+        if (window._scrollObserver) {
+          grid.querySelectorAll('.reveal').forEach(el => window._scrollObserver.observe(el));
+        } else {
+          // Fallback: just mark them visible
+          grid.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
+        }
       } catch (e) {
         console.warn('releases render failed, using static fallback:', e);
         // Show static fallback grid
@@ -1509,13 +1517,13 @@
     }
     renderReleases();
 
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
+    // Scroll reveal (exposed as window._scrollObserver so dynamic renders can re-register)
+    window._scrollObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('in-view');
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => window._scrollObserver.observe(el));
 
     // Contact form: Formspree AJAX submit
     const form = document.getElementById('contactForm');
