@@ -878,7 +878,13 @@
         <h2 class="section-title">Debut <span>Drop</span></h2>
         <p class="section-desc">2026年5月、is-Ma デビュー6シングルを世界同時配信スタート。Spotify / Apple Music / YouTube Music ほか主要DSPで好評ストリーミング中。6月、Sylas 新章「CRIMSON VOW」配信予定。</p>
       </div>
-      <div class="releases-grid">
+      <!-- Auto-populated from data/songs.json -->
+      <div class="releases-grid" id="releases-grid">
+        <noscript>JavaScript を有効にすると最新のリリース情報が表示されます。</noscript>
+      </div>
+
+      <!-- Legacy fallback (hidden if JS loaded). Will be replaced by JS-rendered cards. -->
+      <div class="releases-grid" style="display:none;" id="releases-grid-legacy">
 
         <div class="release-card upcoming reveal">
           <div class="release-date"><span class="release-status upcoming">UPCOMING — 2026.06.05</span></div>
@@ -1457,6 +1463,52 @@
   </footer>
 
   <script>
+    // Auto-render releases from data/songs.json (data-driven HP)
+    async function renderReleases() {
+      try {
+        const res = await fetch('data/songs.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('songs.json fetch failed: ' + res.status);
+        const songs = await res.json();
+        const grid = document.getElementById('releases-grid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        for (const s of songs) {
+          const isUpcoming = s.status === 'upcoming';
+          const statusHTML = isUpcoming
+            ? `<div class="release-date"><span class="release-status upcoming">UPCOMING — ${s.release_date}</span></div>`
+            : `<div class="release-date"><span class="release-status live">LIVE NOW</span></div>`;
+          const debutHTML = s.debut_badge
+            ? `<div class="release-debut ${s.debut_badge_class || ''}">${s.debut_badge}</div>`
+            : '';
+          const card = document.createElement('div');
+          card.className = `release-card ${s.status} reveal`;
+          card.innerHTML = `
+            ${statusHTML}
+            ${debutHTML}
+            <div class="release-title">${s.title}</div>
+            <div class="release-title-jp">${s.title_jp || ''}</div>
+            <div class="release-vocalist ${s.vocal_class || ''}">Vocal: <span class="v-name">${s.vocalist}</span></div>
+            <p class="release-desc">${s.description}</p>
+            ${s.preview_audio ? `<div class="release-preview"><span class="release-preview-label">30S PREVIEW</span><audio controls preload="none" src="${s.preview_audio}"></audio></div>` : ''}
+            <div class="release-platforms">
+              <a href="https://open.spotify.com/search/${s.search_slug_url}" target="_blank" rel="noopener"><i class="fab fa-spotify"></i> Spotify</a>
+              <a href="https://music.apple.com/search?term=${s.search_slug_plus}" target="_blank" rel="noopener"><i class="fab fa-apple"></i> Apple Music</a>
+              <a href="https://music.youtube.com/search?q=${s.search_slug_plus}" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube Music</a>
+              <a href="https://music.amazon.com/search/${s.search_slug_plus}" target="_blank" rel="noopener"><i class="fab fa-amazon"></i> Amazon Music</a>
+            </div>
+          `;
+          grid.appendChild(card);
+        }
+      } catch (e) {
+        console.warn('releases render failed, using static fallback:', e);
+        // Show static fallback grid
+        const legacy = document.getElementById('releases-grid-legacy');
+        const live = document.getElementById('releases-grid');
+        if (legacy && live) { legacy.style.display = ''; live.style.display = 'none'; }
+      }
+    }
+    renderReleases();
+
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

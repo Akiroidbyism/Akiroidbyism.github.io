@@ -1,0 +1,110 @@
+[
+  {
+    "title": "CRIMSON VOW",
+    "title_jp": "紅盟",
+    "vocalist": "Sylas",
+    "vocal_class": "sylas",
+    "status": "upcoming",
+    "release_date": "2026.06.05",
+    "description": "Sylas 第二章。火星に倒れた仲間たちへの誓い。Dark Cinematic Hip-Hop × Trap Ballad。BPM 138。",
+    "preview_audio": "assets/audio/CRIMSON_VOW_preview.mp3",
+    "search_slug_url": "is-Ma%20CRIMSON%20VOW",
+    "search_slug_plus": "is-Ma+CRIMSON+VOW"
+  },
+  {
+    "title": "Crimson Letter",
+    "title_jp": "紅の遺書",
+    "vocalist": "Sylas",
+    "vocal_class": "sylas",
+    "status": "upcoming",
+    "release_date": "2026.05.29",
+    "description": "鳳凰覚醒の余韻 — Sylas が戦友7人へ捧げる最後の手紙。Dark Cinematic Alt-Rock × Trip-Hop。BPM 74。",
+    "preview_audio": "assets/audio/CRIMSON_LETTER_preview.mp3",
+    "search_slug_url": "is-Ma%20Crimson%20Letter",
+    "search_slug_plus": "is-Ma+Crimson+Letter"
+  },
+  {
+    "title": "Silver Will",
+    "title_jp": "銀の遺言",
+    "vocalist": "Icea",
+    "vocal_class": "icea",
+    "status": "upcoming",
+    "release_date": "2026.05.22",
+    "description": "Phase 1 完結の余韻 — Icea が散った姉妹たちへ託す銀色の遺言。Dark Cinematic Trip-Hop Dream Pop。BPM 76。",
+    "preview_audio": "assets/audio/SILVER_WILL_preview.mp3",
+    "search_slug_url": "is-Ma%20Silver%20Will",
+    "search_slug_plus": "is-Ma+Silver+Will"
+  },
+  {
+    "title": "GENESIS",
+    "title_jp": "創世",
+    "vocalist": "Icea × Sylas",
+    "vocal_class": "duo",
+    "status": "live",
+    "debut_badge": "is-Ma デビュー曲",
+    "debut_badge_class": "duo",
+    "description": "デビューシングル。月と黒陽が交わる、創世の瞬間。シネマティック × ハイブリッドポップの新境地。",
+    "preview_audio": "assets/audio/GENESIS_preview.mp3",
+    "search_slug_url": "is-Ma%20GENESIS",
+    "search_slug_plus": "is-Ma+GENESIS"
+  },
+  {
+    "title": "EMBERS",
+    "title_jp": "残光",
+    "vocalist": "Sylas",
+    "vocal_class": "sylas",
+    "status": "live",
+    "debut_badge": "Sylas デビュー曲",
+    "debut_badge_class": "sylas",
+    "description": "灰の中から立ち上がる、Sylas の覚醒。挫折 → 努力 → 成功。誰の心にも刺さる希望のアンセム。",
+    "preview_audio": "assets/audio/EMBERS_preview.mp3",
+    "search_slug_url": "is-Ma%20EMBERS",
+    "search_slug_plus": "is-Ma+EMBERS"
+  },
+  {
+    "title": "POLARIS",
+    "title_jp": "北極星",
+    "vocalist": "Icea",
+    "vocal_class": "icea",
+    "status": "live",
+    "debut_badge": "Icea デビュー曲",
+    "debut_badge_class": "icea",
+    "description": "失った星座を、心の北で探して。Icea の魂を導く北極星への鎮魂歌。",
+    "preview_audio": "assets/audio/POLARIS_preview.mp3",
+    "search_slug_url": "is-Ma%20POLARIS",
+    "search_slug_plus": "is-Ma+POLARIS"
+  },
+  {
+    "title": "STARLIGHT REQUIEM",
+    "title_jp": "星灯のレクイエム",
+    "vocalist": "Icea",
+    "vocal_class": "icea",
+    "status": "live",
+    "description": "喪失を昇華するモダン・レクイエム。星灯の祈り。Icea のシネマティック・バラード。",
+    "preview_audio": "assets/audio/STARLIGHT_REQUIEM_preview.mp3",
+    "search_slug_url": "is-Ma%20STARLIGHT%20REQUIEM",
+    "search_slug_plus": "is-Ma+STARLIGHT+REQUIEM"
+  },
+  {
+    "title": "RESURGENT SUN",
+    "title_jp": "還陽",
+    "vocalist": "Sylas",
+    "vocal_class": "sylas",
+    "status": "live",
+    "description": "Black Sun Rising. ダーク・ハイブリッド・ビートスイッチ。Phonk × Drill × DnB の革新。",
+    "preview_audio": "assets/audio/RESURGENT_SUN_preview.mp3",
+    "search_slug_url": "is-Ma%20RESURGENT%20SUN",
+    "search_slug_plus": "is-Ma+RESURGENT+SUN"
+  },
+  {
+    "title": "BLUE HORIZON",
+    "title_jp": "青い地平線",
+    "vocalist": "Icea",
+    "vocal_class": "icea",
+    "status": "live",
+    "description": "Icea が描く、地平線の向こうの希望。シネマティック × J-POPアンセム。",
+    "preview_audio": "assets/audio/BLUE_HORIZON_preview.mp3",
+    "search_slug_url": "is-Ma%20BLUE%20HORIZON",
+    "search_slug_plus": "is-Ma+BLUE+HORIZON"
+  }
+]
