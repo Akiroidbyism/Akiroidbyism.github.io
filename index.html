@@ -1487,10 +1487,10 @@
         const allSongs = await res.json();
         const grid = document.getElementById('releases-grid-featured');
         if (!grid) return;
-        // On main page, only show featured: 1 UPCOMING + 1 latest LIVE debut
-        const upcoming = allSongs.filter(s => s.status === 'upcoming').slice(0, 1);
-        const debut = allSongs.filter(s => s.debut_badge).slice(0, 1);
-        const songs = [...upcoming, ...debut];
+        // Featured 2 songs: POLARIS (Icea debut) + EMBERS (Sylas debut)
+        const polaris = allSongs.find(s => s.title === 'POLARIS');
+        const embers = allSongs.find(s => s.title === 'EMBERS');
+        const songs = [polaris, embers].filter(Boolean);
         grid.innerHTML = '';
         for (const s of songs) {
           const isUpcoming = s.status === 'upcoming';
