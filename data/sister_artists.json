@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Sleeptide",
+    "tag": "AMBIENT / SLEEP / HEALING",
+    "tag_color": null,
+    "name_gradient": null,
+    "description": "睡眠・ヒーリング向けのアンビエント・プロジェクト。雨音、波、528Hz、Solfeggio周波数。深い眠りと瞑想のためのインスト楽曲を毎日連続リリース。",
+    "platforms": [
+      {"icon": "fab fa-spotify", "label": "Spotify", "url": "https://open.spotify.com/search/Sleeptide"},
+      {"icon": "fab fa-apple", "label": "Apple Music", "url": "https://music.apple.com/search?term=Sleeptide"},
+      {"icon": "fab fa-youtube", "label": "YouTube Music", "url": "https://music.youtube.com/search?q=Sleeptide"},
+      {"icon": "fab fa-amazon", "label": "Amazon Music", "url": "https://music.amazon.com/search/Sleeptide"}
+    ]
+  },
+  {
+    "name": "Lofi Bento",
+    "tag": "LO-FI HIP HOP / STUDY",
+    "tag_color": null,
+    "name_gradient": null,
+    "description": "勉強・集中向け Lo-fi Hip Hop。日本ノスタルジア × 現代カフェカルチャー。雨の窓辺、終電、図書館の午後をモチーフとしたチルビート群。",
+    "platforms": [
+      {"icon": "fab fa-spotify", "label": "Spotify", "url": "https://open.spotify.com/search/Lofi%20Bento"},
+      {"icon": "fab fa-apple", "label": "Apple Music", "url": "https://music.apple.com/search?term=Lofi+Bento"},
+      {"icon": "fab fa-youtube", "label": "YouTube Music", "url": "https://music.youtube.com/search?q=Lofi+Bento"},
+      {"icon": "fab fa-amazon", "label": "Amazon Music", "url": "https://music.amazon.com/search/Lofi+Bento"}
+    ]
+  },
+  {
+    "name": "KOMOREBI 木漏れ日",
+    "tag": "JAPANESE CINEMATIC AMBIENT",
+    "tag_color": "#f5dc82",
+    "name_gradient": "linear-gradient(135deg, #f5dc82 0%, #c8a050 100%)",
+    "border_color": "rgba(245,220,130,0.3)",
+    "description": "本物の日本人作家によるシネマティック・アンビエント。神社・禅・森林浴・侘び寂び。1-3時間長尺BGMで世界の睡眠/瞑想/集中シーンへ。海外90%ターゲットの新規プロジェクト。",
+    "platforms": [
+      {"icon": "fab fa-youtube", "label": "YouTube", "url": "https://www.youtube.com/@KOMOREBI-ism"},
+      {"icon": "fab fa-spotify", "label": "Spotify", "url": "https://open.spotify.com/search/Komorebi"},
+      {"icon": "fab fa-apple", "label": "Apple Music", "url": "https://music.apple.com/search?term=Komorebi"},
+      {"icon": "fab fa-amazon", "label": "Amazon Music", "url": "https://music.amazon.com/search/Komorebi"}
+    ]
+  }
+]
