@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>I·S·M LLC — 前田 顕 / Digital Business Card</title>
+<meta property="og:title" content="I·S·M LLC — 前田 顕">
+<meta property="og:description" content="I·S·M合同会社 代表社員 / is-Ma Cinematic AI Vocal Project">
+<meta property="og:image" content="https://is-ma.pages.dev/assets/isma/Icea_Sylas_duo.jpg">
+<meta property="og:type" content="profile">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg-start: #0a0e1c;
+  --bg-end: #1a2540;
+  --cyan: #00c8ff;
+  --gold: #ffd564;
+  --crimson: #f05050;
+  --silver: #c8dcf0;
+  --text: #f4f7fc;
+  --muted: #98a6b8;
+  --panel: rgba(255,255,255,0.04);
+  --border: rgba(0,200,255,0.25);
+}
+html, body { width: 100%; min-height: 100vh; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: radial-gradient(ellipse at top, #14203a 0%, var(--bg-start) 60%, #050810 100%);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 4rem;
+  min-height: 100vh;
+}
+.container { max-width: 720px; width: 100%; }
+header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+}
+header .tag { opacity: 0.6; }
+
+/* ===== Card Flip ===== */
+.card-stage {
+  perspective: 1500px;
+  margin: 0 auto 2rem;
+  width: 100%;
+  max-width: 540px;
+  aspect-ratio: 1075 / 650;
+  cursor: pointer;
+}
+.card {
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+.card.flipped { transform: rotateY(180deg); }
+.face {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0, 200, 255, 0.15), 0 10px 40px rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--border);
+}
+.face img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.back { transform: rotateY(180deg); }
+
+.flip-hint {
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.05em;
+}
+.flip-hint .key {
+  display: inline-block;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1rem 0.5rem;
+  color: var(--cyan);
+  margin: 0 0.25rem;
+}
+
+/* ===== Action Buttons ===== */
+.actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn:hover {
+  border-color: var(--cyan);
+  background: rgba(0, 200, 255, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 200, 255, 0.15);
+}
+.btn.primary {
+  background: linear-gradient(135deg, var(--cyan), #007ab8);
+  border-color: var(--cyan);
+}
+.btn.primary:hover { background: linear-gradient(135deg, #2bd8ff, var(--cyan)); }
+
+/* ===== Contact Info Panel ===== */
+.info-panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.9rem;
+}
+.info-row:last-child { border-bottom: none; }
+.info-label {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+.info-value { color: var(--text); }
+.info-value a { color: var(--cyan); text-decoration: none; }
+.info-value a:hover { text-decoration: underline; }
+.copy-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--cyan);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  transition: all 0.15s;
+}
+.copy-btn:hover { background: var(--cyan); color: var(--bg-start); }
+.copy-btn.copied { background: #4eee98; border-color: #4eee98; color: #0a1020; }
+
+/* ===== Music Project CTA ===== */
+.music-cta {
+  background: linear-gradient(135deg, rgba(136,216,255,0.06) 0%, rgba(240,80,80,0.06) 100%);
+  border: 1px solid rgba(255,213,100,0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.music-cta .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+}
+.music-cta h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 0.3rem;
+  background: linear-gradient(90deg, var(--silver), var(--gold), var(--crimson));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.music-cta p {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+.music-cta .listen-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  background: var(--gold);
+  color: #1a1410;
+  font-weight: 700;
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.music-cta .listen-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255,213,100,0.3);
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  margin-top: 2rem;
+  letter-spacing: 0.1em;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--cyan);
+  color: var(--bg-start);
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="tag">// I·S·M LLC</span> · DIGITAL BUSINESS CARD
+  </header>
+
+  <!-- Flip Card -->
+  <div class="card-stage" id="card-stage" onclick="flipCard()" role="button" aria-label="Flip card">
+    <div class="card" id="card">
+      <div class="face front">
+        <img src="https://is-ma.pages.dev/assets/isma/E_darktech_music_front.png" alt="Front of business card">
+      </div>
+      <div class="face back">
+        <img src="https://is-ma.pages.dev/assets/isma/E_darktech_music_back.png" alt="Back of business card">
+      </div>
+    </div>
+  </div>
+  <p class="flip-hint">タップで <span class="key">FLIP</span> / Click to flip</p>
+
+  <!-- Action Buttons -->
+  <div class="actions">
+    <a class="btn primary" href="mailto:a.maeda@y-ism.llc" onclick="track('email_click')">
+      ✉ Email
+    </a>
+    <a class="btn" href="https://is-ma.pages.dev" target="_blank" onclick="track('website_click')">
+      🌐 Website
+    </a>
+    <a class="btn" href="vcard.vcf" download="Akira_Maeda_ISM.vcf" onclick="track('vcard_download')">
+      📇 Save Contact
+    </a>
+    <button class="btn" onclick="shareCard()">
+      🔗 Share
+    </button>
+  </div>
+
+  <!-- Contact Info Panel -->
+  <div class="info-panel">
+    <div class="info-row">
+      <div>
+        <div class="info-label">COMPANY</div>
+        <div class="info-value">I・S・M合同会社</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div>
+        <div class="info-label">REPRESENTATIVE</div>
+        <div class="info-value">前田 顕 / Akira Maeda</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div style="flex: 1;">
+        <div class="info-label">EMAIL</div>
+        <div class="info-value"><a href="mailto:a.maeda@y-ism.llc">a.maeda@y-ism.llc</a></div>
+      </div>
+      <button class="copy-btn" onclick="copy('a.maeda@y-ism.llc', this)">COPY</button>
+    </div>
+    <div class="info-row">
+      <div style="flex: 1;">
+        <div class="info-label">WEBSITE</div>
+        <div class="info-value"><a href="https://is-ma.pages.dev" target="_blank">is-ma.pages.dev</a></div>
+      </div>
+      <button class="copy-btn" onclick="copy('https://is-ma.pages.dev', this)">COPY</button>
+    </div>
+    <div class="info-row">
+      <div>
+        <div class="info-label">ADDRESS</div>
+        <div class="info-value">〒220-0004<br>神奈川県横浜市西区北幸2-10-28</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- is-Ma Music Project CTA -->
+  <div class="music-cta">
+    <div class="tag">// CREATIVE PROJECT</div>
+    <h2>is-Ma — Cinematic AI Vocal</h2>
+    <p>Icea × Sylas / 二つの流星が、地球で出会う<br>Now streaming on Spotify · Apple Music · YouTube Music</p>
+    <a class="listen-btn" href="https://is-ma.pages.dev" target="_blank" onclick="track('music_listen_cta')">
+      ▶ LISTEN NOW
+    </a>
+  </div>
+
+  <footer>
+    © 2026 I·S·M LLC. All rights reserved.<br>
+    <span style="opacity: 0.4;">[ Digital business card v1 ]</span>
+  </footer>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+function flipCard() {
+  document.getElementById('card').classList.toggle('flipped');
+  track('card_flip');
+}
+
+function copy(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'COPIED';
+    btn.classList.add('copied');
+    showToast(text + ' をコピー');
+    track('copy_' + (text.includes('@') ? 'email' : 'url'));
+    setTimeout(() => {
+      btn.textContent = 'COPY';
+      btn.classList.remove('copied');
+    }, 1800);
+  });
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function shareCard() {
+  const url = window.location.href;
+  if (navigator.share) {
+    navigator.share({
+      title: 'I·S·M LLC — 前田 顕',
+      text: '前田 顕 / I·S·M合同会社 のデジタル名刺',
+      url: url
+    }).then(() => track('share_native'));
+  } else {
+    navigator.clipboard.writeText(url).then(() => {
+      showToast('URLをコピー: ' + url);
+      track('share_copy_url');
+    });
+  }
+}
+
+function track(event) {
+  // Cloudflare Web Analytics 自動収集 + 簡易localStorage カウント
+  try {
+    const key = 'ism_card_' + event;
+    const count = parseInt(localStorage.getItem(key) || '0') + 1;
+    localStorage.setItem(key, count);
+    // referrer query (?ref=xxx)
+    const url = new URL(window.location.href);
+    const ref = url.searchParams.get('ref');
+    if (ref) {
+      const refKey = 'ism_ref_' + ref;
+      localStorage.setItem(refKey, parseInt(localStorage.getItem(refKey) || '0') + 1);
+    }
+    // ビーコン送信 (将来用)
+    if (window.gtag) window.gtag('event', event, { event_category: 'business_card', ref: ref || 'direct' });
+  } catch (e) {}
+}
+
+// ページロード追跡
+document.addEventListener('DOMContentLoaded', () => {
+  track('page_view');
+  const url = new URL(window.location.href);
+  const ref = url.searchParams.get('ref');
+  if (ref) console.log('Referrer:', ref);
+});
+
+// キーボード操作 (F / Space で flip)
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'f' || e.key === 'F' || e.key === ' ') {
+    e.preventDefault();
+    flipCard();
+  }
+});
+</script>
+
+<!-- Cloudflare Web Analytics (Pages 自動付与) -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "auto"}'></script>
+
+</body>
+</html>
