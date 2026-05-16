@@ -33,7 +33,7 @@
     "border_color": "rgba(245,220,130,0.3)",
     "description": "本物の日本人作家によるシネマティック・アンビエント。神社・禅・森林浴・侘び寂び。1-3時間長尺BGMで世界の睡眠/瞑想/集中シーンへ。海外90%ターゲットの新規プロジェクト。",
     "platforms": [
-      {"icon": "fab fa-youtube", "label": "YouTube", "url": "https://www.youtube.com/@KOMOREBI-ism"},
+      {"icon": "fab fa-youtube", "label": "YouTube", "url": "https://www.youtube.com/@KOMOREBI-komorebi"},
       {"icon": "fab fa-spotify", "label": "Spotify", "url": "https://open.spotify.com/search/Komorebi"},
       {"icon": "fab fa-apple", "label": "Apple Music", "url": "https://music.apple.com/search?term=Komorebi"},
       {"icon": "fab fa-amazon", "label": "Amazon Music", "url": "https://music.amazon.com/search/Komorebi"}
