@@ -5,11 +5,13 @@
     "vocalist": "Sylas",
     "vocal_class": "sylas",
     "status": "upcoming",
-    "release_date": "2026.06.05",
+    "release_date": "2026.06.03",
     "description": "Sylas 第二章。火星に倒れた仲間たちへの誓い。Dark Cinematic Hip-Hop × Trap Ballad。BPM 138。",
     "preview_audio": "assets/audio/CRIMSON_VOW_preview.mp3",
-    "search_slug_url": "is-Ma%20CRIMSON%20VOW",
-    "search_slug_plus": "is-Ma+CRIMSON+VOW"
+    "apple_url": "https://music.apple.com/jp/artist/is-ma/1896532584",
+    "spotify_url": "https://open.spotify.com/artist/2XBOJjgZcgcXX0UZva7a2X",
+    "ytmusic_url": "https://music.youtube.com/channel/UCCCxw_WOO7LDpMK7JKs7VhA",
+    "amazon_url": "https://music.amazon.com/search/is-Ma+CRIMSON+VOW"
   },
   {
     "title": "Crimson Letter",
@@ -17,11 +19,13 @@
     "vocalist": "Sylas",
     "vocal_class": "sylas",
     "status": "upcoming",
-    "release_date": "2026.05.29",
+    "release_date": "2026.05.27",
     "description": "鳳凰覚醒の余韻 — Sylas が戦友7人へ捧げる最後の手紙。Dark Cinematic Alt-Rock × Trip-Hop。BPM 74。",
     "preview_audio": "assets/audio/CRIMSON_LETTER_preview.mp3",
-    "search_slug_url": "is-Ma%20Crimson%20Letter",
-    "search_slug_plus": "is-Ma+Crimson+Letter"
+    "apple_url": "https://music.apple.com/jp/artist/is-ma/1896532584",
+    "spotify_url": "https://open.spotify.com/artist/2XBOJjgZcgcXX0UZva7a2X",
+    "ytmusic_url": "https://music.youtube.com/channel/UCCCxw_WOO7LDpMK7JKs7VhA",
+    "amazon_url": "https://music.amazon.com/search/is-Ma+Crimson+Letter"
   },
   {
     "title": "Silver Will",
@@ -29,11 +33,13 @@
     "vocalist": "Icea",
     "vocal_class": "icea",
     "status": "upcoming",
-    "release_date": "2026.05.22",
+    "release_date": "2026.05.20",
     "description": "Phase 1 完結の余韻 — Icea が散った姉妹たちへ託す銀色の遺言。Dark Cinematic Trip-Hop Dream Pop。BPM 76。",
     "preview_audio": "assets/audio/SILVER_WILL_preview.mp3",
-    "search_slug_url": "is-Ma%20Silver%20Will",
-    "search_slug_plus": "is-Ma+Silver+Will"
+    "apple_url": "https://music.apple.com/jp/artist/is-ma/1896532584",
+    "spotify_url": "https://open.spotify.com/artist/2XBOJjgZcgcXX0UZva7a2X",
+    "ytmusic_url": "https://music.youtube.com/channel/UCCCxw_WOO7LDpMK7JKs7VhA",
+    "amazon_url": "https://music.amazon.com/search/is-Ma+Silver+Will"
   },
   {
     "title": "GENESIS",
@@ -45,8 +51,10 @@
     "debut_badge_class": "duo",
     "description": "デビューシングル。月と黒陽が交わる、創世の瞬間。シネマティック × ハイブリッドポップの新境地。",
     "preview_audio": "assets/audio/GENESIS_preview.mp3",
-    "search_slug_url": "is-Ma%20GENESIS",
-    "search_slug_plus": "is-Ma+GENESIS"
+    "apple_url": "https://music.apple.com/jp/album/genesis-%E5%89%B5%E4%B8%96-single/6768144707",
+    "spotify_url": "https://open.spotify.com/artist/2XBOJjgZcgcXX0UZva7a2X",
+    "ytmusic_url": "https://music.youtube.com/channel/UCCCxw_WOO7LDpMK7JKs7VhA",
+    "amazon_url": "https://music.amazon.com/search/is-Ma+GENESIS"
   },
   {
     "title": "EMBERS",
@@ -58,8 +66,10 @@
     "debut_badge_class": "sylas",
     "description": "灰の中から立ち上がる、Sylas の覚醒。挫折 → 努力 → 成功。誰の心にも刺さる希望のアンセム。",
     "preview_audio": "assets/audio/EMBERS_preview.mp3",
-    "search_slug_url": "is-Ma%20EMBERS",
-    "search_slug_plus": "is-Ma+EMBERS"
+    "apple_url": "https://music.apple.com/jp/album/embers-single/6768505897",
+    "spotify_url": "https://open.spotify.com/artist/2XBOJjgZcgcXX0UZva7a2X",
+    "ytmusic_url": "https://music.youtube.com/channel/UCCCxw_WOO7LDpMK7JKs7VhA",
+    "amazon_url": "https://music.amazon.com/search/is-Ma+EMBERS"
   },
   {
     "title": "POLARIS",
@@ -71,8 +81,10 @@
     "debut_badge_class": "icea",
     "description": "失った星座を、心の北で探して。Icea の魂を導く北極星への鎮魂歌。",
     "preview_audio": "assets/audio/POLARIS_preview.mp3",
-    "search_slug_url": "is-Ma%20POLARIS",
-    "search_slug_plus": "is-Ma+POLARIS"
+    "apple_url": "https://music.apple.com/jp/album/polaris-single/6768135561",
+    "spotify_url": "https://open.spotify.com/artist/2XBOJjgZcgcXX0UZva7a2X",
+    "ytmusic_url": "https://music.youtube.com/channel/UCCCxw_WOO7LDpMK7JKs7VhA",
+    "amazon_url": "https://music.amazon.com/search/is-Ma+POLARIS"
   },
   {
     "title": "STARLIGHT REQUIEM",
@@ -82,8 +94,10 @@
     "status": "live",
     "description": "喪失を昇華するモダン・レクイエム。星灯の祈り。Icea のシネマティック・バラード。",
     "preview_audio": "assets/audio/STARLIGHT_REQUIEM_preview.mp3",
-    "search_slug_url": "is-Ma%20STARLIGHT%20REQUIEM",
-    "search_slug_plus": "is-Ma+STARLIGHT+REQUIEM"
+    "apple_url": "https://music.apple.com/jp/album/starlight-requiem-single/6768135021",
+    "spotify_url": "https://open.spotify.com/artist/2XBOJjgZcgcXX0UZva7a2X",
+    "ytmusic_url": "https://music.youtube.com/channel/UCCCxw_WOO7LDpMK7JKs7VhA",
+    "amazon_url": "https://music.amazon.com/search/is-Ma+STARLIGHT+REQUIEM"
   },
   {
     "title": "RESURGENT SUN",
@@ -93,8 +107,10 @@
     "status": "live",
     "description": "Black Sun Rising. ダーク・ハイブリッド・ビートスイッチ。Phonk × Drill × DnB の革新。",
     "preview_audio": "assets/audio/RESURGENT_SUN_preview.mp3",
-    "search_slug_url": "is-Ma%20RESURGENT%20SUN",
-    "search_slug_plus": "is-Ma+RESURGENT+SUN"
+    "apple_url": "https://music.apple.com/jp/album/resurgent-sun-%E9%82%84%E9%99%BD-single/6768172471",
+    "spotify_url": "https://open.spotify.com/artist/2XBOJjgZcgcXX0UZva7a2X",
+    "ytmusic_url": "https://music.youtube.com/channel/UCCCxw_WOO7LDpMK7JKs7VhA",
+    "amazon_url": "https://music.amazon.com/search/is-Ma+RESURGENT+SUN"
   },
   {
     "title": "BLUE HORIZON",
@@ -104,7 +120,9 @@
     "status": "live",
     "description": "Icea が描く、地平線の向こうの希望。シネマティック × J-POPアンセム。",
     "preview_audio": "assets/audio/BLUE_HORIZON_preview.mp3",
-    "search_slug_url": "is-Ma%20BLUE%20HORIZON",
-    "search_slug_plus": "is-Ma+BLUE+HORIZON"
+    "apple_url": "https://music.apple.com/jp/album/blue-horizon-single/6768506106",
+    "spotify_url": "https://open.spotify.com/artist/2XBOJjgZcgcXX0UZva7a2X",
+    "ytmusic_url": "https://music.youtube.com/channel/UCCCxw_WOO7LDpMK7JKs7VhA",
+    "amazon_url": "https://music.amazon.com/search/is-Ma+BLUE+HORIZON"
   }
 ]
