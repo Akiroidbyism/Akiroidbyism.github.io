@@ -4,269 +4,338 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>I·S·M LLC — 前田 顕 / Digital Business Card</title>
-<meta property="og:title" content="I·S·M LLC — 前田 顕">
-<meta property="og:description" content="I·S·M合同会社 代表社員 / is-Ma Cinematic AI Vocal Project">
+<title>I·S·M LLC — 前田 顕 / AI-Driven Business Studio</title>
+<meta property="og:title" content="I·S·M LLC — 前田 顕 / AI-Driven Business Studio">
+<meta property="og:description" content="AIで事業をつくる。音楽制作 × システム開発(EA) × EC×AI物販 — 業務改善・WEB制作・マーケティングまで、AIでできることすべてを。">
 <meta property="og:image" content="https://is-ma.pages.dev/assets/isma/Icea_Sylas_duo.jpg">
 <meta property="og:type" content="profile">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --bg-start: #0a0e1c;
-  --bg-end: #1a2540;
-  --cyan: #00c8ff;
+  --bg: #04050a;
+  --bg2: #0a0e1c;
+  --cyan: #00e5ff;
+  --violet: #7c5cff;
+  --magenta: #ff4ecd;
   --gold: #ffd564;
-  --crimson: #f05050;
-  --silver: #c8dcf0;
-  --text: #f4f7fc;
-  --muted: #98a6b8;
-  --panel: rgba(255,255,255,0.04);
-  --border: rgba(0,200,255,0.25);
+  --text: #f2f6ff;
+  --muted: #8b96ad;
+  --panel: rgba(255,255,255,0.035);
+  --border: rgba(255,255,255,0.09);
+  --grad: linear-gradient(100deg, var(--cyan), var(--violet) 55%, var(--magenta));
 }
-html, body { width: 100%; min-height: 100vh; }
+html { scroll-behavior: smooth; }
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  background: radial-gradient(ellipse at top, #14203a 0%, var(--bg-start) 60%, #050810 100%);
+  background: var(--bg);
   color: var(--text);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 1rem 4rem;
   min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
-.container { max-width: 720px; width: 100%; }
-header {
-  text-align: center;
-  margin-bottom: 2.5rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  color: var(--cyan);
-  letter-spacing: 0.1em;
+/* ===== Background FX ===== */
+#bg-canvas { position: fixed; inset: 0; z-index: 0; opacity: 0.55; }
+.bg-glow {
+  position: fixed; z-index: 0; pointer-events: none;
+  width: 70vmax; height: 70vmax; border-radius: 50%;
+  filter: blur(90px); opacity: 0.14;
 }
-header .tag { opacity: 0.6; }
+.bg-glow.g1 { top: -30vmax; left: -20vmax; background: radial-gradient(circle, var(--cyan), transparent 60%); }
+.bg-glow.g2 { bottom: -35vmax; right: -25vmax; background: radial-gradient(circle, var(--violet), transparent 60%); }
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(124,92,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 30%, transparent 80%);
+}
+.wrap { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 2.2rem 1.2rem 4rem; }
 
-/* ===== Card Flip ===== */
+/* ===== Header ===== */
+header {
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+  letter-spacing: 0.12em; color: var(--muted); margin-bottom: 3rem;
+}
+header .logo { color: var(--text); font-weight: 700; }
+header .logo b { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+header .status { display: flex; align-items: center; gap: 0.45rem; }
+header .dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #34f5a4;
+  box-shadow: 0 0 10px #34f5a4; animation: pulse 2.2s infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* ===== Hero ===== */
+.hero { text-align: center; margin-bottom: 3rem; }
+.hero .kicker {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; letter-spacing: 0.32em;
+  color: var(--cyan); margin-bottom: 1.1rem;
+}
+.hero h1 {
+  font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+  font-size: clamp(2.3rem, 8vw, 3.6rem); font-weight: 800; line-height: 1.12;
+  letter-spacing: 0.01em; margin-bottom: 1rem;
+}
+.hero h1 .grad {
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  background-size: 200% auto; animation: shine 5s linear infinite;
+}
+@keyframes shine { to { background-position: 200% center; } }
+.hero h1 .w { display: inline-block; }
+.hero .sub { color: var(--muted); font-size: 0.95rem; line-height: 1.9; }
+.hero .sub b { color: var(--text); font-weight: 700; }
+
+/* ===== Flip Card ===== */
 .card-stage {
-  perspective: 1500px;
-  margin: 0 auto 2rem;
-  width: 100%;
-  max-width: 540px;
-  aspect-ratio: 1075 / 650;
-  cursor: pointer;
+  perspective: 1600px; margin: 2.6rem auto 0.9rem;
+  width: 100%; max-width: 560px; aspect-ratio: 1075 / 650; cursor: pointer;
 }
 .card {
-  position: relative;
-  width: 100%; height: 100%;
+  position: relative; width: 100%; height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.85s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transition: transform 0.9s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 .card.flipped { transform: rotateY(180deg); }
 .face {
-  position: absolute; inset: 0;
-  backface-visibility: hidden;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 25px 80px rgba(0, 200, 255, 0.15), 0 10px 40px rgba(0, 0, 0, 0.7);
-  border: 1px solid var(--border);
+  position: absolute; inset: 0; backface-visibility: hidden;
+  border-radius: 16px; overflow: hidden;
+  background:
+    radial-gradient(120% 160% at 0% 0%, rgba(0,229,255,0.13), transparent 50%),
+    radial-gradient(120% 160% at 100% 100%, rgba(124,92,255,0.16), transparent 50%),
+    linear-gradient(160deg, #0c1020, #070a14);
+  border: 1px solid rgba(120,160,255,0.22);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.75), 0 0 60px rgba(0,229,255,0.07);
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: clamp(1.1rem, 4vw, 1.9rem);
 }
-.face img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
+.face::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.05) 45%, transparent 60%);
+}
+.face .row { display: flex; justify-content: space-between; align-items: flex-start; }
+.face .mono { font-family: 'JetBrains Mono', monospace; }
+.front .brand { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: clamp(1.2rem, 4vw, 1.7rem); letter-spacing: 0.04em; }
+.front .brand span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.front .chip {
+  font-size: 0.6rem; letter-spacing: 0.22em; color: var(--cyan);
+  border: 1px solid rgba(0,229,255,0.35); border-radius: 999px; padding: 0.25rem 0.7rem;
+}
+.front .name-block { text-align: left; }
+.front .name-jp { font-size: clamp(1.5rem, 5.5vw, 2.2rem); font-weight: 900; letter-spacing: 0.12em; }
+.front .name-en { font-size: 0.78rem; letter-spacing: 0.3em; color: var(--muted); margin-top: 0.3rem; }
+.front .role { font-size: 0.74rem; color: var(--cyan); letter-spacing: 0.14em; margin-top: 0.55rem; }
+.front .foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 0.6rem; color: var(--muted); font-size: 0.62rem; letter-spacing: 0.18em; }
+.front .foot > span { white-space: nowrap; }
+.front .pillars { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.front .pillars span {
+  font-size: 0.58rem; letter-spacing: 0.1em; color: #b9c6e2;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+  border-radius: 5px; padding: 0.22rem 0.5rem;
 }
 .back { transform: rotateY(180deg); }
-
+.back .title { font-size: 0.62rem; letter-spacing: 0.3em; color: var(--cyan); }
+.back .lines { display: grid; gap: 0.55rem; }
+.back .line { display: flex; gap: 0.8rem; align-items: baseline; font-size: clamp(0.7rem, 2.6vw, 0.85rem); }
+.back .line .k { color: var(--muted); font-size: 0.58rem; letter-spacing: 0.2em; min-width: 4.6em; }
+.back .line .v { color: var(--text); letter-spacing: 0.03em; overflow-wrap: anywhere; word-break: keep-all; }
+.back .foot { text-align: right; color: var(--muted); font-size: 0.6rem; letter-spacing: 0.22em; }
 .flip-hint {
-  text-align: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 2.5rem;
-  letter-spacing: 0.05em;
+  text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem;
+  color: var(--muted); margin-bottom: 2.6rem; letter-spacing: 0.08em;
 }
 .flip-hint .key {
-  display: inline-block;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 0.1rem 0.5rem;
-  color: var(--cyan);
-  margin: 0 0.25rem;
+  display: inline-block; border: 1px solid var(--border); border-radius: 4px;
+  padding: 0.08rem 0.5rem; color: var(--cyan); margin: 0 0.2rem;
 }
 
 /* ===== Action Buttons ===== */
-.actions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-}
+.actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.7rem; margin-bottom: 3.2rem; }
 .btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.9rem 1.2rem;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  color: var(--text);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  position: relative; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.95rem 1rem; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--panel); color: var(--text);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 700;
+  text-decoration: none; cursor: pointer; transition: all 0.22s ease;
 }
-.btn:hover {
-  border-color: var(--cyan);
-  background: rgba(0, 200, 255, 0.08);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 200, 255, 0.15);
-}
-.btn.primary {
-  background: linear-gradient(135deg, var(--cyan), #007ab8);
-  border-color: var(--cyan);
-}
-.btn.primary:hover { background: linear-gradient(135deg, #2bd8ff, var(--cyan)); }
+.btn svg { width: 16px; height: 16px; flex: none; }
+.btn:hover { border-color: rgba(0,229,255,0.6); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(0,229,255,0.14); background: rgba(0,229,255,0.06); }
+.btn.primary { background: var(--grad); border: none; color: #050810; }
+.btn.primary:hover { box-shadow: 0 8px 30px rgba(124,92,255,0.4); }
 
-/* ===== Contact Info Panel ===== */
+/* ===== Sections ===== */
+.sec-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.32em;
+  color: var(--cyan); text-align: center; margin-bottom: 0.7rem;
+}
+.sec-title { text-align: center; font-size: clamp(1.4rem, 5vw, 1.9rem); font-weight: 900; margin-bottom: 0.6rem; }
+.sec-title .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sec-desc { text-align: center; color: var(--muted); font-size: 0.86rem; line-height: 1.9; margin-bottom: 1.8rem; }
+
+/* ===== Service Grid ===== */
+.services { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem; }
+@media (max-width: 560px) { .services { grid-template-columns: 1fr; } }
+.svc {
+  position: relative; border: 1px solid var(--border); border-radius: 14px;
+  background: var(--panel); padding: 1.3rem 1.2rem; overflow: hidden;
+  transition: all 0.25s ease;
+}
+.svc::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--accent, var(--grad)); opacity: 0.85;
+}
+.svc:hover { transform: translateY(-3px); border-color: rgba(120,160,255,0.35); box-shadow: 0 14px 40px rgba(0,0,0,0.45); }
+.svc .icon {
+  width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border); margin-bottom: 0.85rem;
+}
+.svc .icon svg { width: 20px; height: 20px; }
+.svc h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.15rem; }
+.svc .en { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; color: var(--muted); margin-bottom: 0.6rem; }
+.svc p { color: var(--muted); font-size: 0.8rem; line-height: 1.75; }
+.svc.main { grid-column: span 1; }
+.more-note {
+  text-align: center; color: var(--muted); font-size: 0.82rem; line-height: 1.9;
+  border: 1px dashed rgba(120,160,255,0.3); border-radius: 12px; padding: 1rem 1.2rem; margin-bottom: 3.2rem;
+}
+.more-note b { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 700; }
+
+/* ===== Stats ===== */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; margin-bottom: 3.2rem; }
+.stat {
+  text-align: center; border: 1px solid var(--border); border-radius: 14px;
+  background: var(--panel); padding: 1.1rem 0.5rem;
+}
+.stat .num {
+  font-family: 'Outfit', monospace; font-size: clamp(1.3rem, 5vw, 1.8rem); font-weight: 800;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.stat .lbl { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; margin-top: 0.25rem; line-height: 1.5; }
+
+/* ===== Info Panel ===== */
 .info-panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
+  padding: 1.5rem; margin-bottom: 2.2rem;
 }
 .info-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.65rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem;
 }
 .info-row:last-child { border-bottom: none; }
-.info-label {
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--muted);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-}
-.info-value { color: var(--text); }
+.info-label { font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 0.68rem; letter-spacing: 0.16em; margin-bottom: 0.15rem; }
+.info-value { color: var(--text); line-height: 1.6; }
 .info-value a { color: var(--cyan); text-decoration: none; }
 .info-value a:hover { text-decoration: underline; }
 .copy-btn {
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--cyan);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 0.5rem;
-  transition: all 0.15s;
+  background: none; border: 1px solid var(--border); color: var(--cyan);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; padding: 0.25rem 0.65rem;
+  border-radius: 5px; cursor: pointer; margin-left: 0.5rem; transition: all 0.15s; flex: none;
 }
-.copy-btn:hover { background: var(--cyan); color: var(--bg-start); }
-.copy-btn.copied { background: #4eee98; border-color: #4eee98; color: #0a1020; }
+.copy-btn:hover { background: var(--cyan); color: var(--bg); }
+.copy-btn.copied { background: #34f5a4; border-color: #34f5a4; color: #04130b; }
 
-/* ===== Music Project CTA ===== */
+/* ===== Music CTA ===== */
 .music-cta {
-  background: linear-gradient(135deg, rgba(136,216,255,0.06) 0%, rgba(240,80,80,0.06) 100%);
-  border: 1px solid rgba(255,213,100,0.3);
-  border-radius: 12px;
-  padding: 1.5rem;
-  text-align: center;
-  margin-bottom: 1.5rem;
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, rgba(0,229,255,0.07), rgba(124,92,255,0.08) 50%, rgba(255,78,205,0.07));
+  border: 1px solid rgba(124,92,255,0.35); border-radius: 16px;
+  padding: 1.7rem 1.4rem; text-align: center; margin-bottom: 2rem;
 }
-.music-cta .tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--cyan);
-  letter-spacing: 0.15em;
-  margin-bottom: 0.5rem;
-}
+.music-cta .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--cyan); letter-spacing: 0.26em; margin-bottom: 0.55rem; }
 .music-cta h2 {
-  font-size: 1.5rem;
-  font-weight: 900;
-  margin-bottom: 0.3rem;
-  background: linear-gradient(90deg, var(--silver), var(--gold), var(--crimson));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-size: 1.45rem; font-weight: 900; margin-bottom: 0.35rem;
+  background: linear-gradient(90deg, #c8dcf0, var(--gold), #ff7a6e);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.music-cta p {
-  color: var(--muted);
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
+.music-cta p { color: var(--muted); font-size: 0.83rem; line-height: 1.8; margin-bottom: 1.1rem; }
 .music-cta .listen-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1.5rem;
-  border-radius: 30px;
-  background: var(--gold);
-  color: #1a1410;
-  font-weight: 700;
-  text-decoration: none;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.7rem;
+  border-radius: 999px; background: var(--gold); color: #1a1410; font-weight: 700;
+  text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.84rem; transition: all 0.2s;
 }
-.music-cta .listen-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255,213,100,0.3);
-}
+.music-cta .listen-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(255,213,100,0.35); }
 
 footer {
-  text-align: center;
-  color: var(--muted);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  margin-top: 2rem;
-  letter-spacing: 0.1em;
+  text-align: center; color: var(--muted); font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; margin-top: 2.4rem; letter-spacing: 0.12em; line-height: 2;
 }
 
 /* Toast */
 .toast {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: var(--cyan);
-  color: var(--bg-start);
-  padding: 0.7rem 1.5rem;
-  border-radius: 30px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  font-weight: 700;
-  opacity: 0;
-  transition: all 0.3s ease;
-  z-index: 1000;
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: var(--grad); color: #050810; padding: 0.7rem 1.6rem; border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.84rem; font-weight: 700;
+  opacity: 0; transition: all 0.3s ease; z-index: 1000;
 }
-.toast.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* Reveal animation */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero h1 .grad { animation: none; }
 }
 </style>
 </head>
 <body>
-<div class="container">
+<canvas id="bg-canvas"></canvas>
+<div class="bg-glow g1"></div>
+<div class="bg-glow g2"></div>
+<div class="bg-grid"></div>
+
+<div class="wrap">
 
   <header>
-    <span class="tag">// I·S·M LLC</span> · DIGITAL BUSINESS CARD
+    <span class="logo">I·S·M <b>LLC</b></span>
+    <span class="status"><span class="dot"></span>AI SYSTEMS ONLINE</span>
   </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="kicker">AI-DRIVEN BUSINESS STUDIO</div>
+    <h1>AIで、事業を<br><span class="grad"><span class="w">つくる。</span><span class="w">動かす。</span><span class="w">伸ばす。</span></span></h1>
+    <p class="sub">
+      <b>音楽制作</b> × <b>システム開発</b> × <b>EC×AI物販</b> — AIを実戦投入し、<br>
+      企画から運用まで自動で回るビジネスを設計します。
+    </p>
+  </section>
 
   <!-- Flip Card -->
   <div class="card-stage" id="card-stage" onclick="flipCard()" role="button" aria-label="Flip card">
     <div class="card" id="card">
       <div class="face front">
-        <img src="https://is-ma.pages.dev/assets/isma/E_darktech_music_front.png" alt="Front of business card">
+        <div class="row">
+          <div class="brand">I·S·M <span>LLC</span></div>
+          <div class="chip mono">EST. 2026 · YOKOHAMA</div>
+        </div>
+        <div class="name-block">
+          <div class="name-jp">前田 顕</div>
+          <div class="name-en mono">AKIRA MAEDA</div>
+          <div class="role mono">REPRESENTATIVE / AI BUSINESS ARCHITECT</div>
+        </div>
+        <div class="foot mono">
+          <div class="pillars">
+            <span>MUSIC</span><span>EA DEV</span><span>EC × AI</span><span>AI OPS</span>
+          </div>
+          <span>is-ma.pages.dev</span>
+        </div>
       </div>
       <div class="face back">
-        <img src="https://is-ma.pages.dev/assets/isma/E_darktech_music_back.png" alt="Back of business card">
+        <div class="row">
+          <div class="title mono">CONTACT</div>
+          <div class="chip mono" style="font-size:0.58rem; border-color: rgba(124,92,255,0.4); color: var(--violet);">I·S·M LLC</div>
+        </div>
+        <div class="lines mono">
+          <div class="line"><span class="k">MAIL</span><span class="v">a.maeda@y-ism.llc</span></div>
+          <div class="line"><span class="k">WEB</span><span class="v">https://is-ma.pages.dev</span></div>
+          <div class="line"><span class="k">ADDR</span><span class="v">〒220-0004 神奈川県横浜市西区北幸2-10-28</span></div>
+          <div class="line"><span class="k">FIELD</span><span class="v">AI Music / EA Development / EC Automation / AI Consulting</span></div>
+        </div>
+        <div class="foot mono">POWERED BY AI · BUILT BY HUMAN</div>
       </div>
     </div>
   </div>
@@ -275,21 +344,82 @@ footer {
   <!-- Action Buttons -->
   <div class="actions">
     <a class="btn primary" href="mailto:a.maeda@y-ism.llc" onclick="track('email_click')">
-      ✉ Email
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+      Email
     </a>
     <a class="btn" href="https://is-ma.pages.dev" target="_blank" onclick="track('website_click')">
-      🌐 Website
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg>
+      Website
     </a>
     <a class="btn" href="vcard.vcf" download="Akira_Maeda_ISM.vcf" onclick="track('vcard_download')">
-      📇 Save Contact
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+      Save Contact
     </a>
     <button class="btn" onclick="shareCard()">
-      🔗 Share
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
+      Share
     </button>
   </div>
 
+  <!-- Stats -->
+  <div class="stats reveal">
+    <div class="stat"><div class="num">50+</div><div class="lbl">AI楽曲リリース / 月<br>自社レーベル運営</div></div>
+    <div class="stat"><div class="num">24/7</div><div class="lbl">EC自動化システム<br>無人稼働</div></div>
+    <div class="stat"><div class="num">×10</div><div class="lbl">AI活用による<br>制作スピード</div></div>
+  </div>
+
+  <!-- Services -->
+  <section>
+    <div class="sec-label reveal">BUSINESS</div>
+    <h2 class="sec-title reveal">AIを使った<span class="grad">事業展開</span></h2>
+    <p class="sec-desc reveal">すべて自社で実運用しているAIパイプライン。<br>その実戦ノウハウを、そのまま御社の武器として提供します。</p>
+
+    <div class="services">
+      <div class="svc reveal" style="--accent: linear-gradient(90deg, #c8dcf0, #ffd564);">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd564" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <h3>AI音楽制作</h3>
+        <div class="en">MUSIC PRODUCTION</div>
+        <p>自社AIレーベルで月50曲以上を世界配信。楽曲制作からMV・YouTube運用・グローバル配信まで、音楽事業をフルスタックで内製化。</p>
+      </div>
+      <div class="svc reveal" style="--accent: linear-gradient(90deg, var(--cyan), #34f5a4);">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+        <h3>システム開発</h3>
+        <div class="en">EA / SYSTEM DEVELOPMENT</div>
+        <p>FX自動売買EA(エキスパートアドバイザー)の開発・検証。10年超のヒストリカルデータでのバックテストに基づくロジック設計と運用自動化。</p>
+      </div>
+      <div class="svc reveal" style="--accent: linear-gradient(90deg, var(--violet), var(--magenta));">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#7c5cff" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+        <h3>EC × AI物販</h3>
+        <div class="en">E-COMMERCE AUTOMATION</div>
+        <p>AIリサーチ×自動出品×価格最適化を24時間無人運用。仕入れ判断から販売サイクルまで、物販オペレーションをAIエージェント化。</p>
+      </div>
+      <div class="svc reveal" style="--accent: linear-gradient(90deg, #34f5a4, var(--cyan));">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#34f5a4" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+        <h3>業務改善・効率化支援</h3>
+        <div class="en">AI OPERATIONS</div>
+        <p>AIエージェント・自動化ワークフローの設計導入で、定型業務をゼロタッチ化。「人がやらなくていい仕事」をAIに移管します。</p>
+      </div>
+      <div class="svc reveal" style="--accent: linear-gradient(90deg, var(--cyan), var(--violet));">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>HP・WEB制作</h3>
+        <div class="en">WEB PRODUCTION</div>
+        <p>AI活用で企画からデザイン・実装・公開まで最短数日。コーポレートサイト・LP・デジタル名刺まで高速かつ低コストで構築。</p>
+      </div>
+      <div class="svc reveal" style="--accent: linear-gradient(90deg, var(--magenta), var(--gold));">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ff4ecd" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-6"/></svg></div>
+        <h3>マーケティング</h3>
+        <div class="en">AI MARKETING</div>
+        <p>SNS・YouTube・検索流入のデータ分析からコンテンツ量産までAIで一気通貫。実際にチャンネルを育てている運用ノウハウで支援。</p>
+      </div>
+    </div>
+    <div class="more-note reveal">
+      ほか、<b>AIでできることなら、なんでも。</b><br>
+      「これはAI化できる？」という段階からお気軽にご相談ください。
+    </div>
+  </section>
+
   <!-- Contact Info Panel -->
-  <div class="info-panel">
+  <div class="info-panel reveal">
     <div class="info-row">
       <div>
         <div class="info-label">COMPANY</div>
@@ -325,8 +455,8 @@ footer {
   </div>
 
   <!-- is-Ma Music Project CTA -->
-  <div class="music-cta">
-    <div class="tag">// CREATIVE PROJECT</div>
+  <div class="music-cta reveal">
+    <div class="tag">// FLAGSHIP PROJECT</div>
     <h2>is-Ma — Cinematic AI Vocal</h2>
     <p>Icea × Sylas / 二つの流星が、地球で出会う<br>Now streaming on Spotify · Apple Music · YouTube Music</p>
     <a class="listen-btn" href="https://is-ma.pages.dev" target="_blank" onclick="track('music_listen_cta')">
@@ -336,7 +466,7 @@ footer {
 
   <footer>
     © 2026 I·S·M LLC. All rights reserved.<br>
-    <span style="opacity: 0.4;">[ Digital business card v1 ]</span>
+    <span style="opacity: 0.45;">[ AI-DRIVEN BUSINESS CARD v2 ]</span>
   </footer>
 </div>
 
@@ -373,7 +503,7 @@ function shareCard() {
   if (navigator.share) {
     navigator.share({
       title: 'I·S·M LLC — 前田 顕',
-      text: '前田 顕 / I·S·M合同会社 のデジタル名刺',
+      text: '前田 顕 / I・S・M合同会社 — AI-Driven Business Studio',
       url: url
     }).then(() => track('share_native'));
   } else {
@@ -385,29 +515,70 @@ function shareCard() {
 }
 
 function track(event) {
-  // Cloudflare Web Analytics 自動収集 + 簡易localStorage カウント
   try {
     const key = 'ism_card_' + event;
     const count = parseInt(localStorage.getItem(key) || '0') + 1;
     localStorage.setItem(key, count);
-    // referrer query (?ref=xxx)
     const url = new URL(window.location.href);
     const ref = url.searchParams.get('ref');
     if (ref) {
       const refKey = 'ism_ref_' + ref;
       localStorage.setItem(refKey, parseInt(localStorage.getItem(refKey) || '0') + 1);
     }
-    // ビーコン送信 (将来用)
     if (window.gtag) window.gtag('event', event, { event_category: 'business_card', ref: ref || 'direct' });
   } catch (e) {}
 }
 
-// ページロード追跡
 document.addEventListener('DOMContentLoaded', () => {
   track('page_view');
-  const url = new URL(window.location.href);
-  const ref = url.searchParams.get('ref');
-  if (ref) console.log('Referrer:', ref);
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Particle network background
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, pts = [];
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    const n = Math.min(70, Math.floor(W * H / 22000));
+    pts = Array.from({ length: n }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35
+    }));
+  }
+  function step() {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+    }
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 16000) {
+          ctx.strokeStyle = 'rgba(0,229,255,' + (0.10 * (1 - d2 / 16000)).toFixed(3) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
+        }
+      }
+    }
+    for (const p of pts) {
+      ctx.fillStyle = 'rgba(124,92,255,0.5)';
+      ctx.beginPath(); ctx.arc(p.x, p.y, 1.3, 0, Math.PI * 2); ctx.fill();
+    }
+    if (!reduced) requestAnimationFrame(step);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  step();
 });
 
 // キーボード操作 (F / Space で flip)
