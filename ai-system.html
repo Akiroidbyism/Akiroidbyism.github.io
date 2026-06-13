@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>システム開発｜I・S・M合同会社 — EA開発・業務自動化・AIエージェント</title>
+  <meta name="description" content="I・S・M合同会社のシステム開発事業。FX自動売買EA(MT4/MT5)の設計・開発・バックテスト検証、業務自動化ツール、データ収集、AIエージェント開発まで。要件定義から運用まで一気通貫で構築します。">
+  <meta property="og:title" content="システム開発 — I・S・M LLC / DIVISION 02 SYSTEM">
+  <meta property="og:description" content="FX自動売買EA開発・業務自動化・AIエージェント開発。要件定義から運用まで一気通貫で構築。">
+  <meta property="og:image" content="https://is-ma.pages.dev/assets/services/automation.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://is-ma.pages.dev/ai-system">
+  <link rel="canonical" href="https://is-ma.pages.dev/ai-system">
+  <link rel="icon" type="image/jpeg" href="assets/services/ism_emblem.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #04050a;
+  --bg2: #0a0e1c;
+  --cyan: #00e5ff;
+  --violet: #7c5cff;
+  --magenta: #ff4ecd;
+  --gold: #ffd564;
+  --text: #f2f6ff;
+  --muted: #8b96ad;
+  --panel: rgba(255,255,255,0.035);
+  --border: rgba(255,255,255,0.09);
+  --grad: linear-gradient(100deg, var(--cyan), var(--violet) 55%, var(--magenta));
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg); color: var(--text);
+  min-height: 100vh; overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+#bg-canvas { position: fixed; inset: 0; z-index: 0; opacity: 0.5; }
+.bg-glow { position: fixed; z-index: 0; pointer-events: none; width: 70vmax; height: 70vmax; border-radius: 50%; filter: blur(90px); opacity: 0.13; }
+.bg-glow.g1 { top: -30vmax; left: -20vmax; background: radial-gradient(circle, var(--cyan), transparent 60%); }
+.bg-glow.g2 { bottom: -35vmax; right: -25vmax; background: radial-gradient(circle, var(--violet), transparent 60%); }
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(124,92,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 30%, transparent 80%);
+}
+.wrap { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 0 1.4rem; }
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  background: rgba(4,5,10,0.72); border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-inner {
+  max-width: 1080px; margin: 0 auto; padding: 0.85rem 1.4rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.95rem;
+  color: var(--text); text-decoration: none; letter-spacing: 0.1em;
+}
+.nav-logo img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+.nav-logo b { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.nav-links { display: flex; gap: 1.4rem; align-items: center; }
+.nav-links a {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; letter-spacing: 0.12em;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cyan); }
+.nav-links a.cta { color: #050810; background: var(--grad); padding: 0.45rem 1rem; border-radius: 999px; font-weight: 700; }
+.nav-links a.cta:hover { color: #050810; opacity: 0.9; }
+
+/* Hero */
+.page-hero { padding: 8rem 0 2.5rem; text-align: center; }
+.page-hero .kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; letter-spacing: 0.32em; color: var(--cyan); margin-bottom: 1rem; }
+.page-hero h1 { font-size: clamp(2rem, 6.5vw, 3.2rem); font-weight: 900; margin-bottom: 1rem; }
+.page-hero h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.page-hero .sub { color: var(--muted); font-size: 0.92rem; line-height: 2; }
+.page-hero .sub b { color: var(--text); }
+
+section { padding: 3.2rem 0; position: relative; }
+.sec-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.32em; color: var(--cyan); text-align: center; margin-bottom: 0.7rem; }
+.sec-title { text-align: center; font-size: clamp(1.4rem, 4.5vw, 1.9rem); font-weight: 900; margin-bottom: 0.7rem; }
+.sec-title .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sec-desc { text-align: center; color: var(--muted); font-size: 0.88rem; line-height: 2; margin-bottom: 2.2rem; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.8rem 1.7rem; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--panel); color: var(--text); font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem; font-weight: 700; text-decoration: none; cursor: pointer; transition: all 0.22s ease;
+}
+.btn:hover { border-color: rgba(0,229,255,0.6); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(0,229,255,0.14); }
+.btn.primary { background: var(--grad); border: none; color: #050810; }
+.btn.primary:hover { box-shadow: 0 10px 32px rgba(124,92,255,0.4); }
+
+/* Capability cards */
+.caps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+@media (max-width: 700px) { .caps { grid-template-columns: 1fr; } }
+.cap {
+  position: relative; border: 1px solid var(--border); border-radius: 16px; background: var(--panel);
+  padding: 1.5rem 1.4rem; overflow: hidden; transition: all 0.25s ease;
+}
+.cap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent, var(--grad)); opacity: 0.85; }
+.cap:hover { transform: translateY(-4px); border-color: rgba(120,160,255,0.4); box-shadow: 0 16px 44px rgba(0,0,0,0.5); }
+.cap .icon {
+  width: 44px; height: 44px; border-radius: 11px; display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border); margin-bottom: 0.95rem;
+}
+.cap .icon svg { width: 22px; height: 22px; }
+.cap h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.15rem; }
+.cap .en { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; color: var(--muted); margin-bottom: 0.65rem; }
+.cap p { color: var(--muted); font-size: 0.82rem; line-height: 1.85; }
+
+/* Flow */
+.flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.7rem; }
+@media (max-width: 860px) { .flow { grid-template-columns: repeat(2, 1fr); } }
+.fstep { border: 1px solid var(--border); border-radius: 16px; background: var(--panel); padding: 1.3rem 1rem; }
+.fstep .n {
+  font-family: 'Outfit', monospace; font-size: 1.6rem; font-weight: 800;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.4rem;
+}
+.fstep h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.35rem; }
+.fstep p { color: var(--muted); font-size: 0.74rem; line-height: 1.75; }
+
+/* Tech stack */
+.tech { display: flex; flex-wrap: wrap; gap: 0.55rem; justify-content: center; }
+.tech span {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; letter-spacing: 0.06em; color: #c4d2ec;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 999px; padding: 0.5rem 1.1rem;
+}
+
+/* CTA strip */
+.cta-strip {
+  text-align: center; border: 1px solid rgba(124,92,255,0.35); border-radius: 20px;
+  background: linear-gradient(135deg, rgba(0,229,255,0.07), rgba(124,92,255,0.08) 50%, rgba(255,78,205,0.07));
+  padding: 2.2rem 1.5rem;
+}
+.cta-strip h3 { font-size: 1.3rem; font-weight: 900; margin-bottom: 0.5rem; }
+.cta-strip p { color: var(--muted); font-size: 0.85rem; line-height: 1.9; margin-bottom: 1.3rem; }
+
+.note {
+  max-width: 720px; margin: 1.6rem auto 0; text-align: center;
+  color: var(--muted); font-size: 0.72rem; line-height: 1.9;
+  border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.2rem;
+}
+
+footer {
+  border-top: 1px solid rgba(255,255,255,0.06); padding: 2.4rem 1.4rem; text-align: center;
+  color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; line-height: 2.2;
+  position: relative; z-index: 1;
+}
+footer a { color: var(--muted); text-decoration: none; margin: 0 0.6rem; }
+footer a:hover { color: var(--cyan); }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="bg-glow g1"></div>
+<div class="bg-glow g2"></div>
+<div class="bg-grid"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><img src="assets/services/ism_emblem.jpg" alt="I·S·M emblem">I·S·M <b>LLC</b></a>
+    <div class="nav-links">
+      <a href="index.html">← HOME</a>
+      <a class="cta" href="index.html#contact">CONTACT</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- Page Hero -->
+  <header class="page-hero">
+    <div class="kicker">DIVISION 02 — SYSTEM</div>
+    <h1>システム<span class="grad">開発</span></h1>
+    <p class="sub">
+      FX自動売買EA(MT4/MT5)から業務自動化ツール、AIエージェントまで。<br>
+      要件定義・設計・開発・<b>バックテスト検証</b>・運用までを一気通貫で構築します。
+    </p>
+  </header>
+
+  <!-- Capabilities -->
+  <section style="padding-top: 1rem;">
+    <div class="sec-label reveal">WHAT WE BUILD</div>
+    <h2 class="sec-title reveal">開発<span class="grad">領域</span></h2>
+    <p class="sec-desc reveal">自社事業(音楽・EC)を支える自動化基盤を、すべて内製で開発・運用しています。<br>その実装力を、そのまま受託開発でも提供します。</p>
+    <div class="caps">
+      <div class="cap reveal" style="--accent: linear-gradient(90deg, var(--cyan), #34f5a4);">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-6"/></svg></div>
+        <h3>FX自動売買EA開発</h3>
+        <div class="en">EXPERT ADVISOR</div>
+        <p>MQL4/MQL5でのEA設計・開発・改修。東京レンジ／ロンドンブレイクアウト等の戦略実装と、10年超のヒストリカルデータによるバックテスト検証、VPSでの自動運用まで対応します。</p>
+      </div>
+      <div class="cap reveal" style="--accent: linear-gradient(90deg, var(--violet), var(--magenta));">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#7c5cff" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+        <h3>業務自動化ツール</h3>
+        <div class="en">AUTOMATION TOOLS</div>
+        <p>定型業務の自動化スクリプト・常駐ツールの開発。出品・価格改定・スケジュール実行など、人手の作業を24時間無人で回す仕組みを構築します。</p>
+      </div>
+      <div class="cap reveal" style="--accent: linear-gradient(90deg, #ffd564, #ff7a6e);">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ffd564" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg></div>
+        <h3>データ収集・解析</h3>
+        <div class="en">DATA / SCRAPING</div>
+        <p>Webスクレイピング・API連携によるデータ収集と、価格・需要分析のパイプライン構築。市場リサーチや意思決定を支えるデータ基盤を整えます。</p>
+      </div>
+      <div class="cap reveal" style="--accent: linear-gradient(90deg, var(--cyan), var(--violet));">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 8V4M8 4h8"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg></div>
+        <h3>AIエージェント開発</h3>
+        <div class="en">AI AGENTS</div>
+        <p>LLMを組み込んだ自律エージェント・自動化ワークフローの設計実装。判断を含む業務をAIに任せ、運用を継続的に改善する仕組みをつくります。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Development Flow -->
+  <section>
+    <div class="sec-label reveal">DEVELOPMENT FLOW</div>
+    <h2 class="sec-title reveal">開発<span class="grad">フロー</span></h2>
+    <p class="sec-desc reveal">要件定義から運用・改善まで。検証を重視し、動く状態で納品します。</p>
+    <div class="flow">
+      <div class="fstep reveal"><div class="n">01</div><h4>要件定義</h4><p>目的・制約・成功条件を整理し、仕様に落とし込みます。</p></div>
+      <div class="fstep reveal"><div class="n">02</div><h4>設計</h4><p>戦略・ロジック・アーキテクチャを設計します。</p></div>
+      <div class="fstep reveal"><div class="n">03</div><h4>開発</h4><p>MQL/Python等で実装。途中経過も随時共有します。</p></div>
+      <div class="fstep reveal"><div class="n">04</div><h4>検証</h4><p>バックテスト・動作試験でロジックを徹底検証します。</p></div>
+      <div class="fstep reveal"><div class="n">05</div><h4>運用</h4><p>VPS等への展開・保守・改善まで継続対応します。</p></div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section>
+    <div class="sec-label reveal">TECH STACK</div>
+    <h2 class="sec-title reveal">技術<span class="grad">スタック</span></h2>
+    <p class="sec-desc reveal">自社運用で鍛えた実装技術。</p>
+    <div class="tech reveal">
+      <span>MQL4 / MQL5</span>
+      <span>MetaTrader 4 / 5</span>
+      <span>Python</span>
+      <span>バックテスト検証</span>
+      <span>VPS 運用</span>
+      <span>Web スクレイピング</span>
+      <span>API 連携</span>
+      <span>LLM / AIエージェント</span>
+      <span>タスク自動化</span>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="cta-strip reveal">
+      <h3>システム開発のご相談</h3>
+      <p>FX自動売買EA・業務自動化・AIエージェントの開発まで、実装と検証の両輪でお手伝いします。</p>
+      <a class="btn primary" href="index.html#contact">無料で相談する</a>
+      <a class="btn" href="index.html" style="margin-left: 0.5rem;">← トップへ戻る</a>
+    </div>
+    <p class="note reveal">
+      ※ FX自動売買をはじめとする投資・取引には元本割れ等のリスクがあります。当社は受託開発・検証を行うものであり、利益を保証するものではありません。バックテストの結果は過去のものであり、将来の成果を保証するものではありません。
+    </p>
+  </section>
+
+</div>
+
+<footer>
+  © 2026 I・S・M LLC. All rights reserved.<br>
+  <a href="index.html">HOME</a>·<a href="ai-music.html">MUSIC</a>·<a href="ai-commerce.html">COMMERCE</a>·<a href="card.html">DIGITAL CARD</a>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, pts = [];
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    const n = Math.min(80, Math.floor(W * H / 22000));
+    pts = Array.from({ length: n }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35
+    }));
+  }
+  function step() {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+    }
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 16000) {
+          ctx.strokeStyle = 'rgba(0,229,255,' + (0.10 * (1 - d2 / 16000)).toFixed(3) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
+        }
+      }
+    }
+    for (const p of pts) {
+      ctx.fillStyle = 'rgba(124,92,255,0.5)';
+      ctx.beginPath(); ctx.arc(p.x, p.y, 1.3, 0, Math.PI * 2); ctx.fill();
+    }
+    if (!reduced) requestAnimationFrame(step);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  step();
+});
+</script>
+
+<!-- Cloudflare Web Analytics (Pages 自動付与) -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "auto"}'></script>
+
+</body>
+</html>
