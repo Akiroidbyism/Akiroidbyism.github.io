@@ -184,6 +184,35 @@ section { padding: 4.5rem 0; position: relative; }
 }
 .more-note b { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
+/* ===== Why Us ===== */
+.whyus { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
+@media (max-width: 860px) { .whyus { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .whyus { grid-template-columns: 1fr; } }
+.why {
+  position: relative; border: 1px solid var(--border); border-radius: 16px; background: var(--panel);
+  padding: 1.5rem 1.3rem; overflow: hidden; transition: all 0.25s ease;
+}
+.why:hover { transform: translateY(-4px); border-color: rgba(120,160,255,0.35); box-shadow: 0 16px 44px rgba(0,0,0,0.5); }
+.why .ic {
+  width: 42px; height: 42px; border-radius: 11px; display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border); margin-bottom: 0.9rem;
+}
+.why .ic svg { width: 21px; height: 21px; }
+.why h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.45rem; line-height: 1.45; }
+.why p { color: var(--muted); font-size: 0.8rem; line-height: 1.85; }
+
+/* ===== CTA Band ===== */
+.cta-band {
+  position: relative; overflow: hidden; text-align: center;
+  border: 1px solid rgba(124,92,255,0.35); border-radius: 22px;
+  background: linear-gradient(135deg, rgba(0,229,255,0.08), rgba(124,92,255,0.1) 50%, rgba(255,78,205,0.08));
+  padding: 2.8rem 1.6rem;
+}
+.cta-band h2 { font-size: clamp(1.4rem, 4.5vw, 2rem); font-weight: 900; margin-bottom: 0.7rem; }
+.cta-band h2 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cta-band p { color: #c3cde0; font-size: 0.9rem; line-height: 1.95; margin-bottom: 1.6rem; max-width: 540px; margin-left: auto; margin-right: auto; }
+.cta-band .row { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+
 /* ===== Division feature rows ===== */
 .division {
   display: grid; grid-template-columns: 240px 1fr; gap: 2rem; align-items: center;
@@ -339,6 +368,7 @@ footer a:hover { color: var(--cyan); }
     <a class="nav-logo" href="#"><img src="assets/services/ism_emblem.jpg" alt="I·S·M emblem">I·S·M <b>LLC</b></a>
     <div class="nav-links">
       <a href="#divisions">BUSINESS</a>
+      <a href="#why">WHY US</a>
       <a href="#services">SERVICES</a>
       <a href="ai-music.html">MUSIC</a>
       <a href="#company">COMPANY</a>
@@ -385,8 +415,8 @@ footer a:hover { color: var(--cyan); }
   <!-- Divisions -->
   <section id="divisions">
     <div class="sec-label reveal">BUSINESS</div>
-    <h2 class="sec-title reveal">3つの<span class="grad">自社事業</span></h2>
-    <p class="sec-desc reveal">机上のコンサルではなく、自分たちで毎日AIを回している事業者です。<br>ここで磨いたパイプラインが、提供サービスの土台になっています。</p>
+    <h2 class="sec-title reveal">3つの<span class="grad">自社事業</span> = 実績</h2>
+    <p class="sec-desc reveal">机上のコンサルではなく、自分たちで毎日AIを回している事業者です。<br>ここで磨いたパイプラインを、<b style="color:var(--text)">そのまま御社の事業にも提供</b>します。</p>
 
     <a class="division reveal" href="ai-music.html">
       <div class="img"><img src="assets/services/music_production.jpg" alt="AI Music Production" loading="lazy"></div>
@@ -420,6 +450,35 @@ footer a:hover { color: var(--cyan); }
         <div class="go">詳しくはこちら →</div>
       </div>
     </a>
+  </section>
+
+  <!-- Why Us -->
+  <section id="why">
+    <div class="sec-label reveal">WHY I·S·M</div>
+    <h2 class="sec-title reveal">選ばれる<span class="grad">理由</span></h2>
+    <p class="sec-desc reveal">「やったことがある会社」と「やり続けている会社」は違います。<br>私たちは自社の事業で、今もAIを動かし続けています。</p>
+    <div class="whyus">
+      <div class="why reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+        <h3>机上論ではない</h3>
+        <p>音楽・システム・ECを自社で実運用し、毎日結果を出している現役のプレイヤー。その実装力をそのまま提供します。</p>
+      </div>
+      <div class="why reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#7c5cff" stroke-width="2"><path d="m13 2-3 7h5l-3 7"/><path d="M5 12a7 7 0 0 1 14 0"/></svg></div>
+        <h3>1/10コスト・10倍速</h3>
+        <p>企画から実装までAIをフル活用。外注を重ねる従来型に比べ、低コスト・短納期で高品質を実現します。</p>
+      </div>
+      <div class="why reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#ff4ecd" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></div>
+        <h3>企画→運用までワンストップ</h3>
+        <p>制作だけで終わらせません。配信・出品・自動運用・改善まで一気通貫で、成果が回り続ける仕組みを構築します。</p>
+      </div>
+      <div class="why reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#34f5a4" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg></div>
+        <h3>AIネイティブな内製力</h3>
+        <p>音楽生成・動画・コード・自動化エージェントまで、すべて社内で開発・運用。要望に最短数日で応えます。</p>
+      </div>
+    </div>
   </section>
 
   <!-- Services -->
@@ -482,6 +541,18 @@ footer a:hover { color: var(--cyan); }
       <div class="step reveal"><div class="n">02</div><h4>設計・提案</h4><p>最適なAIパイプラインを設計し、コストとスケジュールをご提示。</p></div>
       <div class="step reveal"><div class="n">03</div><h4>高速構築</h4><p>AIフル活用で最短数日で構築。途中経過も随時共有します。</p></div>
       <div class="step reveal"><div class="n">04</div><h4>納品・運用</h4><p>納品後の自動運用・保守まで対応。改善サイクルを回し続けます。</p></div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section>
+    <div class="cta-band reveal">
+      <h2>まずは、<span class="grad">無料でご相談</span>ください</h2>
+      <p>「これはAI化できる？」の一言からでOKです。御社の課題に合わせて、最適な進め方とお見積りをご提案します。<br>2営業日以内にご返信します。</p>
+      <div class="row">
+        <a class="btn primary" href="#contact">無料で相談する</a>
+        <a class="btn" href="mailto:a.maeda@y-ism.llc">✉ メールで問い合わせ</a>
+      </div>
     </div>
   </section>
 
