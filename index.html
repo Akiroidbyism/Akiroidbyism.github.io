@@ -191,6 +191,13 @@ section { padding: 4.5rem 0; position: relative; }
   padding: 1.8rem; margin-bottom: 1.1rem; overflow: hidden; position: relative; transition: all 0.25s ease;
 }
 .division:hover { border-color: rgba(120,160,255,0.35); }
+a.division { text-decoration: none; color: inherit; cursor: pointer; }
+a.division:hover { transform: translateY(-3px); box-shadow: 0 16px 44px rgba(0,0,0,0.5); }
+.division .go {
+  display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.95rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em;
+  color: var(--cyan);
+}
 @media (max-width: 700px) { .division { grid-template-columns: 1fr; text-align: center; } .division .img { margin: 0 auto; } }
 .division .img { width: 100%; max-width: 240px; aspect-ratio: 1; border-radius: 16px; overflow: hidden; border: 1px solid rgba(120,160,255,0.2); }
 .division .img img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -232,6 +239,36 @@ section { padding: 4.5rem 0; position: relative; }
   font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; transition: all 0.2s;
 }
 .flagship .listen:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(255,213,100,0.35); }
+
+/* ===== YouTube Channels ===== */
+.channels { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; margin-top: 1.1rem; }
+@media (max-width: 700px) { .channels { grid-template-columns: 1fr; } }
+.ch {
+  position: relative; display: block; text-decoration: none; color: inherit;
+  border: 1px solid var(--border); border-radius: 16px; background: var(--panel);
+  padding: 1.4rem 1.3rem; overflow: hidden; transition: all 0.25s ease;
+}
+.ch::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent, var(--grad)); opacity: 0.85; }
+.ch:hover { transform: translateY(-4px); border-color: rgba(120,160,255,0.4); box-shadow: 0 16px 44px rgba(0,0,0,0.5); }
+.ch .head { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.7rem; }
+.ch .yt {
+  flex: none; width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,0,0,0.12); border: 1px solid rgba(255,80,80,0.35);
+}
+.ch .yt svg { width: 20px; height: 20px; fill: #ff5050; }
+.ch h4 { font-size: 1rem; font-weight: 700; line-height: 1.4; }
+.ch .handle { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.1em; color: var(--muted); }
+.ch p { color: var(--muted); font-size: 0.8rem; line-height: 1.85; margin-bottom: 0.7rem; }
+.ch .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.ch .tags span {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; color: #b9c6e2;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 5px; padding: 0.2rem 0.5rem;
+}
+.ch .visit {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.12em; color: var(--cyan);
+}
 
 /* ===== Process ===== */
 .process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
@@ -351,15 +388,16 @@ footer a:hover { color: var(--cyan); }
     <h2 class="sec-title reveal">3つの<span class="grad">自社事業</span></h2>
     <p class="sec-desc reveal">机上のコンサルではなく、自分たちで毎日AIを回している事業者です。<br>ここで磨いたパイプラインが、提供サービスの土台になっています。</p>
 
-    <div class="division reveal">
+    <a class="division reveal" href="#music">
       <div class="img"><img src="assets/services/music_production.jpg" alt="AI Music Production" loading="lazy"></div>
       <div>
         <div class="num">DIVISION 01 — MUSIC</div>
         <h3>AI<span class="grad">音楽制作</span></h3>
         <p>自社AIレーベルを運営し、月50曲以上をSpotify・Apple Music・YouTube Musicへ世界配信。作詞作曲からMV制作・YouTubeチャンネル運用・グローバル配信まで、音楽事業をフルスタックで内製化しています。</p>
         <div class="tags"><span>AI作曲</span><span>世界配信</span><span>YouTube運用</span><span>MV制作</span></div>
+        <div class="go">is-Ma と運営チャンネルを見る →</div>
       </div>
-    </div>
+    </a>
 
     <div class="division reveal">
       <div class="img"><img src="assets/services/automation.jpg" alt="EA / System Development" loading="lazy"></div>
@@ -450,6 +488,61 @@ footer a:hover { color: var(--cyan); }
           <a class="btn" href="https://music.apple.com/jp/artist/is-ma/1896532584" target="_blank" rel="noopener">Apple Music</a>
         </div>
       </div>
+    </div>
+
+    <!-- YouTube Channels -->
+    <div class="sec-label reveal" style="margin-top: 3.5rem;">YOUTUBE CHANNELS</div>
+    <h2 class="sec-title reveal" style="font-size: clamp(1.3rem, 4vw, 1.7rem);">運営<span class="grad">チャンネル</span></h2>
+    <p class="sec-desc reveal">企画・楽曲・映像・運用まですべてAIパイプラインで内製する4チャンネル。</p>
+    <div class="channels">
+      <a class="ch reveal" href="https://youtube.com/channel/UCcV1wkBM4Cmc6VFByVC63Pw" target="_blank" rel="noopener" style="--accent: linear-gradient(90deg, #c8dcf0, #ff7a6e);">
+        <span class="visit">VISIT →</span>
+        <div class="head">
+          <div class="yt"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg></div>
+          <div>
+            <h4>is-Ma</h4>
+            <div class="handle">CINEMATIC AI VOCAL</div>
+          </div>
+        </div>
+        <p>Icea × Sylas のMV・Shorts・新曲を発信する公式チャンネル。二つの流星の物語をシネマティックAIボーカルで描きます。</p>
+        <div class="tags"><span>MV</span><span>Shorts</span><span>J-POP</span></div>
+      </a>
+      <a class="ch reveal" href="https://www.youtube.com/@KOMOREBI-ism" target="_blank" rel="noopener" style="--accent: linear-gradient(90deg, #ffd564, #34f5a4);">
+        <span class="visit">VISIT →</span>
+        <div class="head">
+          <div class="yt"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg></div>
+          <div>
+            <h4>KOMOREBI 木漏れ日</h4>
+            <div class="handle">JAPANESE BGM / 和ローファイ</div>
+          </div>
+        </div>
+        <p>和楽器×ローファイの作業用・睡眠用BGMと、日本の歴史を音楽で旅する海外向けチャンネル。純和風の世界観で展開中。</p>
+        <div class="tags"><span>和風BGM</span><span>睡眠用</span><span>作業用</span><span>歴史</span></div>
+      </a>
+      <a class="ch reveal" href="https://www.youtube.com/@FocusSessions-ism" target="_blank" rel="noopener" style="--accent: linear-gradient(90deg, var(--cyan), var(--violet));">
+        <span class="visit">VISIT →</span>
+        <div class="head">
+          <div class="yt"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg></div>
+          <div>
+            <h4>Focus Sessions</h4>
+            <div class="handle">FOCUS / STUDY BGM</div>
+          </div>
+        </div>
+        <p>90分集中サイクルに最適化した作業用・勉強用BGMチャンネル。深い集中をつくるサウンドデザインを追求しています。</p>
+        <div class="tags"><span>集中BGM</span><span>勉強用</span><span>ポモドーロ</span></div>
+      </a>
+      <a class="ch reveal" href="https://www.youtube.com/@RekishiBeats" target="_blank" rel="noopener" style="--accent: linear-gradient(90deg, var(--magenta), var(--gold));">
+        <span class="visit">VISIT →</span>
+        <div class="head">
+          <div class="yt"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg></div>
+          <div>
+            <h4>歴史ビート RekishiBeats</h4>
+            <div class="handle">HISTORY × RAP / 受験対策</div>
+          </div>
+        </div>
+        <p>戦国・幕末など日本史を和楽器ラップで暗記できる学習エンタメチャンネル。聴くだけで年号と流れが頭に入る新感覚ビート。</p>
+        <div class="tags"><span>歴史ラップ</span><span>受験</span><span>和楽器</span></div>
+      </a>
     </div>
   </section>
 
