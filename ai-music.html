@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI音楽制作｜I・S・M合同会社 — is-Ma と運営YouTubeチャンネル</title>
+  <meta name="description" content="I・S・M合同会社のAI音楽制作事業。自社AIレーベル is-Ma (Cinematic AI Vocal) と、KOMOREBI・Focus Sessions・RekishiBeats の運営YouTubeチャンネル詳細。月50曲以上を世界配信。">
+  <meta property="og:title" content="AI音楽制作 — I・S・M LLC / DIVISION 01 MUSIC">
+  <meta property="og:description" content="自社AIレーベル is-Ma と運営YouTube4チャンネル。月50曲以上を世界配信するAI音楽制作事業。">
+  <meta property="og:image" content="https://is-ma.pages.dev/assets/isma/Icea_Sylas_duo.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://is-ma.pages.dev/ai-music">
+  <link rel="canonical" href="https://is-ma.pages.dev/ai-music">
+  <link rel="icon" type="image/jpeg" href="assets/services/ism_emblem.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #04050a;
+  --bg2: #0a0e1c;
+  --cyan: #00e5ff;
+  --violet: #7c5cff;
+  --magenta: #ff4ecd;
+  --gold: #ffd564;
+  --text: #f2f6ff;
+  --muted: #8b96ad;
+  --panel: rgba(255,255,255,0.035);
+  --border: rgba(255,255,255,0.09);
+  --grad: linear-gradient(100deg, var(--cyan), var(--violet) 55%, var(--magenta));
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg); color: var(--text);
+  min-height: 100vh; overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+#bg-canvas { position: fixed; inset: 0; z-index: 0; opacity: 0.5; }
+.bg-glow { position: fixed; z-index: 0; pointer-events: none; width: 70vmax; height: 70vmax; border-radius: 50%; filter: blur(90px); opacity: 0.13; }
+.bg-glow.g1 { top: -30vmax; left: -20vmax; background: radial-gradient(circle, var(--cyan), transparent 60%); }
+.bg-glow.g2 { bottom: -35vmax; right: -25vmax; background: radial-gradient(circle, var(--violet), transparent 60%); }
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(124,92,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 30%, transparent 80%);
+}
+.wrap { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 0 1.4rem; }
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  background: rgba(4,5,10,0.72); border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-inner {
+  max-width: 1080px; margin: 0 auto; padding: 0.85rem 1.4rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.95rem;
+  color: var(--text); text-decoration: none; letter-spacing: 0.1em;
+}
+.nav-logo img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+.nav-logo b { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.nav-links { display: flex; gap: 1.4rem; align-items: center; }
+.nav-links a {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; letter-spacing: 0.12em;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cyan); }
+.nav-links a.cta { color: #050810; background: var(--grad); padding: 0.45rem 1rem; border-radius: 999px; font-weight: 700; }
+.nav-links a.cta:hover { color: #050810; opacity: 0.9; }
+
+/* Hero */
+.page-hero { padding: 8rem 0 2.5rem; text-align: center; }
+.page-hero .kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; letter-spacing: 0.32em; color: var(--cyan); margin-bottom: 1rem; }
+.page-hero h1 { font-size: clamp(2rem, 6.5vw, 3.2rem); font-weight: 900; margin-bottom: 1rem; }
+.page-hero h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.page-hero .sub { color: var(--muted); font-size: 0.92rem; line-height: 2; }
+.page-hero .sub b { color: var(--text); }
+
+section { padding: 3.2rem 0; position: relative; }
+.sec-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.32em; color: var(--cyan); text-align: center; margin-bottom: 0.7rem; }
+.sec-title { text-align: center; font-size: clamp(1.4rem, 4.5vw, 1.9rem); font-weight: 900; margin-bottom: 0.7rem; }
+.sec-title .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sec-desc { text-align: center; color: var(--muted); font-size: 0.88rem; line-height: 2; margin-bottom: 2.2rem; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.8rem 1.7rem; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--panel); color: var(--text); font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem; font-weight: 700; text-decoration: none; cursor: pointer; transition: all 0.22s ease;
+}
+.btn:hover { border-color: rgba(0,229,255,0.6); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(0,229,255,0.14); }
+.btn.primary { background: var(--grad); border: none; color: #050810; }
+.btn.primary:hover { box-shadow: 0 10px 32px rgba(124,92,255,0.4); }
+
+/* Flagship */
+.flagship {
+  position: relative; border-radius: 24px; overflow: hidden;
+  border: 1px solid rgba(124,92,255,0.35); min-height: 420px;
+  display: flex; align-items: flex-end;
+}
+.flagship .bg-img { position: absolute; inset: 0; }
+.flagship .bg-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; display: block; }
+.flagship .bg-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(4,5,10,0.1) 0%, rgba(4,5,10,0.55) 55%, rgba(4,5,10,0.92) 100%);
+}
+.flagship .inner { position: relative; padding: 2.2rem; width: 100%; }
+.flagship .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--cyan); letter-spacing: 0.28em; margin-bottom: 0.6rem; }
+.flagship h3 {
+  font-size: clamp(1.6rem, 5vw, 2.3rem); font-weight: 900; margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #c8dcf0, var(--gold), #ff7a6e);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.flagship p { color: #c3cde0; font-size: 0.88rem; line-height: 1.95; margin-bottom: 1.3rem; max-width: 560px; }
+.flagship .row { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.flagship .listen {
+  display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.7rem; border-radius: 999px;
+  background: var(--gold); color: #1a1410; font-weight: 700; text-decoration: none;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; transition: all 0.2s;
+}
+.flagship .listen:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(255,213,100,0.35); }
+
+/* Channels */
+.channels { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+@media (max-width: 700px) { .channels { grid-template-columns: 1fr; } }
+.ch {
+  position: relative; display: block; text-decoration: none; color: inherit;
+  border: 1px solid var(--border); border-radius: 16px; background: var(--panel);
+  padding: 1.4rem 1.3rem; overflow: hidden; transition: all 0.25s ease;
+}
+.ch::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent, var(--grad)); opacity: 0.85; }
+.ch:hover { transform: translateY(-4px); border-color: rgba(120,160,255,0.4); box-shadow: 0 16px 44px rgba(0,0,0,0.5); }
+.ch .head { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.7rem; }
+.ch .yt {
+  flex: none; width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,0,0,0.12); border: 1px solid rgba(255,80,80,0.35);
+}
+.ch .yt svg { width: 20px; height: 20px; fill: #ff5050; }
+.ch h4 { font-size: 1rem; font-weight: 700; line-height: 1.4; }
+.ch .handle { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.1em; color: var(--muted); }
+.ch p { color: var(--muted); font-size: 0.8rem; line-height: 1.85; margin-bottom: 0.7rem; }
+.ch .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.ch .tags span {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; color: #b9c6e2;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 5px; padding: 0.2rem 0.5rem;
+}
+.ch .visit {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.12em; color: var(--cyan);
+}
+
+/* CTA strip */
+.cta-strip {
+  text-align: center; border: 1px solid rgba(124,92,255,0.35); border-radius: 20px;
+  background: linear-gradient(135deg, rgba(0,229,255,0.07), rgba(124,92,255,0.08) 50%, rgba(255,78,205,0.07));
+  padding: 2.2rem 1.5rem;
+}
+.cta-strip h3 { font-size: 1.3rem; font-weight: 900; margin-bottom: 0.5rem; }
+.cta-strip p { color: var(--muted); font-size: 0.85rem; line-height: 1.9; margin-bottom: 1.3rem; }
+
+footer {
+  border-top: 1px solid rgba(255,255,255,0.06); padding: 2.4rem 1.4rem; text-align: center;
+  color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; line-height: 2.2;
+  position: relative; z-index: 1;
+}
+footer a { color: var(--muted); text-decoration: none; margin: 0 0.6rem; }
+footer a:hover { color: var(--cyan); }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="bg-glow g1"></div>
+<div class="bg-glow g2"></div>
+<div class="bg-grid"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><img src="assets/services/ism_emblem.jpg" alt="I·S·M emblem">I·S·M <b>LLC</b></a>
+    <div class="nav-links">
+      <a href="index.html">← HOME</a>
+      <a class="cta" href="index.html#contact">CONTACT</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- Page Hero -->
+  <header class="page-hero">
+    <div class="kicker">DIVISION 01 — MUSIC</div>
+    <h1>AI<span class="grad">音楽制作</span></h1>
+    <p class="sub">
+      自社AIレーベルを運営し、<b>月50曲以上</b>をSpotify・Apple Music・YouTube Musicへ世界配信。<br>
+      作詞作曲からMV制作・YouTubeチャンネル運用・グローバル配信まで、音楽事業をフルスタックで内製化しています。
+    </p>
+  </header>
+
+  <!-- Flagship is-Ma -->
+  <section style="padding-top: 1rem;">
+    <div class="sec-label reveal">FLAGSHIP PROJECT</div>
+    <h2 class="sec-title reveal">is-Ma — <span class="grad">Cinematic AI Vocal</span></h2>
+    <p class="sec-desc reveal">二つの流星 Icea × Sylas が地球で出会う物語を、<br>シネマティックAIボーカルで描くオリジナル・レーベル。</p>
+
+    <div class="flagship reveal">
+      <div class="bg-img"><img src="assets/isma/Icea_Sylas_duo.jpg" alt="is-Ma — Icea and Sylas" loading="lazy"></div>
+      <div class="inner">
+        <div class="tag">// NOW STREAMING WORLDWIDE</div>
+        <h3>Icea × Sylas</h3>
+        <p>Spotify · Apple Music · YouTube Music ほか主要DSPで配信中。デビューから1ヶ月で17曲リリース、海外リーチ90%を実現したAI音楽プロジェクト。</p>
+        <div class="row">
+          <a class="listen" href="music.html">▶ MUSIC PAGE</a>
+          <a class="btn" href="https://open.spotify.com/artist/2XBOJjgZcgcXX0UZva7a2X" target="_blank" rel="noopener">Spotify</a>
+          <a class="btn" href="https://music.apple.com/jp/artist/is-ma/1896532584" target="_blank" rel="noopener">Apple Music</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YouTube Channels -->
+  <section>
+    <div class="sec-label reveal">YOUTUBE CHANNELS</div>
+    <h2 class="sec-title reveal">運営<span class="grad">チャンネル</span></h2>
+    <p class="sec-desc reveal">企画・楽曲・映像・運用まですべてAIパイプラインで内製する4チャンネル。<br>カードをクリックすると各チャンネルが開きます。</p>
+    <div class="channels">
+      <a class="ch reveal" href="https://youtube.com/channel/UCcV1wkBM4Cmc6VFByVC63Pw" target="_blank" rel="noopener" style="--accent: linear-gradient(90deg, #c8dcf0, #ff7a6e);">
+        <span class="visit">VISIT →</span>
+        <div class="head">
+          <div class="yt"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg></div>
+          <div>
+            <h4>is-Ma</h4>
+            <div class="handle">CINEMATIC AI VOCAL</div>
+          </div>
+        </div>
+        <p>Icea × Sylas のMV・Shorts・新曲を発信する公式チャンネル。二つの流星の物語をシネマティックAIボーカルで描きます。</p>
+        <div class="tags"><span>MV</span><span>Shorts</span><span>J-POP</span></div>
+      </a>
+      <a class="ch reveal" href="https://www.youtube.com/@KOMOREBI-ism" target="_blank" rel="noopener" style="--accent: linear-gradient(90deg, #ffd564, #34f5a4);">
+        <span class="visit">VISIT →</span>
+        <div class="head">
+          <div class="yt"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg></div>
+          <div>
+            <h4>KOMOREBI 木漏れ日</h4>
+            <div class="handle">JAPANESE BGM / 和ローファイ</div>
+          </div>
+        </div>
+        <p>和楽器×ローファイの作業用・睡眠用BGMと、日本の歴史を音楽で旅する海外向けチャンネル。純和風の世界観で展開中。</p>
+        <div class="tags"><span>和風BGM</span><span>睡眠用</span><span>作業用</span><span>歴史</span></div>
+      </a>
+      <a class="ch reveal" href="https://www.youtube.com/@FocusSessions-ism" target="_blank" rel="noopener" style="--accent: linear-gradient(90deg, var(--cyan), var(--violet));">
+        <span class="visit">VISIT →</span>
+        <div class="head">
+          <div class="yt"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg></div>
+          <div>
+            <h4>Focus Sessions</h4>
+            <div class="handle">FOCUS / STUDY BGM</div>
+          </div>
+        </div>
+        <p>90分集中サイクルに最適化した作業用・勉強用BGMチャンネル。深い集中をつくるサウンドデザインを追求しています。</p>
+        <div class="tags"><span>集中BGM</span><span>勉強用</span><span>ポモドーロ</span></div>
+      </a>
+      <a class="ch reveal" href="https://www.youtube.com/@RekishiBeats" target="_blank" rel="noopener" style="--accent: linear-gradient(90deg, var(--magenta), var(--gold));">
+        <span class="visit">VISIT →</span>
+        <div class="head">
+          <div class="yt"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg></div>
+          <div>
+            <h4>歴史ビート RekishiBeats</h4>
+            <div class="handle">HISTORY × RAP / 受験対策</div>
+          </div>
+        </div>
+        <p>戦国・幕末など日本史を和楽器ラップで暗記できる学習エンタメチャンネル。聴くだけで年号と流れが頭に入る新感覚ビート。</p>
+        <div class="tags"><span>歴史ラップ</span><span>受験</span><span>和楽器</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="cta-strip reveal">
+      <h3>楽曲制作・音楽事業のご相談</h3>
+      <p>BGM・テーマソング・チャンネル運用まで、AI音楽制作の実戦ノウハウでお手伝いします。</p>
+      <a class="btn primary" href="index.html#contact">無料で相談する</a>
+      <a class="btn" href="index.html" style="margin-left: 0.5rem;">← トップへ戻る</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  © 2026 I・S・M LLC. All rights reserved.<br>
+  <a href="index.html">HOME</a>·<a href="music.html">MUSIC</a>·<a href="card.html">DIGITAL CARD</a>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, pts = [];
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    const n = Math.min(80, Math.floor(W * H / 22000));
+    pts = Array.from({ length: n }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35
+    }));
+  }
+  function step() {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+    }
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 16000) {
+          ctx.strokeStyle = 'rgba(0,229,255,' + (0.10 * (1 - d2 / 16000)).toFixed(3) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
+        }
+      }
+    }
+    for (const p of pts) {
+      ctx.fillStyle = 'rgba(124,92,255,0.5)';
+      ctx.beginPath(); ctx.arc(p.x, p.y, 1.3, 0, Math.PI * 2); ctx.fill();
+    }
+    if (!reduced) requestAnimationFrame(step);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  step();
+});
+</script>
+
+<!-- Cloudflare Web Analytics (Pages 自動付与) -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "auto"}'></script>
+
+</body>
+</html>
